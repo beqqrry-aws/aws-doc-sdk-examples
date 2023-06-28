@@ -1,7 +1,9 @@
 # Definitions
-- definitions:
+- define_red:
   color: &MergeRed "AD1C21"
+- define_green:
   color: &MergeGreen "1FC058"
+- define_gray:
   color: &TrackingGray "F5F7F9"
 
 
