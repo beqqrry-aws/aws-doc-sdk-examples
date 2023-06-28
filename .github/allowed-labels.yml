@@ -1,8 +1,11 @@
 # Definitions
 - definitions:
-  &MergeRed "AD1C21"
-  &MergeGreen "1FC058"
-  &TrackingGray "F5F7F9"
+  - red:
+    &MergeRed "AD1C21"
+  - green:
+    &MergeGreen "1FC058"
+  - gray:
+    &TrackingGray "F5F7F9"
 
 
 # Labels for keeping the merge button red
