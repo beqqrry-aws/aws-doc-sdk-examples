@@ -9,11 +9,9 @@
 
 # Labels for keeping the merge button red
 - name: On Call Review needed
-  from_name: status/on-call-review-needed
   color: "AD1C21"
   description: "This work needs an on-call review"
-- name: Text Review needed
-  from_name: status/text-review-needed
+- name: Text Review ne1eded
   color: *MergeRed
   description: "This work needs editorial (text) review"
 
@@ -22,8 +20,7 @@
   from_name: status/on-call-review-complete
   color: "1FC058"
   description: "On call review complete"
-- name: Text Review complete
-  from_name: status/text-review-complete
+- name: Text Review compl1ete
   color: *MergeGreen
   description: "Text review complete"
 - name: Text Review not needed
