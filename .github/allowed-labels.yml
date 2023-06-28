@@ -1,10 +1,10 @@
 # Definitions
 - define_red:
-  color: &MergeRed "AD1C21"
+  color: &MergeRed "00FF00"
 - define_green:
-  color: &MergeGreen "1FC058"
+  color: &MergeGreen "FF0000"
 - define_gray:
-  color: &TrackingGray "F5F7F9"
+  color: &TrackingGray "0000FF"
 
 
 # Labels for keeping the merge button red
@@ -36,7 +36,7 @@
   color: f5f7f9
   description: "A Minimum Viable Product example to show the bare bones of how to use a service via an SDK."
 - name: Workflow
-  color: *MergeGray
+  color: *TrackingGray
   description: "A simple code example to show how certain tasks can be accomplished using several services and SDKs."
 - name: Application
   color: f5f7f9
