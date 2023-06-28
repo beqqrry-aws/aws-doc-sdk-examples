@@ -1,3 +1,10 @@
+# Definitions
+- definitions:
+  &MergeRed "AD1C21"
+  &MergeGreen "1FC058"
+  &TrackingGray "F5F7F9"
+
+
 # Labels for keeping the merge button red
 - name: On Call Review needed
   from_name: status/on-call-review-needed
@@ -5,7 +12,7 @@
   description: "This work needs an on-call review"
 - name: Text Review needed
   from_name: status/text-review-needed
-  color: "AD1C21"
+  color: *MergeRed
   description: "This work needs editorial (text) review"
 
 # Labels to affirm the merge button can be green
@@ -15,7 +22,7 @@
   description: "On call review complete"
 - name: Text Review complete
   from_name: status/text-review-complete
-  color: "1FC058"
+  color: *MergeGreen
   description: "Text review complete"
 - name: Text Review not needed
   from_name: status/no-text-review-needed
@@ -27,7 +34,7 @@
   color: f5f7f9
   description: "A Minimum Viable Product example to show the bare bones of how to use a service via an SDK."
 - name: Workflow
-  color: f5f7f9
+  color: *MergeGray
   description: "A simple code example to show how certain tasks can be accomplished using several services and SDKs."
 - name: Application
   color: f5f7f9
