@@ -48,6 +48,6 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           yaml-file: .github/allowed-labels.yml
           skip-delete: false
-          dry-run: false
+          dry-run: true
           exclude: |
            define_*
