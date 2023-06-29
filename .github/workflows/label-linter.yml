@@ -50,6 +50,4 @@ jobs:
           skip-delete: false
           dry-run: false
           exclude: |
-           "define_red"
-           "define_green"
-           "define_gray"
+           define_*
