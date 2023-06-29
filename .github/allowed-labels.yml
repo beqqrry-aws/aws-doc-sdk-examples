@@ -4,7 +4,7 @@
 - name: define_green
   color: &MergeGreen "FF00FF"
 - name: define_gray
-  color: &TrackingGray "0000FF"
+  color: &TrackingGray "00FFFF"
 
 
 # Labels for keeping the merge button red
