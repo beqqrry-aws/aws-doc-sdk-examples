@@ -31,10 +31,6 @@ jobs:
        with:
          repo-token: "${{ secrets.GITHUB_TOKEN }}"
          configuration-path: .github/label-ruleset.yml
-         exclude: |
-           "define_red"
-           "define_green"
-           "define_gray"
 
       # The Audit Labels workflow creates, renames, updates
       # or deletes labels based on a list of allowed labels.
@@ -53,3 +49,7 @@ jobs:
           yaml-file: .github/allowed-labels.yml
           skip-delete: false
           dry-run: false
+          exclude: |
+           "define_red"
+           "define_green"
+           "define_gray"
