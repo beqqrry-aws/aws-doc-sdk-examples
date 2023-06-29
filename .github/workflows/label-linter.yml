@@ -45,6 +45,7 @@ jobs:
         if: success()
         uses: beqqrry-aws/ghaction-github-labeler@v1
         with:
+          ref: refs/heads/master
           github-token: ${{ secrets.GITHUB_TOKEN }}
           yaml-file: .github/allowed-labels.yml
           skip-delete: false
