@@ -1,6 +1,6 @@
 # Definitions
 - name: define_red
-  color: &MergeRed "00FFFF"
+  color: &MergeRed "FFFF00"
 - name: define_green
   color: &MergeGreen "FF00FF"
 - name: define_gray
