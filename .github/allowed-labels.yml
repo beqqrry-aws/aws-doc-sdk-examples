@@ -11,7 +11,7 @@
 - name: On Call Review needed
   color: "AD1C21"
   description: "This work needs an on-call review"
-- name: Text Review ne1eded
+- name: Text Review needed
   color: *MergeRed
   description: "This work needs editorial (text) review"
 
@@ -20,7 +20,7 @@
   from_name: status/on-call-review-complete
   color: "1FC058"
   description: "On call review complete"
-- name: Text Review compl1ete
+- name: Text Review complete
   color: *MergeGreen
   description: "Text review complete"
 - name: Text Review not needed
