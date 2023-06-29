@@ -2,7 +2,7 @@
 - name: define_red
   color: &MergeRed "00FF00"
 - name: define_green
-  color: &MergeGreen "FF0000"
+  color: &MergeGreen "FF00FF"
 - name: define_gray
   color: &TrackingGray "0000FF"
 
