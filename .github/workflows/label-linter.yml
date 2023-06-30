@@ -43,7 +43,7 @@ jobs:
       -
         name: Audit Labels
         #if: success()
-        uses: beqqrry-aws/ghaction-github-labeler@v2
+        uses: beqqrry-aws/ghaction-github-labeler@v2.0.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           yaml-file: .github/allowed-labels.yml
