@@ -17,14 +17,12 @@
 
 # Labels to affirm the merge button can be green
 - name: On Call Review complete
-  from_name: status/on-call-review-complete
   color: *MergeGreen
   description: "On call review complete"
 - name: Text Review complete
   color: *MergeGreen
   description: "Text review complete"
 - name: Text Review not needed
-  from_name: status/no-text-review-needed
   color: *MergeGreen
   description: "This contains no text which needs review"
 
@@ -50,88 +48,67 @@
   description: "After Scouts, more languages are added to examples as Follows."
 
 - name: C++
-  from_name: lang/cpp
   color: *TrackingGray
   description: "This issue relates to the AWS SDK for C++"
 - name: DotNet-v3
-  from_name: lang/dotnet-v3
   color: *TrackingGray
   description: "This issue relates to the AWS SDK for .NET V3"
 - name: Go-v1
-  from_name: lang/go-v1
   color: *TrackingGray
   description: "This issue relates to the AWS SDK for Go V1"
 - name: Go-v2
-  from_name: lang/go-v2
   color: *TrackingGray
   description: "This issue relates to the AWS SDK for Go V2"
 - name: Java-v1
-  from_name: lang/java-v1
   color: *TrackingGray
   description: "This issue relates to the AWS SDK for Java V1"
 - name: Java-v2
-  from_name: lang/java-v2
   color: *TrackingGray
   description: "This issue relates to the AWS SDK for Java V2"
 - name: Javascript-v2
-  from_name: lang/javascript-v2
   color: *TrackingGray
   description: "This issue relates to the AWS SDK for Javascript V2"
 - name: Javascript-v3
-  from_name: lang/javascript-v3
   color: *TrackingGray
   description: "This issue relates to the AWS SDK for Javascript V3"
 - name: Kotlin
-  from_name: lang/kotlin
   color: *TrackingGray
   description: "This issue relates to the AWS SDK for Kotlin"
 - name: PHP
-  from_name: lang/php
   color: *TrackingGray
   description: "This issue relates to the AWS SDK for PHP"
 - name: Python
-  from_name: lang/python
   color: *TrackingGray
   description: "This issue relates to the AWS SDK for Python (boto3)"
 - name: Ruby
-  from_name: lang/ruby
   color: *TrackingGray
   description: "This issue relates to the AWS SDK for Ruby"
 - name: Rust
-  from_name: lang/rust
   color: *TrackingGray
   description: "This issue relates to the AWS SDK for Rust (Preview)"
 - name: Swift
-  from_name: lang/swift
   color: *TrackingGray
   description: "This issue relates to the AWS SDK for Swift"
 - name: Typescript
-  from_name: lang/typescript
   color: *TrackingGray
   description: "This issue relates to the AWS SDK for Typescript"
 - name: Shell
-  from_name: lang/shell
   color: *TrackingGray
   description: "Tools written in bash/sh"
 
 - name: CLI
-  from_name: tool/cli
   description: "Relates to the AWS CLI"
   color: *TrackingGray
 - name: CDK
-  from_name: tool/cdk
   color: *TrackingGray
   description: "Relates to the AWS Cloud Development Kit (CDK)"
 - name: CloudFormation
-  from_name: tool/cloudformation
   description: "Relates to CloudFormation templates"
   color: *TrackingGray
 - name: Testing
-  from_name: tool/integration-testing
   description: "Relates to integration testing"
   color: *TrackingGray
 - name: GitHub settings
-  from_name: type/github-settings
   color: *TrackingGray
   description: "This affects GitHub settings"
 
@@ -140,10 +117,8 @@
   color: "00FFFF"
   description: "Very important and needs attention"
 - name: Epic
-  from_name: size/epic
   color: "d8bfd8"
   description: "Contains many smaller pieces to work on separately"
 - name: Tracker
-  from_name: type/tracking
   color: "a0d0fa"
   description: "Similar to an Epic, but used to track a single individual's multi-part issues."
