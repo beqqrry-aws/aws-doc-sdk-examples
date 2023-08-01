@@ -4,7 +4,7 @@
 // Unit tests for the movie table scenario.
 
 package scenarios
-
+#BREAKME
 import (
 	"fmt"
 	"strconv"
