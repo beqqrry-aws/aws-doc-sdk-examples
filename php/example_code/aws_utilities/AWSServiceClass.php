@@ -5,6 +5,10 @@
 
 namespace AwsUtilities;
 
+/**
+ * Legacy Cleanup TODO: Add snippet tags
+ */
+
 use Aws\Exception\AwsException;
 use Iam\IAMService;
 
@@ -32,6 +36,8 @@ abstract class AWSServiceClass
             } catch (AwsException $exception) {
                 if ($verbose) {
                     echo "Attempt failed because of: {$exception->getMessage()}.\n";
+                    echo "Aws error type: {$exception->getAwsErrorType()}\n";
+                    echo "Aws error code: {$exception->getAwsErrorCode()}\n";
                     echo "Waiting " . static::$waitTime . " seconds before trying again.\n";
                     echo (static::$maxWaitAttempts - $attempts) . " attempts left.\n";
                 }

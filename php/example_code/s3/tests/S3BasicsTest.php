@@ -7,18 +7,20 @@
 # Integration test runner for GettingStartedWithS3.php.
 #
 
-namespace S3Basics\tests;
+namespace S3\tests;
 
 use PHPUnit\Framework\TestCase;
 
 /**
  * @group integ
+ * @covers \S3\GettingStartedWithS3
+ * @covers \S3\S3Service
  */
-class S3BasicsTests extends TestCase
+class S3BasicsTest extends TestCase
 {
     public function testItRunsWithoutThrowingAnException()
     {
-        include __DIR__ . "/../GettingStartedWithS3.php";
+        include __DIR__ . "/../Runner.php";
         self::assertTrue(true); // This asserts that we made it to this line with no exceptions thrown.
     }
 }

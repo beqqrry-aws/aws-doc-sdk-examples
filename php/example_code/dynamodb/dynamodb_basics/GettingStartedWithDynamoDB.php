@@ -33,6 +33,7 @@ use DynamoDb;
 use DynamoDb\DynamoDBAttribute;
 use DynamoDb\DynamoDBService;
 
+use function AwsUtilities\loadMovieData;
 use function AwsUtilities\testable_readline;
 
 class GettingStartedWithDynamoDB
