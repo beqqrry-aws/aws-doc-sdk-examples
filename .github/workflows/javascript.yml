@@ -24,6 +24,7 @@ jobs:
             - "javascriptv3/**"
   lint:
     name: Lint Javascript
+    needs: changes
     if: ${{ needs.changes.outputs.javascript == 'true' }}
     runs-on: ubuntu-latest
     steps:
