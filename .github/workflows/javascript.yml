@@ -8,9 +8,23 @@ on:
   workflow_dispatch:
 
 jobs:
+  changes:
+    name: Changed Files Detection
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+    outputs:
+      javascript: ${{ steps.filter.outputs.javascript }}
+    steps:
+    - uses: dorny/paths-filter@v3
+      id: filter
+      with:
+        filters: |
+          javascript:
+            - "javascriptv3/**"
   lint:
     name: Lint Javascript
-    if: contains(github.event.pull_request.labels.*.name, 'Javascript-v3')
+    if: ${{ needs.changes.outputs.javascript == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
