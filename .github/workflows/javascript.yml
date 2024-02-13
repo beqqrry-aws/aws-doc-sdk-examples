@@ -19,6 +19,17 @@ jobs:
         uses: tj-actions/changed-files@v41
         with:
           files: "javascriptv3/**/*.{js,ts,jsx,tsx}"
+      - name: Test Output
+        run: |
+          echo ${{steps.changed-files.outputs.test_any_changed}}
+          if ${{steps.changed-files.outputs.test_any_changed == "true"
+            echo "Something was changed"
+          else
+            echo "Nothing changed"
+          fi
+          for file in ${ALL_CHANGED_FILES}; do
+            echo "$file was changed"
+          done
       - name: Setup NodeJS
         if: ${{steps.changed-files.outputs.test_any_changed}} == 'true'  
         uses: actions/setup-node@v3
