@@ -9,7 +9,7 @@ This repository contains code examples that demonstrate how to use the [AWSK SDK
 Many examples are injected into the [AWS Documentation](https://docs.aws.amazon.com).
 
 ## How this repository is organized
-
+ 
 Code examples for each language's SDK can be found within the following subdirectories. The examples here demonstrate the most common uses of the SDK for each language.
 
 |     SDK    |       folder      | SDK version |
