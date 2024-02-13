@@ -1,6 +1,8 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+//test comment
+
 import { fileURLToPath } from "url";
 
 // snippet-start:[javascript.v3.ec2.scenarios.Hello]
