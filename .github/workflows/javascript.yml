@@ -23,6 +23,7 @@ jobs:
         run: |
           echo ${{steps.changed-files.outputs.test_any_changed}}
           if ${{steps.changed-files.outputs.test_any_changed}} == "true"
+          then
             echo "Something was changed"
           else
             echo "Nothing changed"
