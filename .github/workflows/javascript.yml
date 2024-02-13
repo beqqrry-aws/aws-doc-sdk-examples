@@ -21,7 +21,7 @@ jobs:
           files: "javascriptv3/**/*.{js,ts,jsx,tsx}"
       - name: Testing output
         run: |
-          echo ${{steps.changed-riles.outputs.test_any_changed
+          echo ${{steps.changed-riles.outputs.test_any_changed}}
           echo "\n"
           for file in ${{steps.changed-files.outputs.all_changed_files}}; do
             echo "$file was changed"
