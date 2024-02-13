@@ -23,11 +23,9 @@
  * vendor/bin/phpunit S3BasicsTests.php
  * /**/
 
-// test comment
-
 namespace S3;
 
-use Aws\S3\Exception\S3Exception;
+use Aws\S3\Exception\S3Exception; // test comment
 use Aws\S3\S3Client;
 use AwsUtilities\RunnableExample;
 use Exception;
