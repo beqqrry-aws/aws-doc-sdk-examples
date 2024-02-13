@@ -20,9 +20,12 @@ jobs:
         with:
           files: "javascriptv3/**/*.{js,ts,jsx,tsx}"
       - name: Test Output
+        env:
+          ANY_CHANGED_FILES: ${{ steps.changed-files.outputs.test_any_changed }}
         run: |
           echo ${{steps.changed-files.outputs.test_any_changed}}
-          if ${{steps.changed-files.outputs.test_any_changed}} == "true"
+          echo ${ANY_CHANGED_FILES}
+          if ${{steps.changed-files.outputs.test_any_changed}} = "true"
           then
             echo "Something was changed"
           else
