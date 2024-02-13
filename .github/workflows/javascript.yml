@@ -8,24 +8,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  changes:
-    name: Changed Files Detection
-    runs-on: ubuntu-latest
-    permissions:
-      pull-requests: read
-    outputs:
-      javascript: ${{ steps.filter.outputs.javascript }}
-    steps:
-    - uses: dorny/paths-filter@v3
-      id: filter
-      with:
-        filters: |
-          javascript:
-            - "javascriptv3/**"
   lint:
     name: Lint Javascript
-    needs: changes
-    if: ${{ needs.changes.outputs.javascript == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -35,6 +19,7 @@ jobs:
         uses: tj-actions/changed-files@v41
         with:
           files: "javascriptv3/**/*.{js,ts,jsx,tsx}"
+        if: steps.changed-files.outputs.test_any_changed == 'true'  
       - name: Setup NodeJS
         uses: actions/setup-node@v3
         with:
