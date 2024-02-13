@@ -15,7 +15,7 @@ The AWS SDK for JavaScript (v3) provides a JavaScript API for AWS infrastructure
 - **Cross-service examples** - Sample applications that work across multiple AWS services.
 
 ### Find code examples
-
+ 
 Single-service actions and scenarios are organized by AWS service in the `example_code` folder. A README in each folder lists and describes how to run the examples.
 
 Cross-service examples are located in the [_cross-services folder_](./example_code/cross-services). A README in each folder describes how to run the example.
