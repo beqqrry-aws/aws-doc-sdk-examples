@@ -1,7 +1,7 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import { fileURLToPath } from "url";
+import { fileURLToPath } from "url"; //test comment
 
 // snippet-start:[javascript.v3.ec2.scenarios.Hello]
 import { DescribeSecurityGroupsCommand } from "@aws-sdk/client-ec2";
