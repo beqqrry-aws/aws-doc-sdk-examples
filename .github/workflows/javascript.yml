@@ -27,12 +27,12 @@ jobs:
             echo "$file was changed"
           done
       - name: Setup NodeJS
-        if: ${ALL_CHANGED_FILES} > 0  
+        if: ${{ steps.changed-files.outputs.all_changed_files[0] }} != null 
         uses: actions/setup-node@v3
         with:
           node-version: "20.x"
       - name: Install dependencies
-        if: ${ALL_CHANGED_FILES} != null  
+        if: ${{ steps.changed-files.outputs.all_changed_files }}[0] != null  
         run: npm i --prefix javascriptv3
       - name: Lint added and modified files
         if: ${{steps.changed-files.outputs.any_changed}} == 'true'  
