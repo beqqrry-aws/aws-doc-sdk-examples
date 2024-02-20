@@ -3,7 +3,7 @@
 // snippet-start:[ec2.go.delete_security_group]
 package main
 
-// snippet-start:[ec2.go.delete_security_group.imports]
+// snippet-start:[ec2.go.delete_security_group.imports] //test change
 import (
     "flag"
     "fmt"
