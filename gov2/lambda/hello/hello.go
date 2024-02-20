@@ -14,7 +14,7 @@ import (
 	"github.com/aws/aws-sdk-go-v2/service/lambda"
 )
 
-// main uses the AWS SDK for Go (v2) to create an AWS Lambda client and list up to 10
+// main uses the AWS SDK for Go (v2) to create an AWS Lambda client and list up to 10 //test change
 // functions in your account.
 // This example uses the default settings specified in your shared credentials
 // and config files.
