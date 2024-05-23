@@ -9,22 +9,31 @@ import (
 	"os"
 )
 
+// snippet-start:[gov2.redshift.Movie.struct]
+
+// Movie makes it easier to use Movie objects given in json format.
 type Movie struct {
 	ID    int    `json:"id"`
 	Title string `json:"title"`
 	Year  int    `json:"year"`
 }
 
-func printMovieDetails(movie Movie) {
-	fmt.Printf("Title: %s, Year: %d, ID: %d\n", movie.Title, movie.Year, movie.ID)
-}
+// snippet-end:[gov2.redshift.Movie.struct]
 
+// snippet-start:[gov2.redshift.RedshiftQuery.struct]
+
+// RedshiftQuery makes it easier to deal with RedshiftQuery objects.
 type RedshiftQuery struct {
 	Result interface{}
 	Input  redshiftdata.DescribeStatementInput
 	Client *redshiftdata.Client
 }
 
+// snippet-end:[gov2.redshift.RedshiftQuery.struct]
+
+// snippet-start:[gov2.redshift.WaitForQueryStatus]
+
+// WaitForQueryStatus waits until the given RedshiftQuery object has succeeded or failed.
 func WaitForQueryStatus(query RedshiftQuery, showProgress bool) error {
 	done := false
 	attempts := 0
@@ -51,6 +60,11 @@ func WaitForQueryStatus(query RedshiftQuery, showProgress bool) error {
 	return nil
 }
 
+// snippet-end:[gov2.redshift.WaitForQueryStatus]
+
+// snippet-start:[gov2.redshift.loadMoviesFromJSON]
+
+// loadMoviesFromJSON takes the "Movies.json" file and populates a slice of Movie objects.
 func loadMoviesFromJSON(filename string) ([]Movie, error) {
 	file, err := os.Open("../../resources/sample_files/" + filename)
 	if err != nil {
@@ -66,3 +80,5 @@ func loadMoviesFromJSON(filename string) ([]Movie, error) {
 
 	return movies, nil
 }
+
+// snippet-end:[gov2.redshift.loadMoviesFromJSON]

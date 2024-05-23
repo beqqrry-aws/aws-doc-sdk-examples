@@ -9,6 +9,9 @@ import (
 	"github.com/aws/aws-sdk-go-v2/service/redshiftdata"
 )
 
+// snippet-start:[gov2.redshift.ListDatabases]
+
+// ListDatabases lists all databases in the given cluster.
 func ListDatabases(client *redshiftdata.Client, userName, clusterId string, questioner demotools.IQuestioner) {
 	fmt.Println("List databases in", clusterId)
 	questioner.Ask("Press Enter to continue...")
@@ -30,6 +33,11 @@ func ListDatabases(client *redshiftdata.Client, userName, clusterId string, ques
 	}
 }
 
+// snippet-end:[gov2.redshift.ListDatabases]
+
+// snippet-start:[gov2.redshift.CreateMoviesTable]
+
+// CreateMoviesTable creates a table named "Movies" in the "dev" database.
 func CreateMoviesTable(client *redshiftdata.Client, userName, clusterId string, questioner demotools.IQuestioner) {
 	fmt.Println("Now you will create a table named Movies.")
 	questioner.Ask("Press Enter to continue...")
@@ -55,7 +63,12 @@ func CreateMoviesTable(client *redshiftdata.Client, userName, clusterId string, 
 	fmt.Println("Table created:", *output.Id)
 }
 
-func DeleteMoviesTable(client *redshiftdata.Client, userName, clusterId string, questioner demotools.IQuestioner) (bool, error) {
+// snippet-end:[gov2.redshift.CreateMoviesTable]
+
+// snippet-start:[gov2.redshift.DeleteMoviesTable]
+
+// DeleteMoviesTable drops the table named "Movies" from the "dev" database.
+func DeleteMoviesTable(client *redshiftdata.Client, userName, clusterId string) (bool, error) {
 
 	deleteTableInput := &redshiftdata.ExecuteStatementInput{
 		ClusterIdentifier: &clusterId,
@@ -64,17 +77,14 @@ func DeleteMoviesTable(client *redshiftdata.Client, userName, clusterId string, 
 		Sql:               aws.String("DROP TABLE Movies;"),
 	}
 
-	if questioner.AskBool("Do you want to delete the dev table? This will clean up all inserted records but keep your cluster intact. (y/n)", "y") {
-		output, err := client.ExecuteStatement(context.TODO(), deleteTableInput)
-		if err != nil {
-			fmt.Printf("Failed to delete table: %v\n", err)
-			return false, err
-		}
-
-		fmt.Println("Movies table deleted:", *output.Id)
-		return true, nil
+	output, err := client.ExecuteStatement(context.TODO(), deleteTableInput)
+	if err != nil {
+		fmt.Printf("Failed to delete table: %v\n", err)
+		return false, err
 	}
-	fmt.Println("Movies table not deleted.")
-	return false, nil
 
+	fmt.Println("Movies table deleted:", *output.Id)
+	return true, nil
 }
+
+// snippet-end:[gov2.redshift.DeleteMoviesTable]

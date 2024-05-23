@@ -9,6 +9,9 @@ import (
 	"github.com/awsdocs/aws-doc-sdk-examples/gov2/demotools"
 )
 
+// snippet-start:[gov2.redshift.buildSqlStatements]
+
+// buildSqlStatements formats a series of SQL statements to be batch fed to the Redshift cluster.
 func buildSqlStatements(movies []Movie, numRecords int) []string {
 	var sqlStatements []string
 
@@ -23,6 +26,10 @@ func buildSqlStatements(movies []Movie, numRecords int) []string {
 
 	return sqlStatements
 }
+
+// snippet-end:[gov2.redshift.buildSqlStatements]
+
+// snippet-start:[gov2.redshift.PopulateMoviesTable]
 
 // PopulateMoviesTable reads data from the "Movies.json" file and inserts records into the "Movies" table.
 func PopulateMoviesTable(client *redshiftdata.Client, userName, clusterId string, questioner demotools.IQuestioner) {
@@ -71,40 +78,47 @@ func PopulateMoviesTable(client *redshiftdata.Client, userName, clusterId string
 	fmt.Printf("%d records were added to the Movies table.\n", numRecords)
 }
 
-func DeleteDataRows(client *redshiftdata.Client, userName, clusterId string, questioner demotools.IQuestioner) (bool, error) {
+// snippet-end:[gov2.redshift.PopulateMoviesTable]
 
-	if questioner.AskBoolWithDefault("Do you want to delete all rows in the Movies table? This will clean up all inserted records but keep your cluster and table intact. (y/n)", "y") {
-		deleteRows := &redshiftdata.ExecuteStatementInput{
-			ClusterIdentifier: &clusterId,
-			Database:          aws.String("dev"),
-			DbUser:            &userName,
-			Sql:               aws.String("DELETE FROM Movies;"),
-		}
+// snippet-start:[gov2.redshift.DeleteDataRows]
 
-		result, err := client.ExecuteStatement(context.TODO(), deleteRows)
-		if err != nil {
-			fmt.Printf("Failed to execute batch statement: %v\n", err)
-			return false, err
-		}
-		describeInput := redshiftdata.DescribeStatementInput{
-			Id: result.Id,
-		}
-		query := RedshiftQuery{
-			Client: client,
-			Result: result,
-			Input:  describeInput,
-		}
-		err = WaitForQueryStatus(query, true)
-		if err != nil {
-			fmt.Printf("Failed to execute delete query: %v\n", err)
-			return false, err
-		}
-
-		fmt.Printf("Successfully executed delete statement\n")
+// DeleteDataRows deletes all rows from the "Movies" table.
+func DeleteDataRows(client *redshiftdata.Client, userName, clusterId string) (bool, error) {
+	deleteRows := &redshiftdata.ExecuteStatementInput{
+		ClusterIdentifier: &clusterId,
+		Database:          aws.String("dev"),
+		DbUser:            &userName,
+		Sql:               aws.String("DELETE FROM Movies;"),
 	}
+
+	result, err := client.ExecuteStatement(context.TODO(), deleteRows)
+	if err != nil {
+		fmt.Printf("Failed to execute batch statement: %v\n", err)
+		return false, err
+	}
+	describeInput := redshiftdata.DescribeStatementInput{
+		Id: result.Id,
+	}
+	query := RedshiftQuery{
+		Client: client,
+		Result: result,
+		Input:  describeInput,
+	}
+	err = WaitForQueryStatus(query, true)
+	if err != nil {
+		fmt.Printf("Failed to execute delete query: %v\n", err)
+		return false, err
+	}
+
+	fmt.Printf("Successfully executed delete statement\n")
 	return true, nil
 }
 
+// snippet-end:[gov2.redshift.DeleteDataRows]
+
+// snippet-start:[gov2.redshift.QueryMoviesByYear]
+
+// QueryMoviesByYear retrieves only movies from the "Movies" table which match the given year.
 func QueryMoviesByYear(client *redshiftdata.Client, userName, clusterId string, questioner demotools.IQuestioner) {
 	fmt.Println("Query the Movies table by year.")
 	year := questioner.AskInt(
@@ -158,5 +172,6 @@ func QueryMoviesByYear(client *redshiftdata.Client, userName, clusterId string, 
 			}
 		}
 	}
-
 }
+
+// snippet-end:[gov2.redshift.QueryMoviesByYear]
