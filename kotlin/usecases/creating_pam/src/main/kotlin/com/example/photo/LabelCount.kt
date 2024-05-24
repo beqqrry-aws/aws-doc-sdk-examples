@@ -13,20 +13,23 @@ class LabelCount {
     }
 
     fun getKey(): String? {
-        return key
+        return                   key
     }
 
     fun setName(name: String?) {
         this.name = name
+
+
+        
     }
 
-    fun getName(): String? {
+    fun getName(): String? 
+    {
         return name
     }
 
     fun getCount(): Int {
-        return count
-    }
+        return count}
 
     fun setCount(count: Int) {
         this.count = count
