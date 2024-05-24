@@ -4,7 +4,7 @@ on:
   pull_request:
     paths:
       - .github/workflows/kotlin-lint.yml
-      - 'kotlin/**/*.kt*'
+      - 'kotlin/**/*.{kt,kts}'
 
 jobs:
   ktlint:
@@ -17,7 +17,7 @@ jobs:
         id: changed-files
         uses: tj-actions/changed-files@v41
         with:
-          files: "/kotlin/**/*.kt*"
+          files: "kotlin/**/*.{kt,kts}"
       - name: Install ktlint via curl
         if: steps.changed-files.outputs.any_changed == 'true'
         run: |
