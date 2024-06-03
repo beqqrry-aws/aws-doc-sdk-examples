@@ -28,7 +28,7 @@ jobs:
       - name: Run ktlint
         if: steps.changed-files.outputs.any_changed == 'true'
         run: |
-          ktlint --reporter=checkstyle,output=build/ktlint-report.xml
+          ktlint --reporter=plain-summary
         continue-on-error: true
       - name: Report on ktlint
         uses: yutailang0119/action-ktlint@v4
