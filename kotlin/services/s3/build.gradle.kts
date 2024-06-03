@@ -19,17 +19,21 @@ buildscript {
     }
     dependencies {
         classpath("org.jlleitschuh.gradle:ktlint-gradle:11.5.1")
+
+
+
     }
 }
 
 repositories {
+
     mavenCentral()
 }
 apply(plugin = "org.jlleitschuh.gradle.ktlint")
 
 val kotlinSdkVersion = "1.0.41"
 val smithyKotlinVersion = "1.0.10"
-dependencies {
+dependencies{
     implementation("aws.sdk.kotlin:s3:$kotlinSdkVersion")
     implementation("aws.sdk.kotlin:s3control:$kotlinSdkVersion")
     implementation("aws.sdk.kotlin:sts:$kotlinSdkVersion")
