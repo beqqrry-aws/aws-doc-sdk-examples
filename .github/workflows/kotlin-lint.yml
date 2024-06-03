@@ -21,10 +21,10 @@ jobs:
         uses: tj-actions/changed-files@v41
         with:
           files: "kotlin/**/*.{kt,kts}"
-      - name: List changed files
+      - name: List all changed files
         env:
           ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
-        run:
+        run: |
           for file in ${ALL_CHANGED_FILES}; do
             echo "$file was changed"
           done
