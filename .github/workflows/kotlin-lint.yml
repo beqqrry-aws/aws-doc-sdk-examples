@@ -21,6 +21,11 @@ jobs:
         uses: tj-actions/changed-files@v41
         with:
           files: "kotlin/**/*.{kt,kts}"
+      - name: List changed files
+        run:
+          for file in ${ALL_CHANGED_FILES}; do
+            echo "$file was changed"
+          done
       - name: Install ktlint via curl
         if: steps.changed-files.outputs.any_changed == 'true'
         run: |
