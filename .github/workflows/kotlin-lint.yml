@@ -29,7 +29,7 @@ jobs:
         if: steps.changed-files.outputs.any_changed == 'true'
         run: |
           ktlint --reporter=plain?group_by_file
-        continue-on-error: true
+        continue-on-error: false
       - name: Report on ktlint
         uses: yutailang0119/action-ktlint@v4
         with:
