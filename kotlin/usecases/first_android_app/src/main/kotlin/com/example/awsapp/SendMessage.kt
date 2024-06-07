@@ -9,17 +9,20 @@ import aws.sdk.kotlin.services.sns.model.SnsException
 import kotlin.system.exitProcess
 
 class SendMessage {
-
-    suspend fun pubTextSMS(snsClient: SnsClient, messageVal: String?, phoneNumberVal: String?) {
+    suspend fun pubTextSMS(
+        snsClient: SnsClient,
+        messageVal: String?,
+        phoneNumberVal: String?,
+    ) {
         try {
-            val request = PublishRequest {
-                message = messageVal
-                phoneNumber = phoneNumberVal
-            }
+            val request =
+                PublishRequest {
+                    message = messageVal
+                    phoneNumber = phoneNumberVal
+                }
 
             val result = snsClient.publish(request)
             println("${result.messageId} message sent.")
-
         } catch (e: SnsException) {
             println(e.message)
             snsClient.close()

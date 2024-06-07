@@ -20,14 +20,16 @@ class SendReceiveMessages {
     // Purges the queue.
     suspend fun purgeMyQueue() {
         var queueUrlVal: String
-        val getQueueRequest = GetQueueUrlRequest {
-            queueName = queueNameVal
-        }
+        val getQueueRequest =
+            GetQueueUrlRequest {
+                queueName = queueNameVal
+            }
         SqsClient { region = "us-west-2" }.use { sqsClient ->
             queueUrlVal = sqsClient.getQueueUrl(getQueueRequest).queueUrl.toString()
-            val queueRequest = PurgeQueueRequest {
-                queueUrl = queueUrlVal
-            }
+            val queueRequest =
+                PurgeQueueRequest {
+                    queueUrl = queueUrlVal
+                }
             sqsClient.purgeQueue(queueRequest)
         }
     }
@@ -37,19 +39,21 @@ class SendReceiveMessages {
         val attr: MutableList<String> = ArrayList()
         attr.add("Name")
 
-        val getQueueRequest = GetQueueUrlRequest {
-            queueName = queueNameVal
-        }
+        val getQueueRequest =
+            GetQueueUrlRequest {
+                queueName = queueNameVal
+            }
 
         SqsClient { region = "us-west-2" }.use { sqsClient ->
             val queueUrlVal = sqsClient.getQueueUrl(getQueueRequest).queueUrl
 
-            val receiveRequest = ReceiveMessageRequest {
-                queueUrl = queueUrlVal
-                maxNumberOfMessages = 10
-                waitTimeSeconds = 20
-                messageAttributeNames = attr
-            }
+            val receiveRequest =
+                ReceiveMessageRequest {
+                    queueUrl = queueUrlVal
+                    maxNumberOfMessages = 10
+                    waitTimeSeconds = 20
+                    messageAttributeNames = attr
+                }
 
             val messages = sqsClient.receiveMessage(receiveRequest).messages
             var myMessage: MessageData
@@ -75,23 +79,26 @@ class SendReceiveMessages {
 
     // Adds a new message to the FIFO queue.
     suspend fun processMessage(msg: MessageData) {
-        val attributeValue = MessageAttributeValue {
-            stringValue = msg.name
-            dataType = "String"
-        }
+        val attributeValue =
+            MessageAttributeValue {
+                stringValue = msg.name
+                dataType = "String"
+            }
 
         val myMap: MutableMap<String, MessageAttributeValue> = HashMap()
         myMap["Name"] = attributeValue
 
-        val getQueueRequest = GetQueueUrlRequest {
-            queueName = queueNameVal
-        }
+        val getQueueRequest =
+            GetQueueUrlRequest {
+                queueName = queueNameVal
+            }
 
         // Get the language code of the incoming message.
         var lanCode = ""
-        val request = DetectDominantLanguageRequest {
-            text = msg.body
-        }
+        val request =
+            DetectDominantLanguageRequest {
+                text = msg.body
+            }
 
         ComprehendClient { region = "us-west-2" }.use { comClient ->
             val resp = comClient.detectDominantLanguage(request)
@@ -107,13 +114,14 @@ class SendReceiveMessages {
         // Send the message to the FIFO queue.
         SqsClient { region = "us-west-2" }.use { sqsClient ->
             val queueUrlVal: String? = sqsClient.getQueueUrl(getQueueRequest).queueUrl
-            val sendMsgRequest = SendMessageRequest {
-                queueUrl = queueUrlVal
-                messageAttributes = myMap
-                messageGroupId = "GroupA_$lanCode"
-                messageDeduplicationId = msg.id
-                messageBody = msg.body
-            }
+            val sendMsgRequest =
+                SendMessageRequest {
+                    queueUrl = queueUrlVal
+                    messageAttributes = myMap
+                    messageGroupId = "GroupA_$lanCode"
+                    messageDeduplicationId = msg.id
+                    messageBody = msg.body
+                }
             sqsClient.sendMessage(sendMsgRequest)
         }
     }

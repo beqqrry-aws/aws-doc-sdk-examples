@@ -27,12 +27,13 @@ class SnsService {
 
     // Create a Subscription.
     suspend fun subEmail(email: String?): String? {
-        val request = SubscribeRequest {
-            protocol = "email"
-            endpoint = email
-            returnSubscriptionArn = true
-            topicArn = topicArnVal
-        }
+        val request =
+            SubscribeRequest {
+                protocol = "email"
+                endpoint = email
+                returnSubscriptionArn = true
+                topicArn = topicArnVal
+            }
 
         SnsClient { region = "us-west-2" }.use { snsClient ->
             val result = snsClient.subscribe(request)
@@ -40,36 +41,42 @@ class SnsService {
         }
     }
 
-    suspend fun pubTopic(messageVal: String, lang: String): String {
+    suspend fun pubTopic(
+        messageVal: String,
+        lang: String,
+    ): String {
         val translateClient = TranslateClient { region = "us-east-1" }
         val body: String
 
         if (lang.compareTo("English") == 0) {
             body = messageVal
         } else if (lang.compareTo("French") == 0) {
-            val textRequest = TranslateTextRequest {
-                sourceLanguageCode = "en"
-                targetLanguageCode = "fr"
-                text = messageVal
-            }
+            val textRequest =
+                TranslateTextRequest {
+                    sourceLanguageCode = "en"
+                    targetLanguageCode = "fr"
+                    text = messageVal
+                }
 
             val textResponse = translateClient.translateText(textRequest)
             body = textResponse.translatedText.toString()
         } else {
-            val textRequest = TranslateTextRequest {
-                sourceLanguageCode = "en"
-                targetLanguageCode = "es"
-                text = messageVal
-            }
+            val textRequest =
+                TranslateTextRequest {
+                    sourceLanguageCode = "en"
+                    targetLanguageCode = "es"
+                    text = messageVal
+                }
 
             val textResponse = translateClient.translateText(textRequest)
             body = textResponse.translatedText.toString()
         }
 
-        val request = PublishRequest {
-            message = body
-            topicArn = topicArnVal
-        }
+        val request =
+            PublishRequest {
+                message = body
+                topicArn = topicArnVal
+            }
 
         SnsClient { region = "us-west-2" }.use { snsClient ->
             val result = snsClient.publish(request)
@@ -79,9 +86,10 @@ class SnsService {
 
     suspend fun unSubEmail(emailEndpoint: String) {
         val subscriptionArnVal = getTopicArnValue(emailEndpoint)
-        val request = UnsubscribeRequest {
-            subscriptionArn = subscriptionArnVal
-        }
+        val request =
+            UnsubscribeRequest {
+                subscriptionArn = subscriptionArnVal
+            }
 
         SnsClient { region = "us-west-2" }.use { snsClient ->
             snsClient.unsubscribe(request)
@@ -91,9 +99,10 @@ class SnsService {
     // Returns the Sub Amazon Resource Name (ARN) based on the given endpoint used for unSub.
     suspend fun getTopicArnValue(endpoint: String): String? {
         var subArn: String
-        val request = ListSubscriptionsByTopicRequest {
-            topicArn = topicArnVal
-        }
+        val request =
+            ListSubscriptionsByTopicRequest {
+                topicArn = topicArnVal
+            }
 
         SnsClient { region = "us-west-2" }.use { snsClient ->
             val response = snsClient.listSubscriptionsByTopic(request)
@@ -109,9 +118,10 @@ class SnsService {
 
     suspend fun getAllSubscriptions(): String? {
         val subList = mutableListOf<String>()
-        val request = ListSubscriptionsByTopicRequest {
-            topicArn = topicArnVal
-        }
+        val request =
+            ListSubscriptionsByTopicRequest {
+                topicArn = topicArnVal
+            }
 
         SnsClient { region = "us-west-2" }.use { snsClient ->
             val response = snsClient.listSubscriptionsByTopic(request)

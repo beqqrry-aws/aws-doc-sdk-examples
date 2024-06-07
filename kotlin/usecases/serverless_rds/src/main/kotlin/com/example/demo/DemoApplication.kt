@@ -29,7 +29,6 @@ fun main(args: Array<String>) {
 @CrossOrigin(origins = ["*"])
 @RestController
 class MessageResource {
-
     @Autowired
     private lateinit var wi: WorkItemRepository
 
@@ -38,46 +37,56 @@ class MessageResource {
 
     // Add a new item.
     @PostMapping("api/items")
-    fun addItems(@RequestBody payLoad: Map<String, Any>): String = runBlocking {
-        val nameVal = "user"
-        val guideVal = payLoad.get("guide").toString()
-        val descriptionVal = payLoad.get("description").toString()
-        val statusVal = payLoad.get("status").toString()
+    fun addItems(
+        @RequestBody payLoad: Map<String, Any>,
+    ): String =
+        runBlocking {
+            val nameVal = "user"
+            val guideVal = payLoad.get("guide").toString()
+            val descriptionVal = payLoad.get("description").toString()
+            val statusVal = payLoad.get("status").toString()
 
-        // Create a Work Item object.
-        val myWork = WorkItem()
-        myWork.guide = guideVal
-        myWork.description = descriptionVal
-        myWork.status = statusVal
-        myWork.name = nameVal
-        val id = wi.injestNewSubmission(myWork)
-        return@runBlocking "Item $id added successfully!"
-    }
+            // Create a Work Item object.
+            val myWork = WorkItem()
+            myWork.guide = guideVal
+            myWork.description = descriptionVal
+            myWork.status = statusVal
+            myWork.name = nameVal
+            val id = wi.injestNewSubmission(myWork)
+            return@runBlocking "Item $id added successfully!"
+        }
 
     // Retrieve items.
     @GetMapping("api/items")
-    fun getItems(@RequestParam(required = false) archived: String?): MutableList<WorkItem> = runBlocking {
-        val wi = WorkItemRepository()
-        val list: MutableList<WorkItem>
-        if (archived != null) {
-            list = wi.getItemsDataSQL(archived)
-        } else {
-            list = wi.getItemsDataSQL("")
+    fun getItems(
+        @RequestParam(required = false) archived: String?,
+    ): MutableList<WorkItem> =
+        runBlocking {
+            val wi = WorkItemRepository()
+            val list: MutableList<WorkItem>
+            if (archived != null) {
+                list = wi.getItemsDataSQL(archived)
+            } else {
+                list = wi.getItemsDataSQL("")
+            }
+            return@runBlocking list
         }
-        return@runBlocking list
-    }
 
     // Flip an item from Active to Archive.
     @PutMapping("api/items/{id}:archive")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    fun modUser(@PathVariable id: String) = runBlocking {
+    fun modUser(
+        @PathVariable id: String,
+    ) = runBlocking {
         wi.flipItemArchive(id)
         return@runBlocking
     }
 
     @PostMapping("api/items:report")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    fun sendReport(@RequestBody body: Map<String, String>) = runBlocking {
+    fun sendReport(
+        @RequestBody body: Map<String, String>,
+    ) = runBlocking {
         val email = body.get("email")
         val xml = wi.getItemsDataSQLReport("0")
         try {

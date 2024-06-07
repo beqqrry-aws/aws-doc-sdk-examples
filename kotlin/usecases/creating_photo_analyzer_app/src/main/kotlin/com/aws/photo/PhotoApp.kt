@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletResponse
 
 @SpringBootApplication
 open class PhotoApp
+
 fun main(args: Array<String>) {
     runApplication<PhotoApp>(*args)
 }
@@ -43,30 +44,31 @@ class MessageResource {
     var excel: WriteExcel? = null
 
     @GetMapping("/process")
-    fun process(): String {
-        return "process"
-    }
+    fun process(): String = "process"
 
     @GetMapping("/photo")
-    fun photo(): String {
-        return "upload"
-    }
+    fun photo(): String = "upload"
 
     @GetMapping("/")
-    fun root(): String {
-        return "index"
-    }
+    fun root(): String = "index"
 
     @RequestMapping(value = ["/getimages"], method = [RequestMethod.GET])
     @ResponseBody
-    fun getImages(request: HttpServletRequest?, response: HttpServletResponse?): String? = runBlocking {
-        return@runBlocking s3Service?.ListAllObjects(bucketName)
-    }
+    fun getImages(
+        request: HttpServletRequest?,
+        response: HttpServletResponse?,
+    ): String? =
+        runBlocking {
+            return@runBlocking s3Service?.ListAllObjects(bucketName)
+        }
 
     // Generates a report that analyzes photos in a given bucket.
     @RequestMapping(value = ["/report"], method = [RequestMethod.GET])
     @ResponseBody
-    fun report(request: HttpServletRequest, response: HttpServletResponse) = runBlocking {
+    fun report(
+        request: HttpServletRequest,
+        response: HttpServletResponse,
+    ) = runBlocking {
         // Get a list of key names in the given bucket.
         val myKeys = s3Service?.listBucketObjects(bucketName)
 
@@ -91,7 +93,8 @@ class MessageResource {
             val reportName = "ExcelReport.xls"
             response.contentType = "application/vnd.ms-excel"
             response.setHeader("Content-disposition", "attachment; filename=$reportName")
-            org.apache.commons.io.IOUtils.copy(excelData, response.outputStream)
+            org.apache.commons.io.IOUtils
+                .copy(excelData, response.outputStream)
             response.flushBuffer()
         } catch (e: Exception) {
             e.printStackTrace()
@@ -100,7 +103,10 @@ class MessageResource {
 
     // Downloads the given image from the Amazon S3 bucket.
     @RequestMapping(value = ["/downloadphoto"], method = [RequestMethod.GET])
-    fun fileDownload(request: HttpServletRequest, response: HttpServletResponse) = runBlocking {
+    fun fileDownload(
+        request: HttpServletRequest,
+        response: HttpServletResponse,
+    ) = runBlocking {
         try {
             val photoKey = request.getParameter("photoKey")
             val photoBytes: ByteArray? = s3Service?.getObjectBytes(bucketName, photoKey)
@@ -109,7 +115,8 @@ class MessageResource {
             // Define the required information here.
             response.contentType = "image/png"
             response.setHeader("Content-disposition", "attachment; filename=$photoKey")
-            org.apache.commons.io.IOUtils.copy(`is`, response.outputStream)
+            org.apache.commons.io.IOUtils
+                .copy(`is`, response.outputStream)
             response.flushBuffer()
         } catch (e: Exception) {
             e.printStackTrace()
@@ -119,16 +126,19 @@ class MessageResource {
     // Upload a photo to an Amazon S3 bucket.
     @RequestMapping(value = ["/upload"], method = [RequestMethod.POST])
     @ResponseBody
-    fun singleFileUpload(@RequestParam("file") file: MultipartFile): ModelAndView? = runBlocking {
-        try {
-            val bytes = file.bytes
-            val name = file.originalFilename
+    fun singleFileUpload(
+        @RequestParam("file") file: MultipartFile,
+    ): ModelAndView? =
+        runBlocking {
+            try {
+                val bytes = file.bytes
+                val name = file.originalFilename
 
-            // Put the file into the bucket.
-            s3Service?.putObject(bytes, bucketName, name)
-        } catch (e: IOException) {
-            e.printStackTrace()
+                // Put the file into the bucket.
+                s3Service?.putObject(bytes, bucketName, name)
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+            return@runBlocking ModelAndView(RedirectView("photo"))
         }
-        return@runBlocking ModelAndView(RedirectView("photo"))
-    }
 }

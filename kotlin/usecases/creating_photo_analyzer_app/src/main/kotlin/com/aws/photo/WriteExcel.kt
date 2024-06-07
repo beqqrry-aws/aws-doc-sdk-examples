@@ -77,13 +77,14 @@ class WriteExcel {
         times = WritableCellFormat(times10pt)
         // Lets automatically wrap the cells.
         times!!.wrap = true
-        val times10ptBoldUnderline = WritableFont(
-            WritableFont.TIMES,
-            10,
-            WritableFont.BOLD,
-            false,
-            UnderlineStyle.SINGLE
-        )
+        val times10ptBoldUnderline =
+            WritableFont(
+                WritableFont.TIMES,
+                10,
+                WritableFont.BOLD,
+                false,
+                UnderlineStyle.SINGLE,
+            )
         timesBoldUnderline = WritableCellFormat(times10ptBoldUnderline)
         timesBoldUnderline!!.wrap = true
         val cv = CellView()
@@ -99,7 +100,10 @@ class WriteExcel {
 
     // Write the Work Item Data to the Excel Report.
     @Throws(WriteException::class)
-    private fun createContent(sheet: WritableSheet, list: List<*>): Int {
+    private fun createContent(
+        sheet: WritableSheet,
+        list: List<*>,
+    ): Int {
         val size = list.size
         for (i in 0 until size) {
             val wi = list[i] as WorkItem
@@ -120,7 +124,12 @@ class WriteExcel {
     }
 
     @Throws(WriteException::class)
-    private fun addCaption(sheet: WritableSheet, column: Int, row: Int, s: String) {
+    private fun addCaption(
+        sheet: WritableSheet,
+        column: Int,
+        row: Int,
+        s: String,
+    ) {
         val label: Label
         label = Label(column, row, s, timesBoldUnderline)
         val cc = countString(s)
@@ -133,7 +142,7 @@ class WriteExcel {
         sheet: WritableSheet,
         column: Int,
         row: Int,
-        integer: Int
+        integer: Int,
     ) {
         val number: Number
         number = Number(column, row, integer.toDouble(), times)
@@ -141,7 +150,12 @@ class WriteExcel {
     }
 
     @Throws(WriteException::class)
-    private fun addLabel(sheet: WritableSheet, column: Int, row: Int, s: String) {
+    private fun addLabel(
+        sheet: WritableSheet,
+        column: Int,
+        row: Int,
+        s: String,
+    ) {
         val label: Label
         label = Label(column, row, s, times)
         val cc = countString(s)

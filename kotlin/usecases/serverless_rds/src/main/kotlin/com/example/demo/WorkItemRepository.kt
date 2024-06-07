@@ -27,11 +27,15 @@ class WorkItemRepository {
     private val secretArnVal = "<Enter value>"
     private val resourceArnVal = "<Enter value>"
 
-    fun param(nameVal: String, valueVal: String): SqlParameter {
-        val myPar = SqlParameter {
-            name = nameVal
-            value = Field.StringValue(valueVal)
-        }
+    fun param(
+        nameVal: String,
+        valueVal: String,
+    ): SqlParameter {
+        val myPar =
+            SqlParameter {
+                name = nameVal
+                value = Field.StringValue(valueVal)
+            }
         return myPar
     }
 
@@ -42,17 +46,19 @@ class WorkItemRepository {
 
         // Specify the SQL statement to query data.
         sqlStatement = "update work set archive = (:arch) where idwork =(:id);"
-        val parametersVal = listOf(
-            param("arch", arc),
-            param("id", id)
-        )
-        val sqlRequest = ExecuteStatementRequest {
-            secretArn = secretArnVal
-            sql = sqlStatement
-            database = "jobs"
-            resourceArn = resourceArnVal
-            parameters = parametersVal
-        }
+        val parametersVal =
+            listOf(
+                param("arch", arc),
+                param("id", id),
+            )
+        val sqlRequest =
+            ExecuteStatementRequest {
+                secretArn = secretArnVal
+                sql = sqlStatement
+                database = "jobs"
+                resourceArn = resourceArnVal
+                parameters = parametersVal
+            }
 
         RdsDataClient { region = "us-east-1" }.use { rdsDataClient ->
             rdsDataClient.executeStatement(sqlRequest)
@@ -71,34 +77,37 @@ class WorkItemRepository {
                 "FROM work WHERE archive = :arch ;"
             isArc = "1"
             val parametersVal = listOf(param("arch", isArc))
-            sqlRequest = ExecuteStatementRequest {
-                secretArn = secretArnVal
-                sql = sqlStatement
-                database = "jobs"
-                resourceArn = resourceArnVal
-                parameters = parametersVal
-            }
+            sqlRequest =
+                ExecuteStatementRequest {
+                    secretArn = secretArnVal
+                    sql = sqlStatement
+                    database = "jobs"
+                    resourceArn = resourceArnVal
+                    parameters = parametersVal
+                }
         } else if (status.compareTo("false") == 0) {
             sqlStatement = "SELECT idwork, date, description, guide, status, username, archive " +
                 "FROM work WHERE archive = :arch ;"
             isArc = "0"
             val parametersVal = listOf(param("arch", isArc))
 
-            sqlRequest = ExecuteStatementRequest {
-                secretArn = secretArnVal
-                sql = sqlStatement
-                database = "jobs"
-                resourceArn = resourceArnVal
-                parameters = parametersVal
-            }
+            sqlRequest =
+                ExecuteStatementRequest {
+                    secretArn = secretArnVal
+                    sql = sqlStatement
+                    database = "jobs"
+                    resourceArn = resourceArnVal
+                    parameters = parametersVal
+                }
         } else {
             sqlStatement = "SELECT idwork, date, description, guide, status, username, archive FROM work ;"
-            sqlRequest = ExecuteStatementRequest {
-                secretArn = secretArnVal
-                sql = sqlStatement
-                database = "jobs"
-                resourceArn = resourceArnVal
-            }
+            sqlRequest =
+                ExecuteStatementRequest {
+                    secretArn = secretArnVal
+                    sql = sqlStatement
+                    database = "jobs"
+                    resourceArn = resourceArnVal
+                }
         }
 
         RdsDataClient { region = "us-east-1" }.use { rdsDataClient ->
@@ -174,23 +183,25 @@ class WorkItemRepository {
             "INSERT INTO work (idwork, username, date, description, guide, status, archive) VALUES" +
                 "(:idwork, :username, :date, :description, :guide, :status, :arch);"
 
-        val parametersVal = listOf(
-            param("arch", arc),
-            param("username", name),
-            param("status", status),
-            param("date", sqlDate.toString()),
-            param("description", description),
-            param("guide", guide),
-            param("idwork", workId)
-        )
+        val parametersVal =
+            listOf(
+                param("arch", arc),
+                param("username", name),
+                param("status", status),
+                param("date", sqlDate.toString()),
+                param("description", description),
+                param("guide", guide),
+                param("idwork", workId),
+            )
 
-        val sqlRequest = ExecuteStatementRequest {
-            secretArn = secretArnVal
-            sql = sqlStatement
-            database = "jobs"
-            resourceArn = resourceArnVal
-            parameters = parametersVal
-        }
+        val sqlRequest =
+            ExecuteStatementRequest {
+                secretArn = secretArnVal
+                sql = sqlStatement
+                database = "jobs"
+                resourceArn = resourceArnVal
+                parameters = parametersVal
+            }
 
         RdsDataClient { region = "us-east-1" }.use { rdsDataClient ->
             rdsDataClient.executeStatement(sqlRequest)
@@ -202,17 +213,19 @@ class WorkItemRepository {
     // Get Items data for the content that is sent using Amazon SES.
     suspend fun getItemsDataSQLReport(arch: String): String? {
         val records = mutableListOf<WorkItem>()
-        val sqlStatement = "SELECT idwork, date, description, guide, status, username, archive " +
-            "FROM work WHERE archive = :arch ;"
+        val sqlStatement =
+            "SELECT idwork, date, description, guide, status, username, archive " +
+                "FROM work WHERE archive = :arch ;"
 
         val parametersVal = listOf(param("arch", arch))
-        val sqlRequest = ExecuteStatementRequest {
-            secretArn = secretArnVal
-            sql = sqlStatement
-            database = "jobs"
-            resourceArn = resourceArnVal
-            parameters = parametersVal
-        }
+        val sqlRequest =
+            ExecuteStatementRequest {
+                secretArn = secretArnVal
+                sql = sqlStatement
+                database = "jobs"
+                resourceArn = resourceArnVal
+                parameters = parametersVal
+            }
 
         RdsDataClient { region = "us-east-1" }.use { rdsDataClient ->
             val response = rdsDataClient.executeStatement(sqlRequest)

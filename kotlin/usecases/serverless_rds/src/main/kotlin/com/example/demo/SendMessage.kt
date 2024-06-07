@@ -11,46 +11,52 @@ import aws.sdk.kotlin.services.ses.model.SendEmailRequest
 import aws.sdk.kotlin.services.ses.model.SesException
 import org.springframework.stereotype.Component
 import kotlin.system.exitProcess
+
 @Component
 class SendMessage {
-
     suspend fun send(
         recipient: String,
-        strValue: String?
+        strValue: String?,
     ) {
         val sesClient = SesClient { region = "us-east-1" }
         // The HTML body of the email.
         val bodyHTML = (
             "<html>" + "<head></head>" + "<body>" + "<h1>Amazon RDS Items!</h1>" +
                 "<textarea>$strValue</textarea>" + "</body>" + "</html>"
-            )
+        )
 
-        val destinationOb = Destination {
-            toAddresses = listOf(recipient)
-        }
+        val destinationOb =
+            Destination {
+                toAddresses = listOf(recipient)
+            }
 
-        val contentOb = Content {
-            data = bodyHTML
-        }
+        val contentOb =
+            Content {
+                data = bodyHTML
+            }
 
-        val subOb = Content {
-            data = "Item Report"
-        }
+        val subOb =
+            Content {
+                data = "Item Report"
+            }
 
-        val bodyOb = Body {
-            html = contentOb
-        }
+        val bodyOb =
+            Body {
+                html = contentOb
+            }
 
-        val msgOb = Message {
-            subject = subOb
-            body = bodyOb
-        }
+        val msgOb =
+            Message {
+                subject = subOb
+                body = bodyOb
+            }
 
-        val emailRequest = SendEmailRequest {
-            destination = destinationOb
-            message = msgOb
-            source = "scmacdon@amazon.com"
-        }
+        val emailRequest =
+            SendEmailRequest {
+                destination = destinationOb
+                message = msgOb
+                source = "scmacdon@amazon.com"
+            }
 
         try {
             println("Attempting to send an email through Amazon SES using the AWS SDK for Kotlin...")

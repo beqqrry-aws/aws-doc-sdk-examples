@@ -33,19 +33,27 @@ class RedshiftService {
     private val dbUserVal = "awsuser"
     private val clusterId = "redshift-cluster-1"
 
-    fun param(nameVal: String, valueVal: Boolean): SqlParameter {
-        val myPar = SqlParameter {
-            name = nameVal
-            value = valueVal.toString()
-        }
+    fun param(
+        nameVal: String,
+        valueVal: Boolean,
+    ): SqlParameter {
+        val myPar =
+            SqlParameter {
+                name = nameVal
+                value = valueVal.toString()
+            }
         return myPar
     }
 
-    fun param2(nameVal: String, valueVal: String): SqlParameter {
-        val myPar = SqlParameter {
-            name = nameVal
-            value = valueVal
-        }
+    fun param2(
+        nameVal: String,
+        valueVal: String,
+    ): SqlParameter {
+        val myPar =
+            SqlParameter {
+                name = nameVal
+                value = valueVal
+            }
         return myPar
     }
 
@@ -74,23 +82,25 @@ class RedshiftService {
             "INSERT INTO work (idwork, username, date, description, guide, status, archive) VALUES" +
                 "(:idwork, :username, :date, :description, :guide, :status, :arch);"
 
-        val parametersVal = listOf(
-            param2("arch", arc),
-            param2("username", name.toString()),
-            param2("status", status.toString()),
-            param2("date", sqlDate.toString()),
-            param2("description", description.toString()),
-            param2("guide", guide.toString()),
-            param2("idwork", workId)
-        )
+        val parametersVal =
+            listOf(
+                param2("arch", arc),
+                param2("username", name.toString()),
+                param2("status", status.toString()),
+                param2("date", sqlDate.toString()),
+                param2("description", description.toString()),
+                param2("guide", guide.toString()),
+                param2("idwork", workId),
+            )
 
-        val statementRequest = ExecuteStatementRequest {
-            clusterIdentifier = clusterId
-            database = databaseVal
-            dbUser = dbUserVal
-            sql = sqlStatement
-            parameters = parametersVal
-        }
+        val statementRequest =
+            ExecuteStatementRequest {
+                clusterIdentifier = clusterId
+                database = databaseVal
+                dbUser = dbUserVal
+                sql = sqlStatement
+                parameters = parametersVal
+            }
 
         RedshiftDataClient { region = "us-west-2" }.use { redshiftDataClient ->
             redshiftDataClient.executeStatement(statementRequest)
@@ -107,32 +117,35 @@ class RedshiftService {
             sqlStatement = "SELECT idwork, date, description, guide, status, username, archive FROM work WHERE archive = :arch ;"
             isArc = true
             val parametersVal = listOf(param("arch", isArc))
-            statementRequest = ExecuteStatementRequest {
-                this.clusterIdentifier = clusterId
-                this.database = databaseVal
-                this.dbUser = dbUserVal
-                this.parameters = parametersVal
-                sql = sqlStatement
-            }
+            statementRequest =
+                ExecuteStatementRequest {
+                    this.clusterIdentifier = clusterId
+                    this.database = databaseVal
+                    this.dbUser = dbUserVal
+                    this.parameters = parametersVal
+                    sql = sqlStatement
+                }
         } else if (status.compareTo("false") == 0) {
             sqlStatement = "SELECT idwork, date, description, guide, status, username, archive FROM work WHERE archive = :arch ;"
             isArc = false
             val parametersVal = listOf(param("arch", isArc))
-            statementRequest = ExecuteStatementRequest {
-                this.clusterIdentifier = clusterId
-                this.database = databaseVal
-                this.dbUser = dbUserVal
-                this.parameters = parametersVal
-                sql = sqlStatement
-            }
+            statementRequest =
+                ExecuteStatementRequest {
+                    this.clusterIdentifier = clusterId
+                    this.database = databaseVal
+                    this.dbUser = dbUserVal
+                    this.parameters = parametersVal
+                    sql = sqlStatement
+                }
         } else {
             sqlStatement = "SELECT idwork, date, description, guide, status, username, archive FROM work ;"
-            statementRequest = ExecuteStatementRequest {
-                this.clusterIdentifier = clusterId
-                this.database = databaseVal
-                this.dbUser = dbUserVal
-                sql = sqlStatement
-            }
+            statementRequest =
+                ExecuteStatementRequest {
+                    this.clusterIdentifier = clusterId
+                    this.database = databaseVal
+                    this.dbUser = dbUserVal
+                    sql = sqlStatement
+                }
         }
 
         val id = performSQLStatement(statementRequest)
@@ -143,17 +156,19 @@ class RedshiftService {
 
     // Return items from the work table.
     suspend fun getDataXML(): String? {
-        val sqlStatement = "SELECT idwork, date, description, guide, status, username, archive " +
-            "FROM work WHERE archive = :arch ;"
+        val sqlStatement =
+            "SELECT idwork, date, description, guide, status, username, archive " +
+                "FROM work WHERE archive = :arch ;"
         val isArc = false
         val parametersVal = listOf(param("arch", isArc))
-        val statementRequest = ExecuteStatementRequest {
-            this.clusterIdentifier = clusterId
-            this.database = databaseVal
-            this.dbUser = dbUserVal
-            this.parameters = parametersVal
-            sql = sqlStatement
-        }
+        val statementRequest =
+            ExecuteStatementRequest {
+                this.clusterIdentifier = clusterId
+                this.database = databaseVal
+                this.dbUser = dbUserVal
+                this.parameters = parametersVal
+                sql = sqlStatement
+            }
         val id = performSQLStatement(statementRequest)
         println("The identifier of the statement is $id")
         checkStatement(id)
@@ -163,9 +178,10 @@ class RedshiftService {
     // Returns items.
     suspend fun getResults(statementId: String?): MutableList<WorkItem> {
         val records = mutableListOf<WorkItem>()
-        val resultRequest = GetStatementResultRequest {
-            id = statementId
-        }
+        val resultRequest =
+            GetStatementResultRequest {
+                id = statementId
+            }
 
         RedshiftDataClient { region = "us-west-2" }.use { redshiftDataClient ->
             val response = redshiftDataClient.getStatementResult(resultRequest)
@@ -224,9 +240,10 @@ class RedshiftService {
     // Returns open items within XML.
     suspend fun getResultsXML(statementId: String?): String? {
         val records: MutableList<WorkItem> = ArrayList()
-        val resultRequest = GetStatementResultRequest {
-            id = statementId
-        }
+        val resultRequest =
+            GetStatementResultRequest {
+                id = statementId
+            }
         RedshiftDataClient { region = "us-west-2" }.use { redshiftDataClient ->
             val response = redshiftDataClient.getStatementResult(resultRequest)
             var workItem: WorkItem
@@ -284,17 +301,19 @@ class RedshiftService {
         val arc = "1"
         // Specify the SQL statement to query data.
         val sqlStatement = "update work set archive = (:arch) where idwork =(:id);"
-        val parametersVal = listOf(
-            param2("arch", arc),
-            param2("id", id)
-        )
-        val statementRequest = ExecuteStatementRequest {
-            clusterIdentifier = clusterId
-            database = databaseVal
-            dbUser = dbUserVal
-            sql = sqlStatement
-            parameters = parametersVal
-        }
+        val parametersVal =
+            listOf(
+                param2("arch", arc),
+                param2("id", id),
+            )
+        val statementRequest =
+            ExecuteStatementRequest {
+                clusterIdentifier = clusterId
+                database = databaseVal
+                dbUser = dbUserVal
+                sql = sqlStatement
+                parameters = parametersVal
+            }
 
         RedshiftDataClient { region = "us-west-2" }.use { redshiftDataClient ->
             redshiftDataClient.executeStatement(statementRequest)
@@ -401,9 +420,10 @@ class RedshiftService {
     }
 
     suspend fun checkStatement(sqlId: String?) {
-        val statementRequest = DescribeStatementRequest {
-            id = sqlId
-        }
+        val statementRequest =
+            DescribeStatementRequest {
+                id = sqlId
+            }
 
         // Wait until the sql statement processing is finished.
         var finished = false

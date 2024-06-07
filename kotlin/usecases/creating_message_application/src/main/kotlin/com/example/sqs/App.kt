@@ -26,37 +26,48 @@ fun main(args: Array<String>) {
 @RestController
 @RequestMapping("chat/")
 class MessageResource {
-
     // Get messages from the FIFO queue.
     @GetMapping("msgs")
-    fun getItems(request: HttpServletRequest?, response: HttpServletResponse?): List<MessageData?>? = runBlocking {
-        val msgService = SendReceiveMessages()
-        return@runBlocking msgService.getMessages()
-    }
+    fun getItems(
+        request: HttpServletRequest?,
+        response: HttpServletResponse?,
+    ): List<MessageData?>? =
+        runBlocking {
+            val msgService = SendReceiveMessages()
+            return@runBlocking msgService.getMessages()
+        }
 
     //  Purge the queue.
     @GetMapping("purge")
-    fun purgeMessages(request: HttpServletRequest?, response: HttpServletResponse?): String? = runBlocking {
-        val msgService = SendReceiveMessages()
-        msgService.purgeMyQueue()
-        return@runBlocking "Queue is purged"
-    }
+    fun purgeMessages(
+        request: HttpServletRequest?,
+        response: HttpServletResponse?,
+    ): String? =
+        runBlocking {
+            val msgService = SendReceiveMessages()
+            msgService.purgeMyQueue()
+            return@runBlocking "Queue is purged"
+        }
 
     // Adds a new message to the FIFO queue.
     @PostMapping("add")
-    fun addItems(request: HttpServletRequest, response: HttpServletResponse?): List<MessageData?>? = runBlocking {
-        val user = request.getParameter("user")
-        val message = request.getParameter("message")
-        val msgService = SendReceiveMessages()
+    fun addItems(
+        request: HttpServletRequest,
+        response: HttpServletResponse?,
+    ): List<MessageData?>? =
+        runBlocking {
+            val user = request.getParameter("user")
+            val message = request.getParameter("message")
+            val msgService = SendReceiveMessages()
 
-        // Generate the ID.
-        val uuid = UUID.randomUUID()
-        val msgId = uuid.toString()
-        val messageOb = MessageData()
-        messageOb.id = msgId
-        messageOb.name = user
-        messageOb.body = message
-        msgService.processMessage(messageOb)
-        return@runBlocking msgService.getMessages()
-    }
+            // Generate the ID.
+            val uuid = UUID.randomUUID()
+            val msgId = uuid.toString()
+            val messageOb = MessageData()
+            messageOb.id = msgId
+            messageOb.name = user
+            messageOb.body = message
+            msgService.processMessage(messageOb)
+            return@runBlocking msgService.getMessages()
+        }
 }
