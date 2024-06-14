@@ -40,41 +40,60 @@ python -m pip install -r requirements.txt
 <!--custom.prerequisites.end-->
 ### AI21 Labs Jurassic-2
 
-- [Generate text](models/ai21_labs_jurassic2/invoke_model.py#L4)
+- [Converse](models/ai21_labs_jurassic2/converse.py#L4)
+- [InvokeModel](models/ai21_labs_jurassic2/invoke_model.py#L4)
 
 ### Amazon Titan Image Generator
 
-- [Generate images](models/amazon_titan/titan_image_generator/invoke_model.py#L4)
+- [InvokeModel](models/amazon_titan_image_generator/invoke_model.py#L4)
 
 ### Amazon Titan Text
 
-- [Generate text](models/amazon_titan/titan_text/invoke_model.py#L4)
-- [Generate text with a response stream](models/amazon_titan/titan_text/invoke_model_with_response_stream.py#L4)
+- [Converse](models/amazon_titan_text/converse.py#L4)
+- [ConverseStream](models/amazon_titan_text/converse_stream.py#L4)
+- [InvokeModel](models/amazon_titan_text/invoke_model.py#L4)
+- [InvokeModelWithResponseStream](models/amazon_titan_text/invoke_model_with_response_stream.py#L4)
 
 ### Amazon Titan Text Embeddings
 
-- [Generate text embeddings](models/amazon_titan/titan_text_embeddings/invoke_model.py#L4)
+- [InvokeModel](models/amazon_titan_text_embeddings/invoke_model.py#L4)
 
 ### Anthropic Claude
 
-- [Generate text](models/anthropic_claude/invoke_model.py#L4)
-- [Generate text with a response stream](models/anthropic_claude/invoke_model_with_response_stream.py#L4)
+- [Converse](models/anthropic_claude/converse.py#L4)
+- [ConverseStream](models/anthropic_claude/converse_stream.py#L4)
+- [InvokeModel](models/anthropic_claude/invoke_model.py#L4)
+- [InvokeModelWithResponseStream](models/anthropic_claude/invoke_model_with_response_stream.py#L4)
+- [Scenario: Tool use with the Converse API](cross-model-scenarios/tool_use_demo/tool_use_demo.py)
+
+### Cohere Command
+
+- [Converse](models/cohere_command/converse.py#L4)
+- [ConverseStream](models/cohere_command/converse_stream.py#L4)
+- [InvokeModel: Command R and R+](models/cohere_command/command_r_invoke_model.py#L4)
+- [InvokeModel: Command and Command Light](models/cohere_command/command_invoke_model.py#L4)
+- [InvokeModelWithResponseStream: Command R and R+](models/cohere_command/command_r_invoke_model_with_response_stream.py#L4)
+- [InvokeModelWithResponseStream: Command and Command Light](models/cohere_command/command_invoke_model_with_response_stream.py#L4)
 
 ### Meta Llama
 
-- [Llama 2: Generate text](models/meta_llama/llama2/invoke_model.py#L4)
-- [Llama 2: Generate text with a response stream](models/meta_llama/llama2/invoke_model_with_response_stream.py#L4)
-- [Llama 3: Generate text](models/meta_llama/llama3/invoke_model.py#L4)
-- [Llama 3: Generate text with a response stream](models/meta_llama/llama3/invoke_model_with_response_stream.py#L4)
+- [Converse](models/meta_llama/converse.py#L4)
+- [ConverseStream](models/meta_llama/converse_stream.py#L4)
+- [InvokeModel: Llama 2](models/meta_llama/llama2_invoke_model.py#L4)
+- [InvokeModel: Llama 3](models/meta_llama/llama3_invoke_model.py#L4)
+- [InvokeModelWithResponseStream: Llama 2](models/meta_llama/llama2_invoke_model_with_response_stream.py#L4)
+- [InvokeModelWithResponseStream: Llama 3](models/meta_llama/llama3_invoke_model_with_response_stream.py#L4)
 
 ### Mistral AI
 
-- [Generate text](models/mistral_ai/invoke_model.py#L4)
-- [Generate text with a response stream](models/mistral_ai/invoke_model_with_response_stream.py#L4)
+- [Converse](models/mistral_ai/converse.py#L4)
+- [ConverseStream](models/mistral_ai/converse_stream.py#L4)
+- [InvokeModel](models/mistral_ai/invoke_model.py#L4)
+- [InvokeModelWithResponseStream](models/mistral_ai/invoke_model_with_response_stream.py#L4)
 
-### Stability AI Diffusion
+### Stable Diffusion
 
-- [Generate images](models/stability_ai/invoke_model.py#L4)
+- [InvokeModel](models/stability_ai/invoke_model.py#L4)
 
 
 <!--custom.examples.start-->
