@@ -12,16 +12,23 @@ package scenarios
 import (
 	"bytes"
 	"context"
+	"github.com/aws/aws-sdk-go-v2/config"
+	"github.com/awsdocs/aws-doc-sdk-examples/gov2/demotools"
 	"log"
+	"math/rand"
 	"os"
 	"strings"
 	"testing"
-
-	"github.com/aws/aws-sdk-go-v2/config"
-	"github.com/awsdocs/aws-doc-sdk-examples/gov2/demotools"
+	//"github.com/awsdocs/aws-doc-sdk-examples/gov2/redshift/scenarios"
 )
 
-func TestGetStartedScenario_Integration(t *testing.T) {
+// MockPauser holds the pausable object.
+type MockPauser struct{}
+
+// Pause waits for the specified number of seconds.
+func (pausable MockPauser) Pause(secs int) {}
+
+func TestBasicsScenario_Integration(t *testing.T) {
 	outFile := "integ-test.out"
 	mockQuestioner := &demotools.MockQuestioner{
 		Answers: []string{
@@ -41,7 +48,13 @@ func TestGetStartedScenario_Integration(t *testing.T) {
 	//RunGetStartedScenario(sdkConfig, mockQuestioner, mockfilesystem, outFile)
 	pwd, _ := os.Getwd()
 	file, err := os.Open(pwd + "/../../../resources/sample_files/Movies.json")
-	RunGetStartedScenario(sdkConfig, mockQuestioner, demotools.NewMockFileSystem(file))
+	//Run(sdkConfig, mockQuestioner, demotools.NewMockFileSystem(file))
+	helper := ScenarioHelper{
+		Prefix: "redshift_basics_integration_tests",
+		Random: rand.New(rand.NewSource(0)),
+	}
+	scenario := RedshiftBasics(sdkConfig, mockQuestioner, demotools.Pauser{}, demotools.NewMockFileSystem(file), helper)
+	scenario.Run()
 
 	_ = os.Remove(outFile)
 

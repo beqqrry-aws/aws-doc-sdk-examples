@@ -7,12 +7,14 @@ import (
 	"context"
 	"flag"
 	"fmt"
+	"github.com/awsdocs/aws-doc-sdk-examples/gov2/demotools"
+	"github.com/awsdocs/aws-doc-sdk-examples/gov2/redshift/scenarios"
 	"log"
+	"math/rand"
+	"time"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
-	"github.com/awsdocs/aws-doc-sdk-examples/gov2/demotools"
-	"github.com/awsdocs/aws-doc-sdk-examples/gov2/redshift/scenarios"
 )
 
 // main loads default AWS credentials and configuration from the ~/.aws folder and runs
@@ -24,8 +26,8 @@ import (
 //     Amazon Simple Storage Service (Amazon S3) actions to work with
 //     S3 buckets and objects.
 func main() {
-	scenarioMap := map[string]func(sdkConfig aws.Config){
-		"getstarted": runGetStartedScenario,
+	scenarioMap := map[string]func(sdkConfig aws.Config, helper scenarios.IScenarioHelper){
+		"basics": runRedshiftBasicsScenario,
 	}
 	choices := make([]string, len(scenarioMap))
 	choiceIndex := 0
@@ -48,10 +50,18 @@ func main() {
 		}
 
 		log.SetFlags(0)
-		runScenario(sdkConfig)
+		helper := scenarios.ScenarioHelper{
+			Prefix: "redshift_basics",
+			Random: rand.New(rand.NewSource(time.Now().UnixNano())),
+		}
+		runScenario(sdkConfig, helper)
 	}
 }
 
-func runGetStartedScenario(sdkConfig aws.Config) {
-	scenarios.RunGetStartedScenario(sdkConfig, demotools.NewQuestioner())
+func runRedshiftBasicsScenario(sdkConfig aws.Config, helper scenarios.IScenarioHelper) {
+	pauser := demotools.Pauser{}
+	scenario := scenarios.RedshiftBasics(sdkConfig, demotools.NewQuestioner(), pauser, demotools.NewStandardFileSystem(), helper)
+	scenario.Run()
+	//runner.Run(sdkConfig, demotools.NewQuestioner())
+
 }

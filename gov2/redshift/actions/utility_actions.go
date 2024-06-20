@@ -1,14 +1,110 @@
 package actions
 
+//// snippet-start:[gov2.redshift.Movie.struct]
 //
-//import (
-//	"context"
-//	"fmt"
-//	"github.com/aws/aws-sdk-go-v2/aws"
-//	"github.com/aws/aws-sdk-go-v2/service/redshiftdata"
-//	"github.com/aws/aws-sdk-go-v2/service/redshiftdata/types"
-//	"github.com/awsdocs/aws-doc-sdk-examples/gov2/demotools"
-//)
+//// Movie makes it easier to use Movie objects given in json format.
+//type Movie struct {
+//	ID    int    `json:"id"`
+//	Title string `json:"title"`
+//	Year  int    `json:"year"`
+//}
+//
+//// snippet-end:[gov2.redshift.Movie.struct]
+//
+//// snippet-start:[gov2.redshift.RedshiftQuery.struct]
+//
+//// RedshiftQuery makes it easier to deal with RedshiftQuery objects.
+//type RedshiftQuery struct {
+//	Result interface{}
+//	Input  redshiftdata.DescribeStatementInput
+//	Client *redshiftdata.Client
+//}
+//
+//// snippet-end:[gov2.redshift.RedshiftQuery.struct]
+//
+//// snippet-start:[gov2.redshift.WaitForQueryStatus]
+//
+//// WaitForQueryStatus waits until the given RedshiftQuery object has succeeded or failed.
+//func WaitForQueryStatus(query RedshiftQuery, showProgress bool) error {
+//	done := false
+//	attempts := 0
+//	maxWaitCycles := 30
+//	for done == false {
+//		describeOutput, err := query.Client.DescribeStatement(context.TODO(), &query.Input)
+//		if err != nil {
+//			return err
+//		}
+//		if describeOutput.Status == "FAILED" {
+//			return errors.New("failed to describe statement")
+//		}
+//		if attempts >= maxWaitCycles {
+//			return errors.New("timed out waiting for statement")
+//		}
+//		if showProgress {
+//			fmt.Print(".")
+//		}
+//		if describeOutput.Status == "FINISHED" {
+//			done = true
+//		}
+//		attempts++
+//	}
+//	return nil
+//}
+//
+//// snippet-end:[gov2.redshift.WaitForQueryStatus]
+//
+//// snippet-start:[gov2.redshift.loadMoviesFromJSON]
+//
+//// loadMoviesFromJSON takes the "Movies.json" file and populates a slice of Movie objects.
+//func loadMoviesFromJSON(filename string, filesystem demotools.IFileSystem) ([]Movie, error) {
+//	file, err := filesystem.Open("../../resources/sample_files/" + filename)
+//	if err != nil {
+//		return nil, err
+//	}
+//	defer file.Close()
+//
+//	var movies []Movie
+//	err = json.NewDecoder(file).Decode(&movies)
+//	if err != nil {
+//		return nil, err
+//	}
+//
+//	return movies, nil
+//}
+//
+//// snippet-end:[gov2.redshift.loadMoviesFromJSON]
+//
+//// snippet-start:[gov2.redshift.WaitForClusterAvailable]
+//
+//// WaitForClusterAvailable loops until a success or failure state is returned about the given cluster.
+//func WaitForClusterAvailable(client *redshift.Client, clusterId string, questioner demotools.IQuestioner) {
+//	questioner.Ask("Now we will wait until the cluster is available. Press Enter to continue...")
+//
+//	log.Println("Waiting for cluster to become available. This may take a few minutes.")
+//	describeClusterInput := &redshift.DescribeClustersInput{
+//		ClusterIdentifier: &clusterId,
+//	}
+//
+//	for {
+//		output, err := client.DescribeClusters(context.TODO(), describeClusterInput)
+//		if err != nil {
+//			log.Printf("Failed to describe cluster: %v\n", err)
+//			return
+//		}
+//
+//		if output.Clusters[0].ClusterStatus != nil && *output.Clusters[0].ClusterStatus == "available" {
+//			log.Println("Cluster is available! Total Elapsed Time:", time.Since(time.Now().Add(-1*time.Second*time.Duration(output.Clusters[0].ClusterCreateTime.Second()))))
+//			break
+//		}
+//
+//		log.Print("Elapsed Time: ")
+//		log.Println(time.Since(time.Now().Add(-1 * time.Second * time.Duration(output.Clusters[0].ClusterCreateTime.Second()))))
+//		// TODO implement demotools Pause
+//		time.Sleep(5 * time.Second)
+//	}
+//}
+//
+//// snippet-end:[gov2.redshift.WaitForClusterAvailable]
 //
 //// snippet-start:[gov2.redshift.buildSqlStatements]
 //
