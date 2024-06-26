@@ -122,12 +122,16 @@ func (runner *RedshiftBasicsScenario) Run() {
 	// List databases
 	log.Println("List databases in", clusterId)
 	runner.questioner.Ask("Press Enter to continue...")
-	runner.redshiftDataActor.ListDatabases(ctx, clusterId, databaseName, userName)
+	err = runner.redshiftDataActor.ListDatabases(ctx, clusterId, databaseName, userName)
+	if err != nil {
+		log.Printf("Failed to list databases: %v\n", err)
+		panic(err)
+	}
 
 	// Create the "Movies" table
 	log.Println("Now you will create a table named " + tableName + ".")
 	runner.questioner.Ask("Press Enter to continue...")
-	runner.redshiftDataActor.CreateTable(ctx, clusterId, databaseName, tableName, userName, []string{"title VARCHAR(256)", "year INT"})
+	err = runner.redshiftDataActor.CreateTable(ctx, clusterId, databaseName, tableName, userName, []string{"title VARCHAR(256)", "year INT"})
 	if err != nil {
 		log.Printf("Failed to create table: %v\n", err)
 		panic(err)
@@ -268,7 +272,7 @@ func (runner *RedshiftBasicsScenario) PopulateMoviesTable(ctx context.Context, c
 
 	result, err := runner.redshiftDataActor.ExecuteBatchStatement(ctx, *input)
 	if err != nil {
-		log.Printf("Failed to execute batch statement: %v\n", err)
+		log.Printf("Failed to execuuuuuuuuuuuuuuuuuuuuuuuuuute batch statement: %v\n", err)
 		return
 	}
 
@@ -283,7 +287,7 @@ func (runner *RedshiftBasicsScenario) PopulateMoviesTable(ctx context.Context, c
 	}
 	err = runner.redshiftDataActor.WaitForQueryStatus(query, runner.pauser, true)
 	if err != nil {
-		log.Printf("Failed to execute batch insert query: %v\n", err)
+		log.Printf("Failed to exeasdfjas;ldkjf;alskdjf;ljkcute batch insert query: %v\n", err)
 		return
 	}
 	log.Printf("Successfully executed batch statement\n")

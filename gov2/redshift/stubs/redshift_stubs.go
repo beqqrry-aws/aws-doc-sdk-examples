@@ -5,6 +5,7 @@ import (
 	"github.com/aws/aws-sdk-go-v2/service/redshift"
 	"github.com/aws/aws-sdk-go-v2/service/redshift/types"
 	"github.com/awsdocs/aws-doc-sdk-examples/gov2/testtools"
+	"time"
 )
 
 // func StubListBuckets(buckets []types.Bucket, raiseErr *testtools.StubError) testtools.Stub {
@@ -23,7 +24,10 @@ import (
 
 func StubDescribeClusters(clusterId string, raiseErr *testtools.StubError) testtools.Stub {
 	clusters := []types.Cluster{
-		{ClusterStatus: aws.String("available")},
+		{
+			ClusterStatus:     aws.String("available"),
+			ClusterCreateTime: aws.Time(time.Now()),
+		},
 	}
 	return testtools.Stub{
 		OperationName: "DescribeClusters",
@@ -53,7 +57,8 @@ func StubCreateCluster(clusterId string, userPassword string, userName string, n
 		Input:         input,
 		Output: &redshift.CreateClusterOutput{
 			Cluster: &types.Cluster{
-				ClusterStatus: aws.String("available"),
+				ClusterStatus:     aws.String("available"),
+				ClusterIdentifier: aws.String("test-cluster-identifier"),
 			},
 		},
 	}
