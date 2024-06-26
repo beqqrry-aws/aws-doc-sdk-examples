@@ -98,7 +98,7 @@ func (scenarioTest *BasicsScenarioTest) SetupDataAndStubs() []testtools.Stub {
 	stubList = append(stubList, stubs.StubListDatabases(clusterId, databaseName, userName))
 	stubList = append(stubList, stubs.StubExecuteStatement(clusterId, databaseName, userName, sql, "test-result-id"))
 	stubList = append(stubList, stubs.StubBatchExecuteStatement(clusterId, databaseName, userName, sqls))
-	stubList = append(stubList, stubs.StubDescribeStatement("test", nil))
+	stubList = append(stubList, stubs.StubDescribeStatement("test", nil)) // This is where Execute is getting called instead of Describe. Comment this line out to see the second Describe work.
 	stubList = append(stubList, stubs.StubExecuteStatement(clusterId, databaseName, userName, sql, "test-result-id"))
 	stubList = append(stubList, stubs.StubDescribeStatement("test", nil))
 	return stubList
