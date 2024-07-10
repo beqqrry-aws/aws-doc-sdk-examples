@@ -1,6 +1,4 @@
 <?php
-// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
-// SPDX-License-Identifier: Apache-2.0
 
 /*
  *  ABOUT THIS PHP SAMPLE: This sample is part of the SDK for PHP Developer Guide topic at
