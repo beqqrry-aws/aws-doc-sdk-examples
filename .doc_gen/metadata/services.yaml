@@ -2279,6 +2279,21 @@ organizations:
   tags:
     product_categories: {'Management &amp; Governance'}
   version: organizations-2016-11-28
+other:
+  api_ref: outposts/latest/APIReference/Welcome.html
+  blurb: ''
+  expanded:
+    long: Other stuff
+    short: Other
+  guide:
+    subtitle: Other things
+    url: outposts/latest/userguide/what-is-outposts.html
+    long: '&OUTlong;'
+    short: '&OUT;'
+    sort: Other
+    tags:
+      product_categories: {}
+    version: '0'
 outposts:
   api_ref: outposts/latest/APIReference/Welcome.html
   blurb: ''

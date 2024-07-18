@@ -3,8 +3,8 @@ Dockerfiles:
   property: dockerfiles
   sdk:
     0:
-      long: "Not really: &CPPlong;"
-      short: "Not: &CPP;"
+      long: "&CPPlong;"
+      short: "&CPP;"
   guide: "dockerguide.html"
 SAP ABAP:
   property: sap-abap
