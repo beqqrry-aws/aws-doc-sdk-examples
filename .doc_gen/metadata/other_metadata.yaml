@@ -1,5 +1,5 @@
 # zexi 0.4.0
-dockerfiles_Hello:
+other_HelloDocker:
   title: Hello Dockerfile
   title_abbrev: Hello Docker
   synopsis: get started using Dockerfiles

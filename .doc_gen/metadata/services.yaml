@@ -2293,7 +2293,7 @@ other:
   sort: Other
   tags:
     product_categories: {}
-  version: '0'
+  version: '1'
 outposts:
   api_ref: outposts/latest/APIReference/Welcome.html
   blurb: ''
