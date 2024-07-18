@@ -1,0 +1,16 @@
+# zexi 0.4.0
+other_HelloDocker:
+  title: Hello Dockerfile
+  title_abbrev: Hello Docker
+  synopsis: get started using Dockerfiles
+  category: Hello
+  languages:
+    Dockerfiles:
+      versions:
+        - sdk_version: 1
+          excerpts:
+            - description:
+              snippet_tags:
+                - dockerfiles.test.example
+  services:
+    Other: {}

@@ -1,0 +1,6 @@
+# Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+# SPDX-License-Identifier: Apache-2.0
+
+# snippet-start: [dockerfiles.test.example]
+This is where some Docker stuff should go
+# snippet-end: [dockerfiles.test.example] 
