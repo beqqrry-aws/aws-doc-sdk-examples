@@ -2288,12 +2288,12 @@ other:
   guide:
     subtitle: Other things
     url: outposts/latest/userguide/what-is-outposts.html
-    long: '&OUTlong;'
-    short: '&OUT;'
-    sort: Other
-    tags:
-      product_categories: {}
-    version: '0'
+  long: '&OUTlong;'
+  short: '&OUT;'
+  sort: Other
+  tags:
+    product_categories: {}
+  version: '0'
 outposts:
   api_ref: outposts/latest/APIReference/Welcome.html
   blurb: ''
