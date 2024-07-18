@@ -12,3 +12,5 @@ dockerfiles_Hello:
             - description:
               snippet_tags:
                 - dockerfiles.test.example
+  services:
+    other: {}
