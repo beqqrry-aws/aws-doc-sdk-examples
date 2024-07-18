@@ -7,10 +7,10 @@ dockerfiles_Hello:
   languages:
     Dockerfiles:
       versions:
-        - sdk_version: 0
+        - sdk_version: 1
           excerpts:
             - description:
               snippet_tags:
                 - dockerfiles.test.example
   services:
-    other: {}
+    Other: {}
