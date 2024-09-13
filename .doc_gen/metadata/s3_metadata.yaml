@@ -67,6 +67,16 @@ s3_Hello:
             - description:
               snippet_tags:
                 - ruby.hello_s3
+    Rust:
+      versions:
+        - sdk_version: 1
+          github: rustv1/examples/s3
+          excerpts:
+            - snippet_tags:
+                - s3.rust.s3-helloworld
+            - description: S3ExampleError utilities
+            - snippet_tags:
+                - s3.rust.s3-example-error
   services:
     s3: {ListBuckets}
 s3_CreateBucket:
@@ -172,7 +182,7 @@ s3_CreateBucket:
           excerpts:
             - description:
               snippet_tags:
-                - rust.example_code.s3.basics.create_bucket
+                - s3.rust.create_bucket
     SAP ABAP:
       versions:
         - sdk_version: 1
@@ -188,7 +198,8 @@ s3_CreateBucket:
           excerpts:
             - description:
               snippet_tags:
-                - s3.swift.basics.handler.createbucket
+                - s3.swift.import
+                - s3.swift.basics.handler.CreateBucket
     Bash:
       versions:
         - sdk_version: 2
@@ -301,7 +312,7 @@ s3_CopyObject:
           excerpts:
             - description:
               snippet_tags:
-                - rust.example_code.s3.basics.copy_object
+                - s3.rust.copy_object
     SAP ABAP:
       versions:
         - sdk_version: 1
@@ -317,7 +328,8 @@ s3_CopyObject:
           excerpts:
             - description:
               snippet_tags:
-                - s3.swift.basics.handler.copyfile
+                - s3.swift.import
+                - s3.swift.basics.handler.CopyObject
     Bash:
       versions:
         - sdk_version: 2
@@ -449,7 +461,7 @@ s3_DeleteObject:
           excerpts:
             - description:
               snippet_tags:
-                - s3.rust.delete-object
+                - s3.rust.delete_object
     JavaScript:
       versions:
         - sdk_version: 3
@@ -466,6 +478,15 @@ s3_DeleteObject:
             - description:
               snippet_tags:
                 - s3.abapv1.delete_object
+    Java:
+      versions:
+        - sdk_version: 2
+          github: javav2/example_code/s3
+          sdkguide:
+          excerpts:
+            - description:
+              snippet_tags:
+                - s3.java2.delete_objects.main
     Swift:
       versions:
         - sdk_version: 1
@@ -473,7 +494,8 @@ s3_DeleteObject:
           excerpts:
             - description:
               snippet_tags:
-                - s3.swift.basics.handler.deletefile
+                - s3.swift.import
+                - s3.swift.basics.handler.DeleteObject
     Bash:
       versions:
         - sdk_version: 2
@@ -579,7 +601,7 @@ s3_DeleteObjects:
           excerpts:
             - description:
               snippet_tags:
-                - rust.example_code.s3.basics.delete_objects
+                - s3.rust.delete_objects
     Swift:
       versions:
         - sdk_version: 1
@@ -587,7 +609,8 @@ s3_DeleteObjects:
           excerpts:
             - description:
               snippet_tags:
-                - s3.swift.deleteobjects.handler.deleteobjects
+                - s3.swift.import
+                - s3.swift.deleteobjects.handler.DeleteObjects
     C++:
       versions:
         - sdk_version: 1
@@ -881,11 +904,13 @@ s3_GetObject:
         - sdk_version: 1
           github: swift/example_code/s3/basics
           excerpts:
-            - description: Download an object from a bucket to a local file.
+            - description:
               snippet_tags:
-                - s3.swift.basics.handler.downloadfile
-            - description: Read an object into a Swift Data object.
+                - s3.swift.import
+                - s3.swift.basics.handler.GetObject
+            - description:
               snippet_tags:
+                - s3.swift.import
                 - s3.swift.basics.handler.readfile
     Bash:
       versions:
@@ -1184,6 +1209,18 @@ s3_AbortMultipartUploads:
                 - S3.dotnetv3.AbortMPUExample
   services:
     s3: {AbortMultipartUploads}
+s3_AbortMultipartUpload:
+  languages:
+    C++:
+      versions:
+        - sdk_version: 1
+          github: cpp/example_code/s3
+          excerpts:
+            - description:
+              snippet_tags:
+                - cpp.example_code.s3.AbortMultipartUpload
+  services:
+    s3: {AbortMultipartUpload}
 s3_CompleteMultipartUpload:
   languages:
     Rust:
@@ -1191,9 +1228,20 @@ s3_CompleteMultipartUpload:
         - sdk_version: 1
           github: rustv1/examples/s3
           excerpts:
+            - snippet_tags:
+                - s3.rust.complete_multipart_upload
+            - snippet_tags:
+                - s3.rust.create_multipart_upload
+            - snippet_tags:
+                - s3.rust.upload_part
+    C++:
+      versions:
+        - sdk_version: 1
+          github: cpp/example_code/s3
+          excerpts:
             - description:
               snippet_tags:
-                - rust.example_code.s3.complete_multipart_upload
+                - cpp.example_code.s3.CompleteMultipartUpload
   services:
     s3: {CompleteMultipartUpload}
 s3_CreateMultipartUpload:
@@ -1203,9 +1251,20 @@ s3_CreateMultipartUpload:
         - sdk_version: 1
           github: rustv1/examples/s3
           excerpts:
+            - snippet_tags:
+                - s3.rust.create_multipart_upload
+            - snippet_tags:
+                - s3.rust.upload_part
+            - snippet_tags:
+                - s3.rust.complete_multipart_upload
+    C++:
+      versions:
+        - sdk_version: 1
+          github: cpp/example_code/s3
+          excerpts:
             - description:
               snippet_tags:
-                - rust.example_code.s3.create_multipart_upload
+                - cpp.example_code.s3.CreateMultipartUpload
   services:
     s3: {CreateMultipartUpload}
 s3_ListMultipartUploads:
@@ -1299,7 +1358,7 @@ s3_ListObjectsV2:
           excerpts:
             - description:
               snippet_tags:
-                - rust.example_code.s3.basics.list_objects
+                - s3.rust.list_objects
     JavaScript:
       versions:
         - sdk_version: 3
@@ -1332,7 +1391,8 @@ s3_ListObjectsV2:
           excerpts:
             - description:
               snippet_tags:
-                - s3.swift.basics.handler.listbucketfiles
+                - s3.swift.import
+                - s3.swift.basics.handler.ListObjectsV2
     Bash:
       versions:
         - sdk_version: 2
@@ -1474,7 +1534,7 @@ s3_PutObject:
           excerpts:
             - description:
               snippet_tags:
-                - rust.example_code.s3.basics.put_object
+                - s3.rust.upload_object
     JavaScript:
       versions:
         - sdk_version: 3
@@ -1511,11 +1571,13 @@ s3_PutObject:
         - sdk_version: 1
           github: swift/example_code/s3/basics
           excerpts:
-            - description: Upload a file from local storage to a bucket.
+            - description:
               snippet_tags:
-                - s3.swift.basics.handler.uploadfile
-            - description: Upload the contents of a Swift Data object to a bucket.
+                - s3-smithy.swift.import
+                - s3.swift.basics.handler.PutObject
+            - description:
               snippet_tags:
+                - s3-smithy.swift.import
                 - s3.swift.basics.handler.createfile
     Bash:
       versions:
@@ -1588,7 +1650,7 @@ s3_DeleteBucket:
           excerpts:
             - description:
               snippet_tags:
-                - s3.java2.s3_bucket_ops.delete_bucket
+                - s3.java2.bucket_deletion.main
     PHP:
       versions:
         - sdk_version: 3
@@ -1631,7 +1693,7 @@ s3_DeleteBucket:
           excerpts:
             - description:
               snippet_tags:
-                - rust.example_code.s3.basics.delete_bucket
+                - s3.rust.delete_bucket
     SAP ABAP:
       versions:
         - sdk_version: 1
@@ -1647,7 +1709,8 @@ s3_DeleteBucket:
           excerpts:
             - description:
               snippet_tags:
-                - s3.swift.basics.handler.deletebucket
+                - s3.swift.import
+                - s3.swift.basics.handler.DeleteBucket
     Bash:
       versions:
         - sdk_version: 2
@@ -2110,7 +2173,7 @@ s3_ListBuckets:
           excerpts:
             - description:
               snippet_tags:
-                - s3.rust.list-buckets
+                - s3.rust.list_buckets
     JavaScript:
       versions:
         - sdk_version: 3
@@ -2135,7 +2198,8 @@ s3_ListBuckets:
           excerpts:
             - description:
               snippet_tags:
-                - s3.swift.listbuckets.getallbuckets
+                - s3.swift.import
+                - s3.swift.listbuckets.ListBuckets
   services:
     s3: {ListBuckets}
 s3_PutObjectAcl:
@@ -2329,10 +2393,20 @@ s3_UploadPart:
         - sdk_version: 1
           github: rustv1/examples/s3
           excerpts:
+            - snippet_tags:
+                - s3.rust.upload_part
+            - snippet_tags:
+                - s3.rust.create_multipart_upload
+            - snippet_tags:
+                - s3.rust.complete_multipart_upload
+    C++:
+      versions:
+        - sdk_version: 1
+          github: cpp/example_code/s3
+          excerpts:
             - description:
               snippet_tags:
-                - rust.example_code.s3.upload_part
-                - rust.example_code.s3.upload_part.CompletedMultipartUpload
+                - cpp.example_code.s3.UploadPart
   services:
     s3: {UploadPart}
 s3_PutBucketNotificationConfiguration:
@@ -2346,6 +2420,14 @@ s3_PutBucketNotificationConfiguration:
             - description:
               snippet_tags:
                 - S3.dotnetv3.EnableNotificationsExample
+  services:
+    s3: {PutBucketNotificationConfiguration}
+s3_Scenario_PutBucketNotificationConfiguration:
+  title: Send S3 event notifications to &EVlong; using an &AWS; SDK
+  title_abbrev: Send event notifications to &EV;
+  synopsis: enable a bucket to send S3 event notifications to &EV; and route notifications to an &SNS; topic and &SQS; queue.
+  category: Scenarios
+  languages:
     Java:
       versions:
         - sdk_version: 2
@@ -2354,9 +2436,10 @@ s3_PutBucketNotificationConfiguration:
           excerpts:
             - description:
               snippet_tags:
-                - s3.java2.s3_enable_notifications.main
+                - s3.java2.s3_enable_notifications_to_eventbridge
   services:
     s3: {PutBucketNotificationConfiguration}
+    eventbridge: {PutRule, PutTargets}
 s3_PutBucketAccelerateConfiguration:
   languages:
     .NET:
@@ -2370,6 +2453,42 @@ s3_PutBucketAccelerateConfiguration:
                 - S3.dotnetv3.TransferAccelerationExample
   services:
     s3: {PutBucketAccelerateConfiguration}
+s3_GetObjectAttributes:
+  languages:
+    C++:
+      versions:
+        - sdk_version: 1
+          github: cpp/example_code/s3
+          excerpts:
+            - description:
+              snippet_tags:
+                - cpp.example_code.s3.GetObjectAttributes
+  services:
+    s3: {GetObjectAttributes}
+s3_PutBucketEncryption:
+  languages:
+    .NET:
+      versions:
+        - sdk_version: 3
+          github: dotnetv3/S3/PutBucketEncryption
+          excerpts:
+            - description:
+              snippet_tags:
+                - S3.dotnetv3.PutBucketServerSideEncryption
+  services:
+    s3: {PutBucketEncryption}
+s3_GetBucketEncryption:
+  languages:
+    .NET:
+      versions:
+        - sdk_version: 3
+          github: dotnetv3/S3/PutBucketEncryption
+          excerpts:
+            - description:
+              snippet_tags:
+                - S3.dotnetv3.GetBucketServerSideEncryption
+  services:
+    s3: {GetBucketEncryption}
 s3_DownloadBucketToDirectory:
   title: Download all objects in an &S3long; (&S3;) bucket to a local directory
   title_abbrev: Download objects to a local directory
@@ -2525,7 +2644,7 @@ s3_Scenario_BatchObjectVersioning:
     Python:
       versions:
         - sdk_version: 3
-          github: python/code_examples/s3_versioning
+          github: python/example_code/s3/s3_versioning
           block_content: scenario_S3BatchObjectVersioning_Python_block.xml
   services:
     s3: {}
@@ -2657,9 +2776,11 @@ s3_Scenario_PresignedUrl:
         - sdk_version: 1
           github: rustv1/examples/s3
           excerpts:
-            - description: Create presigning requests to GET and PUT S3 objects.
+            - description: Create presigning requests to GET S3 objects.
               snippet_tags:
                 - s3.rust.get-object-presigned
+            - description: Create presigning requests to PUT S3 objects.
+              snippet_tags:
                 - s3.rust.put-object-presigned
     C++:
       versions:
@@ -2724,19 +2845,17 @@ s3_GetBucketLocation:
           excerpts:
             - description:
               snippet_tags:
-                - s3.rust.list-buckets
+                - s3.rust.list_buckets
   services:
     s3: {GetBucketLocation}
 s3_Scenario_GettingStarted:
-  title: Get started with &S3; buckets and objects using an &AWS; SDK
-  title_abbrev: Get started with buckets and objects
   synopsis_list:
     - Create a bucket and upload a file to it.
     - Download an object from a bucket.
     - Copy an object to a subfolder in a bucket.
     - List the objects in a bucket.
     - Delete the bucket objects and the bucket.
-  category: Scenarios
+  category: Basics
   languages:
     .NET:
       versions:
@@ -2753,9 +2872,12 @@ s3_Scenario_GettingStarted:
           github: javav2/example_code/s3
           sdkguide:
           excerpts:
-            - description:
+            - description: A scenario example. 
               snippet_tags:
                 - s3.java2.s3_scenario.main
+            - description: A wrapper class that contains the operations. 
+              snippet_tags:
+                - s3.java2.s3_actions.main
     JavaScript:
       versions:
         - sdk_version: 3
@@ -2851,11 +2973,17 @@ s3_Scenario_GettingStarted:
           github: rustv1/examples/s3
           excerpts:
             - description: Code for the binary crate which runs the scenario.
+              snippet_files:
+                - rustv1/examples/s3/src/bin/s3-getting-started.rs
+            - description: Common actions used by the scenario.
               snippet_tags:
-                - rust.example_code.s3.scenario_getting_started.bin
-            - description: A library crate with common actions called by the binary.
-              snippet_tags:
-                - rust.example_code.s3.scenario_getting_started.lib
+                - s3.rust.create_bucket
+                - s3.rust.upload_object
+                - s3.rust.download_object
+                - s3.rust.copy_object
+                - s3.rust.list_objects
+                - s3.rust.clear_bucket
+                - s3.rust.delete_bucket
     C++:
       versions:
         - sdk_version: 1
@@ -2878,11 +3006,13 @@ s3_Scenario_GettingStarted:
         - sdk_version: 1
           github: swift/example_code/s3/basics
           excerpts:
-            - description: A Swift class that handles calls to the SDK for Swift.
+            - description:
               snippet_tags:
+                - s3.swift.import
                 - s3.swift.basics.handler
-            - description: A Swift command-line program to manage the SDK calls.
+            - description:
               snippet_tags:
+                - s3.swift.import
                 - s3.swift.basics.example
     Bash:
       versions:
@@ -3234,6 +3364,23 @@ s3_Scenario_ObjectLock:
                 - javascriptv3/example_code/s3/scenarios/object-locking/clean.steps.js
   services:
     s3: {PutObjectLockConfiguration, PutObjectRetention, GetObjectRetention, PutObjectLegalHold, GetObjectLegalHold, GetObjectLockConfiguration}
+s3_Scenario_ObjectIntegrity:
+  title: Work with &S3; object integrity features using an &AWS; SDK
+  title_abbrev: Work with &S3; object integrity
+  synopsis: work with S3 object integrity features.
+  category: Scenarios
+  languages:
+    C++:
+      versions:
+        - sdk_version: 1
+          github: cpp/example_code/s3/s3_object_integrity_workflow
+          sdkguide:
+          excerpts:
+            - description: Run an interactive scenario demonstrating &S3; object integrity features.
+              snippet_tags:
+                - cpp.example_code.s3.Scenario_ObjectIntegrity
+  services:
+    s3: {AbortMultipartUpload, CreateMultipartUpload, DeleteObject, GetObjectAttributes, PutObject, UploadPart, CompleteMultipartUpload}
 s3_SelectObjectContent:
   languages:
     Java:
@@ -3302,3 +3449,38 @@ s3_Scenario_AbortMultipartUpload:
                 - s3.java2.abort_upload_using_lifecycle_config
   services:
     s3: {ListMultipartUploads, AbortMultipartUpload, PutBucketLifecycleConfiguration}
+s3_Scenario_ProcessS3EventNotification:
+  title: Receive and process &S3; event notifications by using an &AWS; SDK.
+  title_abbrev: Process S3 event notifications
+  synopsis: work with S3 event notifications in an object-oriented way.
+  category: Scenarios
+  languages:
+    Java:
+      versions:
+        - sdk_version: 2
+          github: javav2/example_code/s3
+          sdkguide:
+          excerpts:
+            - description: This example show how to process S3 notification event by using &SQS;.
+              snippet_tags:
+                - s3.java2.process_s3_event_notifications
+  services:
+    s3: {PutBucketNotificationConfiguration}
+    sqs: {ReceiveMessage, GetQueueAttributes, DeleteMessageBatch}
+s3_Scenario_DeleteAllObjects:
+  title: Delete all objects in a given &S3; bucket using an &AWS; SDK.
+  title_abbrev: Delete all objects in a bucket
+  synopsis: delete all of the objects in an &S3; bucket.
+  category: Scenarios
+  languages:
+    JavaScript:
+      versions:
+        - sdk_version: 3
+          github: javascriptv3/example_code/s3
+          sdkguide:
+          excerpts:
+            - description: Delete all objects for a given &S3; bucket.
+              snippet_files:
+                - javascriptv3/example_code/s3/scenarios/delete-all-objects.js
+  services:
+    s3: {DeleteObjects, ListObjectsV2}

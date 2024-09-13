@@ -173,10 +173,11 @@ dynamodb_CreateTable:
     Swift:
       versions:
         - sdk_version: 1
-          github: swift/example_code/ddb
+          github: swift/example_code/dynamodb
           excerpts:
             - description:
               snippet_tags:
+                - ddb.swift.import
                 - ddb.swift.basics.createtable
     Bash:
       versions:
@@ -255,10 +256,11 @@ dynamodb_BatchGetItem:
     Swift:
       versions:
         - sdk_version: 1
-          github: swift/example_code/ddb
+          github: swift/example_code/dynamodb
           excerpts:
             - description:
               snippet_tags:
+                - ddb.swift.import
                 - ddb.swift.batchgetitem.batchget
     Bash:
       versions:
@@ -457,10 +459,11 @@ dynamodb_BatchWriteItem:
     Swift:
       versions:
         - sdk_version: 1
-          github: swift/example_code/ddb/
+          github: swift/example_code/dynamodb/
           excerpts:
             - description:
               snippet_tags:
+                - ddb.swift.import
                 - ddb.swift.basics.populate
     Bash:
       versions:
@@ -585,10 +588,11 @@ dynamodb_DeleteTable:
     Swift:
       versions:
         - sdk_version: 1
-          github: swift/example_code/ddb
+          github: swift/example_code/dynamodb
           excerpts:
             - description:
               snippet_tags:
+                - ddb.swift.import
                 - ddb.swift.basics.deletetable
     Bash:
       versions:
@@ -720,10 +724,11 @@ dynamodb_PutItem:
     Swift:
       versions:
         - sdk_version: 1
-          github: swift/example_code/ddb
+          github: swift/example_code/dynamodb
           excerpts:
             - description:
               snippet_tags:
+                - ddb.swift.import
                 - ddb.swift.basics.add-movie
                 - ddb.swift.basics.movie.getasitem
     Bash:
@@ -846,10 +851,11 @@ dynamodb_GetItem:
     Swift:
       versions:
         - sdk_version: 1
-          github: swift/example_code/ddb
+          github: swift/example_code/dynamodb
           excerpts:
             - description:
               snippet_tags:
+                - ddb.swift.import
                 - ddb.swift.basics.get
     Bash:
       versions:
@@ -969,10 +975,11 @@ dynamodb_UpdateItem:
     Swift:
       versions:
         - sdk_version: 1
-          github: swift/example_code/ddb
+          github: swift/example_code/dynamodb
           excerpts:
             - description:
               snippet_tags:
+                - ddb.swift.import
                 - ddb.swift.basics.update
     Bash:
       versions:
@@ -1110,10 +1117,11 @@ dynamodb_DeleteItem:
     Swift:
       versions:
         - sdk_version: 1
-          github: swift/example_code/ddb
+          github: swift/example_code/dynamodb
           excerpts:
             - description:
               snippet_tags:
+                - ddb.swift.import
                 - ddb.swift.basics.delete
     Bash:
       versions:
@@ -1242,10 +1250,11 @@ dynamodb_ListTables:
     Swift:
       versions:
         - sdk_version: 1
-          github: swift/example_code/ddb
+          github: swift/example_code/dynamodb
           excerpts:
             - description:
               snippet_tags:
+                - ddb.swift.import
                 - ddb.swift.databasemanager.gettablelist
     Bash:
       versions:
@@ -1380,10 +1389,11 @@ dynamodb_Query:
     Swift:
       versions:
         - sdk_version: 1
-          github: swift/example_code/ddb
+          github: swift/example_code/dynamodb
           excerpts:
             - description:
               snippet_tags:
+                - ddb.swift.import
                 - ddb.swift.basics.getMovies-year
     Bash:
       versions:
@@ -1510,10 +1520,11 @@ dynamodb_Scan:
     Swift:
       versions:
         - sdk_version: 1
-          github: swift/example_code/ddb
+          github: swift/example_code/dynamodb
           excerpts:
             - description:
               snippet_tags:
+                - ddb.swift.import
                 - ddb.swift.basics.getmovies-range
     Bash:
       versions:
@@ -1804,8 +1815,6 @@ dynamodb_Usage_DaxDemo:
   services:
     dynamodb: {CreateTable, PutItem, GetItem, Query, Scan, DeleteTable}
 dynamodb_Scenario_GettingStartedMovies:
-  title: Get started with &DDB; tables, items, and queries using an &AWS; SDK
-  title_abbrev: Get started with tables, items, and queries
   synopsis_list:
     - Create a table that can hold movie data.
     - Put, get, and update a single movie in the table.
@@ -1813,7 +1822,7 @@ dynamodb_Scenario_GettingStartedMovies:
     - Query for movies that were released in a given year.
     - Scan for movies that were released in a range of years.
     - Delete a movie from the table, then delete the table.
-  category: Scenarios
+  category: Basics
   languages:
     .NET:
       versions:
@@ -1974,7 +1983,7 @@ dynamodb_Scenario_GettingStartedMovies:
     Swift:
       versions:
         - sdk_version: 1
-          github: swift/example_code/ddb
+          github: swift/example_code/dynamodb
           excerpts:
             - description: A Swift class that handles &DDB; calls to the &Swift;.
               snippet_tags:
@@ -2309,5 +2318,23 @@ dynamodb_MidLevelInterface:
             - description: Query and scan a table using a document model.
               snippet_tags:
                 - dynamodb.dotnetv3.MidLevelQueryAndScanExample
+  services:
+    dynamodb: {}
+dynamodb_local:
+  title: Connect to a local &DDB; instance using an &AWS; SDK
+  title_abbrev: Connect to a local instance
+  synopsis: override an endpoint URL to connect to a local development deployment of &DDB; and an &AWS; SDK.
+  guide_topic:
+    title: DynamoDB Local
+    url: amazondynamodb/latest/developerguide/DynamoDBLocal.html
+  category: Scenarios
+  languages:
+    Rust:
+      versions:
+        - sdk_version: 1
+          github: rustv1/examples/dynamodb
+          excerpts:
+            - snippet_files:
+                - rustv1/examples/dynamodb/src/bin/list-tables-local.rs
   services:
     dynamodb: {}

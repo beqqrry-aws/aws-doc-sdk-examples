@@ -42,12 +42,22 @@ Next, for information on code example structures and how to build and run the ex
 - [Hello Amazon S3](hello_s3/CMakeLists.txt#L4) (`ListBuckets`)
 
 
+### Basics
+
+Code examples that show you how to perform the essential operations within a service.
+
+- [Learn the basics](s3_getting_started_scenario.cpp)
+
+
 ### Single actions
 
 Code excerpts that show you how to call individual service functions.
 
+- [AbortMultipartUpload](s3_object_integrity_workflow/s3_object_integrity_workflow.cpp#L1097)
+- [CompleteMultipartUpload](s3_object_integrity_workflow/s3_object_integrity_workflow.cpp#L1129)
 - [CopyObject](copy_object.cpp#L32)
 - [CreateBucket](create_bucket.cpp#L30)
+- [CreateMultipartUpload](s3_object_integrity_workflow/s3_object_integrity_workflow.cpp#L1006)
 - [DeleteBucket](delete_bucket.cpp#L30)
 - [DeleteBucketPolicy](delete_bucket_policy.cpp#L30)
 - [DeleteBucketWebsite](delete_website_config.cpp#L30)
@@ -58,13 +68,15 @@ Code excerpts that show you how to call individual service functions.
 - [GetBucketWebsite](get_website_config.cpp#L29)
 - [GetObject](get_object.cpp#L33)
 - [GetObjectAcl](get_put_object_acl.cpp#L43)
+- [GetObjectAttributes](s3_object_integrity_workflow/s3_object_integrity_workflow.cpp#L707)
 - [ListBuckets](list_buckets.cpp#L29)
-- [ListObjectsV2](list_objects.cpp#L31)
+- [ListObjectsV2](list_objects.cpp#L32)
 - [PutBucketAcl](put_bucket_acl.cpp#L47)
 - [PutBucketPolicy](put_bucket_policy.cpp#L37)
 - [PutBucketWebsite](put_website_config.cpp#L33)
 - [PutObject](put_object.cpp#L33)
 - [PutObjectAcl](get_put_object_acl.cpp#L165)
+- [UploadPart](s3_object_integrity_workflow/s3_object_integrity_workflow.cpp#L1040)
 
 ### Scenarios
 
@@ -72,13 +84,8 @@ Code examples that show you how to accomplish a specific task by calling multipl
 functions within the same service.
 
 - [Create a presigned URL](presigned_get_object.cpp)
-- [Get started with buckets and objects](s3_getting_started_scenario.cpp)
-
-### Cross-service examples
-
-Sample applications that work across multiple AWS services.
-
 - [Create a serverless application to manage photos](../../example_code/cross-service/photo_asset_manager)
+- [Work with Amazon S3 object integrity](s3_object_integrity_workflow/s3_object_integrity_workflow.cpp)
 
 
 <!--custom.examples.start-->
@@ -109,6 +116,23 @@ folder.
 This example shows you how to get started using Amazon S3.
 
 
+#### Learn the basics
+
+This example shows you how to do the following:
+
+- Create a bucket and upload a file to it.
+- Download an object from a bucket.
+- Copy an object to a subfolder in a bucket.
+- List the objects in a bucket.
+- Delete the bucket objects and the bucket.
+
+<!--custom.basic_prereqs.s3_Scenario_GettingStarted.start-->
+<!--custom.basic_prereqs.s3_Scenario_GettingStarted.end-->
+
+
+<!--custom.basics.s3_Scenario_GettingStarted.start-->
+<!--custom.basics.s3_Scenario_GettingStarted.end-->
+
 
 #### Create a presigned URL
 
@@ -122,22 +146,29 @@ This example shows you how to create a presigned URL for Amazon S3 and upload an
 <!--custom.scenarios.s3_Scenario_PresignedUrl.start-->
 <!--custom.scenarios.s3_Scenario_PresignedUrl.end-->
 
-#### Get started with buckets and objects
+#### Create a serverless application to manage photos
 
-This example shows you how to do the following:
-
-- Create a bucket and upload a file to it.
-- Download an object from a bucket.
-- Copy an object to a subfolder in a bucket.
-- List the objects in a bucket.
-- Delete the bucket objects and the bucket.
-
-<!--custom.scenario_prereqs.s3_Scenario_GettingStarted.start-->
-<!--custom.scenario_prereqs.s3_Scenario_GettingStarted.end-->
+This example shows you how to create a serverless application that lets users manage photos using labels.
 
 
-<!--custom.scenarios.s3_Scenario_GettingStarted.start-->
-<!--custom.scenarios.s3_Scenario_GettingStarted.end-->
+<!--custom.scenario_prereqs.cross_PAM.start-->
+<!--custom.scenario_prereqs.cross_PAM.end-->
+
+
+<!--custom.scenarios.cross_PAM.start-->
+<!--custom.scenarios.cross_PAM.end-->
+
+#### Work with Amazon S3 object integrity
+
+This example shows you how to work with S3 object integrity features.
+
+
+<!--custom.scenario_prereqs.s3_Scenario_ObjectIntegrity.start-->
+<!--custom.scenario_prereqs.s3_Scenario_ObjectIntegrity.end-->
+
+
+<!--custom.scenarios.s3_Scenario_ObjectIntegrity.start-->
+<!--custom.scenarios.s3_Scenario_ObjectIntegrity.end-->
 
 ### Tests
 
