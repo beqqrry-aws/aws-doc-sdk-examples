@@ -1,7 +1,7 @@
 # AWS SDK for PHP v3 code examples
 ## Overview
 The code examples in this topic show you how to use the AWS SDK for PHP v3 with AWS.
-
+ 
 The AWS SDK for PHP v3 provides a PHP API for AWS infrastructure services. Using the SDK, you can build applications on top of Amazon S3, Amazon EC2, Amazon DynamoDB, and more.
 
 ## Types of code examples
