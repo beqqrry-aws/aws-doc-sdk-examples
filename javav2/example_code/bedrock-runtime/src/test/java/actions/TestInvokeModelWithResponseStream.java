@@ -3,51 +3,17 @@
 
 package actions;
 
-import org.junit.jupiter.api.Test;
+import java.util.stream.Stream;
 
-import java.util.concurrent.ExecutionException;
-
-public class TestInvokeModelWithResponseStream extends IntegrationTestBase {
-
-    @Test
-    void testTitanText() throws ExecutionException, InterruptedException {
-        String result = com.example.bedrockruntime.models.amazonTitanText.InvokeModelWithResponseStream.invokeModelWithResponseStream();
-        assertNotNullOrEmpty(result);
-    }
-
-    @Test
-    void testClaude() throws ExecutionException, InterruptedException {
-        String result = com.example.bedrockruntime.models.anthropicClaude.InvokeModelWithResponseStream.invokeModelWithResponseStream();
-        assertNotNullOrEmpty(result);
-    }
-
-    @Test
-    void testCohereCommand() throws ExecutionException, InterruptedException {
-        String result = com.example.bedrockruntime.models.cohereCommand.Command_InvokeModelWithResponseStream.invokeModelWithResponseStream();
-        assertNotNullOrEmpty(result);
-    }
-
-    @Test
-    void testCohereCommandR() throws ExecutionException, InterruptedException {
-        String result = com.example.bedrockruntime.models.cohereCommand.Command_R_InvokeModelWithResponseStream.invokeModelWithResponseStream();
-        assertNotNullOrEmpty(result);
-    }
-
-    @Test
-    void testLlama2() throws ExecutionException, InterruptedException {
-        String result = com.example.bedrockruntime.models.metaLlama.Llama2_InvokeModelWithResponseStream.invokeModelWithResponseStream();
-        assertNotNullOrEmpty(result);
-    }
-
-    @Test
-    void testLlama3() throws ExecutionException, InterruptedException {
-        String result = com.example.bedrockruntime.models.metaLlama.Llama3_InvokeModelWithResponseStream.invokeModelWithResponseStream();
-        assertNotNullOrEmpty(result);
-    }
-
-    @Test
-    void testMistral() throws ExecutionException, InterruptedException {
-        String result = com.example.bedrockruntime.models.mistral.InvokeModelWithResponseStream.invokeModelWithResponseStream();
-        assertNotNullOrEmpty(result);
+public class TestInvokeModelWithResponseStream extends AbstractModelTest {
+    protected Stream<ModelTest> modelProvider() {
+        return Stream.of(
+                new ModelTest("Claude", com.example.bedrockruntime.models.anthropicClaude.InvokeModelWithResponseStream::invokeModelWithResponseStream),
+                new ModelTest("CohereCommand", com.example.bedrockruntime.models.cohereCommand.Command_InvokeModelWithResponseStream::invokeModelWithResponseStream),
+                new ModelTest("CohereCommandR", com.example.bedrockruntime.models.cohereCommand.Command_R_InvokeModelWithResponseStream::invokeModelWithResponseStream),
+                new ModelTest("Llama", com.example.bedrockruntime.models.metaLlama.Llama3_InvokeModelWithResponseStream::invokeModelWithResponseStream),
+                new ModelTest("Mistral", com.example.bedrockruntime.models.mistral.InvokeModelWithResponseStream::invokeModelWithResponseStream),
+                new ModelTest("TitanText", com.example.bedrockruntime.models.amazonTitanText.InvokeModelWithResponseStream::invokeModelWithResponseStream)
+        );
     }
 }

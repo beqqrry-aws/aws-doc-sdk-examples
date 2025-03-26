@@ -58,6 +58,18 @@ sqs_Hello:
             - description: Initialize an &SQS; client and list queues.
               snippet_tags:
                 - javascript.v3.sqs.hello
+    Swift:
+      versions:
+        - sdk_version: 1
+          github: swift/example_code/sqs
+          sdkguide:
+          excerpts:
+            - description: The <code>Package.swift</code> file.
+              snippet_tags:
+                - swift.sqs.basics.package
+            - description: The Swift source code, <code>entry.swift</code>.
+              snippet_tags:
+                - swift.sqs.basics
   services:
     sqs: {ListQueues}
 sqs_CreateQueue:
@@ -163,6 +175,15 @@ sqs_CreateQueue:
               snippet_tags:
                 - cpp.example_code.sqs.CreateQueue.config
                 - cpp.example_code.sqs.CreateQueue
+    Swift:
+      versions:
+        - sdk_version: 1
+          github: swift/example_code/sqs
+          sdkguide:
+          excerpts:
+            - description:
+              snippet_tags:
+                - swift.sqs.CreateQueue
   services:
     sqs: {CreateQueue}
 sqs_GetQueueUrl:
@@ -320,6 +341,15 @@ sqs_ListQueues:
               snippet_tags:
                 - cpp.example_code.sqs.ListQueues.config
                 - cpp.example_code.sqs.ListQueues
+    Swift:
+      versions:
+        - sdk_version: 1
+          github: swift/example_code/sqs
+          sdkguide:
+          excerpts:
+            - description:
+              snippet_tags:
+                - swift.sqs.ListQueues
   services:
     sqs: {ListQueues}
 sqs_DeleteQueue:
@@ -414,6 +444,15 @@ sqs_DeleteQueue:
               snippet_tags:
                 - cpp.example_code.sqs.DeleteQueue.config
                 - cpp.example_code.sqs.DeleteQueue
+    Swift:
+      versions:
+        - sdk_version: 1
+          github: swift/example_code/sqs
+          sdkguide:
+          excerpts:
+            - description:
+              snippet_tags:
+                - swift.sqs.DeleteQueue
   services:
     sqs: {DeleteQueue}
 sqs_SendMessage:
@@ -442,9 +481,22 @@ sqs_SendMessage:
           github: javav2/example_code/sqs
           sdkguide:
           excerpts:
-            - description:
+            - description: >-
+                Two examples of the <code>SendMessage</code> operation follow:</para>
+                <itemizedlist>
+                    <listitem>
+                        <para>Send a message with a body and a delay</para>
+                    </listitem>
+                    <listitem>
+                        <para>Send a message with a body and message attributes</para>
+                    </listitem>
+                </itemizedlist>
+                <para>Send a message with a body and a delay.
               snippet_tags:
                 - sqs.java2.send_recieve_messages.main
+            - description: Send a message with a body and message attributes.
+              snippet_tags:
+                - sqs.java2.message_attributes.create
     Python:
       versions:
         - sdk_version: 3
@@ -649,6 +701,15 @@ sqs_ReceiveMessage:
               snippet_tags:
                 - cpp.example_code.sqs.ReceiveMessage.config
                 - cpp.example_code.sqs.ReceiveMessage
+    Swift:
+      versions:
+        - sdk_version: 1
+          github: swift/example_code/sqs
+          sdkguide:
+          excerpts:
+            - description:
+              snippet_tags:
+                - swift.sqs.ReceiveMessage
   services:
     sqs: {ReceiveMessage}
 sqs_DeleteMessage:
@@ -765,6 +826,15 @@ sqs_DeleteMessageBatch:
             - description:
               snippet_tags:
                 - sqs.JavaScript.messages.receiveMessageV3
+    Swift:
+      versions:
+        - sdk_version: 1
+          github: swift/example_code/sqs
+          sdkguide:
+          excerpts:
+            - description:
+              snippet_tags:
+                - swift.sqs.DeleteMessageBatch
   services:
     sqs: {DeleteMessageBatch}
 sqs_Scenario_SendReceiveBatch:
@@ -836,6 +906,15 @@ sqs_GetQueueAttributes:
             - description:
               snippet_tags:
                 - javascript.v3.sqs.actions.GetQueueAttributes
+    Swift:
+      versions:
+        - sdk_version: 1
+          github: swift/example_code/sqs
+          sdkguide:
+          excerpts:
+            - description:
+              snippet_tags:
+                - swift.sqs.GetQueueAttributes
   services:
     sqs: {GetQueueAttributes}
 sqs_ChangeMessageVisibility:
@@ -931,6 +1010,24 @@ sqs_SetQueueAttributes:
             - description: Configure a dead-letter queue.
               snippet_tags:
                 - sqs.JavaScript.deadLetter.setQueueAttributesV3
+    Swift:
+      versions:
+        - sdk_version: 1
+          github: swift/example_code/sqs
+          sdkguide:
+          excerpts:
+            - description:
+              snippet_tags:
+                - swift.sqs.SetQueueAttributes
+    Java:
+      versions:
+        - sdk_version: 2
+          github: javav2/example_code/sqs
+          sdkguide:
+          excerpts:
+            - description: Configure an &SQS; to use server-side encryption (SSE) using a custom KMS key.
+              snippet_tags:
+                - sqs.java2.sqs_sse_example.add-encryption-method
   services:
     sqs: {SetQueueAttributes}
 sqs_Scenario_TopicsAndQueues:
@@ -980,16 +1077,19 @@ sqs_Scenario_TopicsAndQueues:
             - description: Define a struct that wraps &SQS; actions used in this example.
               snippet_tags:
                 - gov2.sqs.SqsActions.complete
+            - description: Clean up resources.
+              snippet_tags:
+                - gov2.workflows.TopicsAndQueues.Resources.complete
     JavaScript:
       versions:
         - sdk_version: 3
           github: javascriptv3/example_code/cross-services/wkflw-topics-queues
           sdkguide:
           excerpts:
-            - description: This is the entry point for this workflow.
+            - description: This is the entry point for this scenario.
               snippet_tags:
                 - javascript.v3.wkflw.topicsandqueues.index
-            - description: The preceding code provides the necessary dependencies and starts the workflow. The next section
+            - description: The preceding code provides the necessary dependencies and starts the scenario. The next section
                 contains the bulk of the example.
               snippet_tags:
                 - javascript.v3.wkflw.topicsandqueues.wrapper
@@ -1013,3 +1113,20 @@ sqs_Scenario_TopicsAndQueues:
   services:
     sns: {CreateTopic, Subscribe, Publish, Unsubscribe, DeleteTopic}
     sqs: {CreateQueue, GetQueueAttributes, SetQueueAttributes, ReceiveMessage, DeleteMessageBatch, DeleteQueue}
+sqs_Scenario_WorkWithTags:
+  title: Work with queue tags and &SQS; using an &AWS; SDK
+  title_abbrev: Work with queue tags
+  synopsis: perform tagging operation with &SQS;
+  category: Scenarios
+  languages:
+    Java:
+      versions:
+        - sdk_version: 2
+          github: javav2/example_code/sqs
+          sdkguide:
+          excerpts:
+            - description: The following example creates tags for a queue, lists tags, and removes a tag.
+              snippet_tags:
+                - sqs.java2.tag-examples
+  services:
+    sqs: {TagQueue, ListQueueTags, UntagQueue}

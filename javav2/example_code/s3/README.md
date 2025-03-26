@@ -45,46 +45,51 @@ Code examples that show you how to perform the essential operations within a ser
 
 Code excerpts that show you how to call individual service functions.
 
-- [CopyObject](src/main/java/com/example/s3/scenario/S3Actions.java#L203)
-- [CreateBucket](src/main/java/com/example/s3/scenario/S3Actions.java#L85)
-- [DeleteBucket](src/main/java/com/example/s3/scenario/S3Actions.java#L342)
+- [AbortMultipartUpload](src/main/java/com/example/s3/AbortMultipartUploadExamples.java#L6)
+- [CopyObject](src/main/java/com/example/s3/scenario/S3Actions.java#L212)
+- [CreateBucket](src/main/java/com/example/s3/scenario/S3Actions.java#L90)
+- [DeleteBucket](src/main/java/com/example/s3/scenario/S3Actions.java#L353)
 - [DeleteBucketPolicy](src/main/java/com/example/s3/DeleteBucketPolicy.java#L6)
 - [DeleteBucketWebsite](src/main/java/com/example/s3/DeleteWebsiteConfiguration.java#L6)
-- [DeleteObject](src/main/java/com/example/s3/scenario/S3Actions.java#L315)
+- [DeleteObject](src/main/java/com/example/s3/scenario/S3Actions.java#L325)
 - [DeleteObjects](src/main/java/com/example/s3/DeleteMultiObjects.java#L6)
 - [GetBucketAcl](src/main/java/com/example/s3/GetAcl.java#L6)
 - [GetBucketPolicy](src/main/java/com/example/s3/GetBucketPolicy.java#L6)
-- [GetObject](src/main/java/com/example/s3/scenario/S3Actions.java#L144)
+- [GetBucketReplication](src/main/java/com/example/s3/replication/BucketReplication.java#L220)
+- [GetObject](src/main/java/com/example/s3/scenario/S3Actions.java#L151)
 - [GetObjectLegalHold](src/main/java/com/example/s3/lockscenario/S3LockActions.java#L94)
 - [GetObjectLockConfiguration](src/main/java/com/example/s3/lockscenario/S3LockActions.java#L345)
 - [GetObjectRetention](src/main/java/com/example/s3/lockscenario/S3LockActions.java#L309)
 - [HeadObject](src/main/java/com/example/s3/GetObjectContentType.java#L6)
 - [ListBuckets](src/main/java/com/example/s3/ListBuckets.java#L6)
 - [ListMultipartUploads](src/main/java/com/example/s3/ListMultipartUploads.java#L6)
-- [ListObjectsV2](src/main/java/com/example/s3/scenario/S3Actions.java#L177)
+- [ListObjectsV2](src/main/java/com/example/s3/scenario/S3Actions.java#L185)
 - [PutBucketAcl](src/main/java/com/example/s3/SetAcl.java#L6)
 - [PutBucketCors](src/main/java/com/example/s3/S3Cors.java#L6)
 - [PutBucketLifecycleConfiguration](src/main/java/com/example/s3/LifecycleConfiguration.java#L6)
 - [PutBucketPolicy](src/main/java/com/example/s3/SetBucketPolicy.java#L6)
+- [PutBucketReplication](src/main/java/com/example/s3/replication/BucketReplication.java#L152)
+- [PutBucketVersioning](src/main/java/com/example/s3/replication/BucketReplication.java#L130)
 - [PutBucketWebsite](src/main/java/com/example/s3/SetWebsiteConfiguration.java#L6)
-- [PutObject](src/main/java/com/example/s3/scenario/S3Actions.java#L120)
+- [PutObject](src/main/java/com/example/s3/scenario/S3Actions.java#L126)
 - [PutObjectLegalHold](src/main/java/com/example/s3/lockscenario/S3LockActions.java#L255)
 - [PutObjectLockConfiguration](src/main/java/com/example/s3/lockscenario/S3LockActions.java#L206)
 - [PutObjectRetention](src/main/java/com/example/s3/lockscenario/S3LockActions.java#L61)
 - [RestoreObject](src/main/java/com/example/s3/RestoreObject.java#L6)
 - [SelectObjectContent](src/main/java/com/example/s3/async/SelectObjectContentExample.java#L5)
+- [UploadPartCopy](src/main/java/com/example/s3/scenario/S3Actions.java#L379)
 
 ### Scenarios
 
 Code examples that show you how to accomplish a specific task by calling multiple
 functions within the same service.
 
+- [Check if a bucket exists](src/main/java/com/example/s3/DoesBucketExist.java)
 - [Delete incomplete multipart uploads](src/main/java/com/example/s3/AbortMultipartUploadExamples.java)
+- [Download S3 'directories'](src/main/java/com/example/s3/transfermanager/S3DirectoriesDownloader.java)
 - [Download objects to a local directory](src/main/java/com/example/s3/transfermanager/DownloadToDirectory.java)
-- [Get the legal hold configuration of an object](src/main/java/com/example/s3/lockscenario/S3LockActions.java)
 - [Lock Amazon S3 objects](src/main/java/com/example/s3/lockscenario/S3ObjectLockWorkflow.java)
 - [Parse URIs](src/main/java/com/example/s3/ParseUri.java)
-- [Perform a multipart upload](src/main/java/com/example/s3/PerformMultiPartUpload.java)
 - [Process S3 event notifications](src/main/java/com/example/s3/ProcessS3EventNotification.java)
 - [Send event notifications to EventBridge](src/main/java/com/example/s3/PutBucketS3EventNotificationEventBridge.java)
 - [Track uploads and downloads](src/main/java/com/example/s3/transfermanager/UploadFile.java)
@@ -96,7 +101,8 @@ functions within the same service.
 
 <!--custom.examples.start-->
 - [Create a presigned URL for download](src/main/java/com/example/s3/GeneratePresignedGetUrlAndRetrieve.java)
-- [Create a presigned URL for upload](src/main/java/com/example/s3/GeneratePresignedUrlAndPutFileWithMetadata.java)
+- [Create a presigned URL with metadata in headers for upload](src/main/java/com/example/s3/GeneratePresignedUrlAndPutFileWithMetadata.java)
+- [Create a presigned URL with query parameters for upload](src/main/java/com/example/s3/GeneratePresignedUrlAndPutFileWithQueryParams.java)
 <!--custom.examples.end-->
 
 ## Run the examples
@@ -130,6 +136,18 @@ This example shows you how to do the following:
 <!--custom.basics.s3_Scenario_GettingStarted.end-->
 
 
+#### Check if a bucket exists
+
+This example shows you how to check if a bucket exists.
+
+
+<!--custom.scenario_prereqs.s3_Scenario_DoesBucketExist.start-->
+<!--custom.scenario_prereqs.s3_Scenario_DoesBucketExist.end-->
+
+
+<!--custom.scenarios.s3_Scenario_DoesBucketExist.start-->
+<!--custom.scenarios.s3_Scenario_DoesBucketExist.end-->
+
 #### Delete incomplete multipart uploads
 
 This example shows you how to how to delete or stop incomplete Amazon S3 multipart uploads.
@@ -142,6 +160,18 @@ This example shows you how to how to delete or stop incomplete Amazon S3 multipa
 <!--custom.scenarios.s3_Scenario_AbortMultipartUpload.start-->
 <!--custom.scenarios.s3_Scenario_AbortMultipartUpload.end-->
 
+#### Download S3 'directories'
+
+This example shows you how to download and filter the contents of Amazon S3 bucket 'directories'.
+
+
+<!--custom.scenario_prereqs.s3_Scenario_DownloadS3Directory.start-->
+<!--custom.scenario_prereqs.s3_Scenario_DownloadS3Directory.end-->
+
+
+<!--custom.scenarios.s3_Scenario_DownloadS3Directory.start-->
+<!--custom.scenarios.s3_Scenario_DownloadS3Directory.end-->
+
 #### Download objects to a local directory
 
 This example shows you how to download all objects in an Amazon Simple Storage Service (Amazon S3) bucket to a local directory.
@@ -153,18 +183,6 @@ This example shows you how to download all objects in an Amazon Simple Storage S
 
 <!--custom.scenarios.s3_DownloadBucketToDirectory.start-->
 <!--custom.scenarios.s3_DownloadBucketToDirectory.end-->
-
-#### Get the legal hold configuration of an object
-
-This example shows you how to get the legal hold configuration of an S3 bucket.
-
-
-<!--custom.scenario_prereqs.s3_GetObjectLegalHoldConfiguration.start-->
-<!--custom.scenario_prereqs.s3_GetObjectLegalHoldConfiguration.end-->
-
-
-<!--custom.scenarios.s3_GetObjectLegalHoldConfiguration.start-->
-<!--custom.scenarios.s3_GetObjectLegalHoldConfiguration.end-->
 
 #### Lock Amazon S3 objects
 
@@ -189,18 +207,6 @@ This example shows you how to parse Amazon S3 URIs to extract important componen
 
 <!--custom.scenarios.s3_Scenario_URIParsing.start-->
 <!--custom.scenarios.s3_Scenario_URIParsing.end-->
-
-#### Perform a multipart upload
-
-This example shows you how to perform a multipart upload to an Amazon S3 object.
-
-
-<!--custom.scenario_prereqs.s3_Scenario_MultipartUpload.start-->
-<!--custom.scenario_prereqs.s3_Scenario_MultipartUpload.end-->
-
-
-<!--custom.scenarios.s3_Scenario_MultipartUpload.start-->
-<!--custom.scenarios.s3_Scenario_MultipartUpload.end-->
 
 #### Process S3 event notifications
 

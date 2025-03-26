@@ -5,6 +5,7 @@ package scenarios
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"fmt"
 	"testing"
@@ -85,7 +86,7 @@ func (scenTest *GetStartedFunctionsScenarioTest) SetupDataAndStubs() []testtools
 
 	// CreateFunction
 	stubList = append(stubList, stubs.StubCreateFunction(funcName, codeBytes, roleArn,
-		fmt.Sprintf("%v.lambda_handler", funcName), true, lambdatypes.RuntimePython38,
+		fmt.Sprintf("%v.lambda_handler", funcName), true, lambdatypes.RuntimePython39,
 		lambdatypes.StateActive, nil))
 	stubList = append(stubList, stubs.StubGetFunction(funcName, lambdatypes.StateActive,
 		lambdatypes.LastUpdateStatusSuccessful, nil))
@@ -122,7 +123,7 @@ func (scenTest *GetStartedFunctionsScenarioTest) RunSubTest(stubber *testtools.A
 	mockQuestioner := demotools.MockQuestioner{Answers: scenTest.Answers}
 	scenario := NewGetStartedFunctionsScenario(*stubber.SdkConfig, &mockQuestioner, &scenTest.helper)
 	scenario.isTestRun = true
-	scenario.Run()
+	scenario.Run(context.Background())
 }
 
 func (scenTest *GetStartedFunctionsScenarioTest) Cleanup() {}

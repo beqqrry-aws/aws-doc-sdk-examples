@@ -27,6 +27,7 @@ entities = {
     "&kms-key;": "KMS key",
     "&kms-keys;": "KMS keys",
     "&S3long;": "Amazon Simple Storage Service",
+    "&S3only;": "S3",
     "&SLN;": "Amazon States Language",
 }
 language = {
@@ -53,6 +54,8 @@ language = {
             "service_folder": 'javav2/example_code/{{service["name"]}}',
             "sdk_api_ref": 'https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/{{service["name"]}}/package-summary.html',
             "service_folder_overrides": {
+                "s3-control": "javav2/example_code/s3/src/main/java/com/example/s3/batch",
+                "s3-directory-buckets": "javav2/example_code/s3/src/main/java/com/example/s3/directorybucket",
                 "medical-imaging": "javav2/example_code/medicalimaging",
             },
         },
@@ -116,6 +119,15 @@ language = {
                 "transcribe": "dotnetv3/Transcribe",
                 "translate": "dotnetv3/Translate",
             },
+        },
+        4: {
+            "base_folder": "dotnetv4",
+            "service_folder": 'dotnetv4/{{service["name"] | capitalize}}',
+            "sdk_api_ref": 'https://docs.aws.amazon.com/sdkfornet/v3/apidocs/items/{{service["name"] | capitalize}}/N{{service["name"] | capitalize}}.html',
+            "service_folder_overrides": {
+                "aurora": "dotnetv4/Aurora",
+                "auto-scaling": "dotnetv4/AutoScaling",
+            },
         }
     },
     "PHP": {
@@ -123,6 +135,9 @@ language = {
             "base_folder": "php",
             "service_folder": 'php/example_code/{{service["name"]}}',
             "sdk_api_ref": 'https://docs.aws.amazon.com/aws-sdk-php/v3/api/namespace-Aws.{{service["name"] | capitalize}}.html',
+            "service_folder_overrides": {
+            "s3-directory-buckets": "php/example_code/s3/express",
+            }
         }
     },
     "Python": {
@@ -136,7 +151,7 @@ language = {
                 "device-farm": "python/example_code/devicefarm",
                 "elastic-load-balancing-v2": "python/example_code/elastic-load-balancing",
                 "secrets-manager": "python/example_code/secretsmanager",
-                "dynamodb": "python/example_code/dynamodb"
+                "dynamodb": "python/example_code/dynamodb",
             },
         }
     },
@@ -176,6 +191,7 @@ language = {
             "sdk_api_ref": 'https://docs.aws.amazon.com/sdk-for-sap-abap/v1/api/latest/{{service["name"]}}/index.html',
             "service_folder_overrides": {
                 "bedrock-runtime": "sap-abap/services/bdr",
+                "bedrock-agent-runtime": "sap-abap/services/bdz",
                 "dynamodb": "sap-abap/services/dyn",
             },
         }

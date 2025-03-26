@@ -31,7 +31,7 @@ For prerequisites, see the [README](../../README.md#Prerequisites) in the `javas
 
 ### Get started
 
-- [Hello Systems Manager](hello.js#L4) (`listThings`)
+- [Hello Systems Manager](hello.js#L4) (`ListDocuments`)
 
 
 ### Basics
@@ -103,8 +103,15 @@ node ./hello.js
 
 #### Learn the basics
 
-This example shows you how to work with Systems Manager maintenance windows, documents, and OpsItems.
+This example shows you how to do the following:
 
+- Create a maintenance window.
+- Modify the maintenance window schedule.
+- Create a document.
+- Send a command to a specified EC2 instance.
+- Create an OpsItem.
+- Update and resolve the OpsItem.
+- Delete the maintenance window, OpsItem, and document.
 
 <!--custom.basic_prereqs.ssm_Scenario.start-->
 <!--custom.basic_prereqs.ssm_Scenario.end-->

@@ -36,7 +36,7 @@ python -m pip install -r requirements.txt
 
 ### Get started
 
-- [Hello Amazon Redshift](hello.py#L4) (`describeClusters`)
+- [Hello Amazon Redshift](hello.py#L4) (`DescribeClusters`)
 
 
 ### Basics
@@ -51,7 +51,6 @@ Code examples that show you how to perform the essential operations within a ser
 Code excerpts that show you how to call individual service functions.
 
 - [CreateCluster](redshift.py#L39)
-- [CreateTable](redshift_scenario.py#L201)
 - [DeleteCluster](redshift.py#L81)
 - [DescribeClusters](redshift.py#L125)
 - [DescribeStatement](redshift_data.py#L94)
@@ -80,8 +79,15 @@ python hello.py
 
 #### Learn the basics
 
-This example shows you how to work with Amazon Redshift tables, items, and queries.
+This example shows you how to do the following:
 
+- Create a Redshift cluster.
+- List databases in the cluster.
+- Create a table named Movies.
+- Populate the Movies table.
+- Query the Movies table by year.
+- Modify the Redshift cluster.
+- Delete the Amazon Redshift cluster.
 
 <!--custom.basic_prereqs.redshift_Scenario.start-->
 <!--custom.basic_prereqs.redshift_Scenario.end-->

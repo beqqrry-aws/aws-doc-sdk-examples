@@ -12,7 +12,7 @@ There are three workflows demonstrated by this example:
 * Automatically add known users at sign-in by using a migrate user trigger.
 * Write custom information to an Amazon DynamoDB table after users are authenticated by using a post authentication trigger.
 
-These workflows are described in more detail in the main [README](../../workflows/user_pools_and_lambda_triggers/README.md) 
+These workflows are described in more detail in the main [README](../../scenarios/features/user_pools_and_lambda_triggers/README.md) 
 for these examples.
 
 ## Automatically confirm known users
@@ -67,7 +67,7 @@ The AWS resources for this example are deployed by using the AWS Cloud Developme
 To install the AWS CDK, follow the instructions in the
 [Developer Guide](https://docs.aws.amazon.com/cdk/v2/guide/home.html).
 
-Deploy resources at a command prompt from the [cdk](cdk) folder:
+Deploy resources at a command prompt from the [.cdk](.cdk) folder:
 
 ```
 npm install
@@ -86,7 +86,7 @@ go run ./cmd -scenario [auto_confirm migrate_user activity_log]
 
 Delete resources deployed for this example by deleting the stack.
 
-Delete the stack at a command prompt from the [cdk](cdk) folder:
+Delete the stack at a command prompt from the [.cdk](.cdk) folder:
 
 ```
 cdk destroy

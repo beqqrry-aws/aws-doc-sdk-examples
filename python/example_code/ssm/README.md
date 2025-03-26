@@ -36,7 +36,7 @@ python -m pip install -r requirements.txt
 
 ### Get started
 
-- [Hello Systems Manager](hello.py#L4) (`listThings`)
+- [Hello Systems Manager](hello.py#L4) (`ListDocuments`)
 
 
 ### Basics
@@ -56,7 +56,7 @@ Code excerpts that show you how to call individual service functions.
 - [DeleteDocument](document.py#L59)
 - [DeleteMaintenanceWindow](maintenance_window.py#L73)
 - [DeleteOpsItem](ops_item.py#L73)
-- [DescribeOpsItems](ops_item.py#L13)
+- [DescribeOpsItems](ops_item.py#L95)
 - [ListCommandInvocations](document.py#L159)
 - [SendCommand](document.py#L82)
 - [UpdateMaintenanceWindow](maintenance_window.py#L97)
@@ -84,8 +84,15 @@ python hello.py
 
 #### Learn the basics
 
-This example shows you how to work with Systems Manager maintenance windows, documents, and OpsItems.
+This example shows you how to do the following:
 
+- Create a maintenance window.
+- Modify the maintenance window schedule.
+- Create a document.
+- Send a command to a specified EC2 instance.
+- Create an OpsItem.
+- Update and resolve the OpsItem.
+- Delete the maintenance window, OpsItem, and document.
 
 <!--custom.basic_prereqs.ssm_Scenario.start-->
 <!--custom.basic_prereqs.ssm_Scenario.end-->

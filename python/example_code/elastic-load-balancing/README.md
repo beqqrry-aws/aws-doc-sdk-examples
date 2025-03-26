@@ -40,20 +40,20 @@ python -m pip install -r requirements.txt
 
 ### Get started
 
-- [Hello Elastic Load Balancing](hello.py#L4) (`DescribeLoadBalancers`)
+- [Hello Elastic Load Balancing - Version 2](hello.py#L4) (`DescribeLoadBalancers`)
 
 
 ### Single actions
 
 Code excerpts that show you how to call individual service functions.
 
-- [CreateListener](../../cross_service/resilient_service/load_balancer.py#L194)
-- [CreateLoadBalancer](../../cross_service/resilient_service/load_balancer.py#L142)
+- [CreateListener](../../cross_service/resilient_service/load_balancer.py#L191)
+- [CreateLoadBalancer](../../cross_service/resilient_service/load_balancer.py#L140)
 - [CreateTargetGroup](../../cross_service/resilient_service/load_balancer.py#L28)
-- [DeleteLoadBalancer](../../cross_service/resilient_service/load_balancer.py#L255)
-- [DeleteTargetGroup](../../cross_service/resilient_service/load_balancer.py#L84)
-- [DescribeLoadBalancers](../../cross_service/resilient_service/load_balancer.py#L288)
-- [DescribeTargetHealth](../../cross_service/resilient_service/load_balancer.py#L342)
+- [DeleteLoadBalancer](../../cross_service/resilient_service/load_balancer.py#L251)
+- [DeleteTargetGroup](../../cross_service/resilient_service/load_balancer.py#L83)
+- [DescribeLoadBalancers](../../cross_service/resilient_service/load_balancer.py#L283)
+- [DescribeTargetHealth](../../cross_service/resilient_service/load_balancer.py#L336)
 
 ### Scenarios
 
@@ -74,9 +74,9 @@ functions within the same service.
 <!--custom.instructions.start-->
 <!--custom.instructions.end-->
 
-#### Hello Elastic Load Balancing
+#### Hello Elastic Load Balancing - Version 2
 
-This example shows you how to get started using Elastic Load Balancing.
+This example shows you how to get started using Elastic Load Balancing - Version 2.
 
 ```
 python hello.py

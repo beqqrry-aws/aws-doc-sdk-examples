@@ -55,7 +55,7 @@ Code excerpts that show you how to call individual service functions.
 - [StartDICOMImportJob](actions/start-dicom-import-job.js#L6)
 - [TagResource](actions/tag-resource.js#L6)
 - [UntagResource](actions/untag-resource.js#L6)
-- [UpdateImageSetMetadata](actions/update-image-set-metadata.js#L10)
+- [UpdateImageSetMetadata](actions/update-image-set-metadata.js#L6)
 
 ### Scenarios
 
@@ -115,7 +115,7 @@ node ./hello.js
 #### Get started with image sets and image frames
 
 This example shows you how to import DICOM files and download image frames in HealthImaging.</para>
- <para>The implementation is structured as a workflow command-line
+ <para>The implementation is structured as a command-line
  application.
 
 

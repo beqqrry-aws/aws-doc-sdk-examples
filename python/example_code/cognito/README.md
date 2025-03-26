@@ -36,14 +36,14 @@ python -m pip install -r requirements.txt
 
 ### Get started
 
-- [Hello Amazon Cognito](hello/hello_cognito.py#L4) (`ListUserPools`)
+- [Hello Amazon Cognito Identity Provider](hello/hello_cognito.py#L4) (`ListUserPools`)
 
 
 ### Single actions
 
 Code excerpts that show you how to call individual service functions.
 
-- [AdminGetUser](cognito_idp_actions.py#L23)
+- [AdminGetUser](cognito_idp_actions.py#L56)
 - [AdminInitiateAuth](cognito_idp_actions.py#L187)
 - [AdminRespondToAuthChallenge](cognito_idp_actions.py#L292)
 - [AssociateSoftwareToken](cognito_idp_actions.py#L241)
@@ -75,9 +75,9 @@ functions within the same service.
 <!--custom.instructions.start-->
 <!--custom.instructions.end-->
 
-#### Hello Amazon Cognito
+#### Hello Amazon Cognito Identity Provider
 
-This example shows you how to get started using Amazon Cognito.
+This example shows you how to get started using Amazon Cognito Identity Provider.
 
 ```
 python hello/hello_cognito.py

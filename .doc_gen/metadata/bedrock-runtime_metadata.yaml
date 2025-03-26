@@ -21,6 +21,20 @@ bedrock-runtime_Hello:
             - description:
               snippet_files:
                 - javascriptv3/example_code/bedrock-runtime/hello.js
+
+    Python:
+      versions:
+        - sdk_version: 3
+          github: python/example_code/bedrock-runtime
+          sdkguide:
+          excerpts:
+            - description: Send a prompt to a model with the InvokeModel operation.
+              snippet_tags:
+                - bedrock-runtime.example_code.hello_bedrock_invoke.complete
+            - description: Send a user message to a model with the Converse operation.
+              snippet_tags:
+                - bedrock-runtime.example_code.hello_bedrock_converse.complete
+
   services:
     bedrock-runtime: {InvokeModel}
 
@@ -69,6 +83,62 @@ bedrock-runtime_Converse_Ai21LabsJurassic2:
   services:
     bedrock-runtime: {Converse}
 
+bedrock-runtime_Converse_AmazonNovaText:
+  title: Invoke Amazon Nova on &BR; using Bedrock's Converse API
+  title_abbrev: "Converse"
+  synopsis: send a text message to Amazon Nova, using Bedrock's Converse API.
+  category: Amazon Nova
+  languages:
+    Java:
+      versions:
+        - sdk_version: 2
+          github: javav2/example_code/bedrock-runtime
+          excerpts:
+            - description: Send a text message to Amazon Nova using Bedrock's Converse API with the async Java client.
+              snippet_tags:
+                - bedrock-runtime.java2.ConverseAsync_AmazonNovaText
+            - description: Send a text message to Amazon Nova, using Bedrock's Converse API.
+              snippet_tags:
+                - bedrock-runtime.java2.Converse_AmazonNovaText
+    JavaScript:
+      versions:
+        - sdk_version: 3
+          github: javascriptv3/example_code/bedrock-runtime
+          excerpts:
+            - description: Send a text message to Amazon Nova, using Bedrock's Converse API.
+              snippet_tags:
+                - javascript.v3.bedrock-runtime.Converse_AmazonNovaText
+    Kotlin:
+      versions:
+        - sdk_version: 1
+          github: kotlin/services/bedrock-runtime
+          excerpts:
+            - description: Send a text message to Amazon Nova, using Bedrock's Converse API.
+              snippet_tags:
+                - bedrock-runtime.kotlin.Converse_AmazonNovaText
+    .NET:
+      versions:
+        - sdk_version: 3
+          github: dotnetv3/Bedrock-runtime
+          excerpts:
+            - description: Send a text message to Amazon Nova, using Bedrock's Converse API.
+              snippet_tags:
+                - BedrockRuntime.dotnetv3.Converse_AmazonNovaText
+            - description: Send a conversation of messages to Amazon Nova using Bedrock's Converse API with a tool configuration.
+              genai: some
+              snippet_tags:
+                - Bedrock.ConverseTool.dotnetv3.SendConverseRequest
+    Python:
+      versions:
+        - sdk_version: 3
+          github: python/example_code/bedrock-runtime
+          excerpts:
+            - description: Send a text message to Amazon Nova, using Bedrock's Converse API.
+              snippet_tags:
+                - python.example_code.bedrock-runtime.Converse_AmazonNovaText
+  services:
+    bedrock-runtime: {Converse}
+
 bedrock-runtime_Converse_AmazonTitanText:
   title: Invoke Amazon Titan Text on &BR; using Bedrock's Converse API
   title_abbrev: "Converse"
@@ -110,6 +180,60 @@ bedrock-runtime_Converse_AmazonTitanText:
             - description: Send a text message to Amazon Titan Text, using Bedrock's Converse API.
               snippet_tags:
                 - javascript.v3.bedrock-runtime.Converse_AmazonTitanText
+  services:
+    bedrock-runtime: {Converse}
+
+bedrock-runtime_Scenario_ToolUse:
+  title: "A tool use example illustrating how to connect AI models on &BR; with a custom tool or API"
+  title_abbrev: "Tool use with the Converse API"
+  synopsis: "build a typical interaction between an application, a generative AI model, and connected tools or APIs to mediate interactions between the AI and the outside world. It uses the example of connecting an external weather API to the AI model so it can provide real-time weather information based on user input."
+  category: Scenarios
+  languages:
+    .NET:
+      versions:
+        - sdk_version: 3
+          github: dotnetv3/Bedrock-runtime/Scenarios/ConverseToolScenario
+          excerpts:
+            - description: "The primary execution of the scenario flow. This scenario orchestrates the conversation between the user, the &BR; Converse API, and a weather tool."
+              genai: some
+              snippet_tags:
+                - Bedrock.ConverseTool.dotnetv3.Scenario
+            - description: "The weather tool used by the demo. This file defines the tool specification and implements the logic to retrieve weather data using from the Open-Meteo API."
+              genai: some
+              snippet_tags:
+                - Bedrock.ConverseTool.dotnetv3.WeatherTool
+            - description: "The Converse API action with a tool configuration."
+              genai: some
+              snippet_tags:
+                - Bedrock.ConverseTool.dotnetv3.SendConverseRequest
+    Python:
+      versions:
+        - sdk_version: 3
+          github: python/example_code/bedrock-runtime
+          excerpts:
+            - description: "The primary execution script of the demo. This script orchestrates the conversation between the user, the &BR; Converse API, and a weather tool."
+              snippet_files:
+                - python/example_code/bedrock-runtime/cross-model-scenarios/tool_use_demo/tool_use_demo.py
+            - description: "The weather tool used by the demo. This script defines the tool specification and implements the logic to retrieve weather data using from the Open-Meteo API."
+              snippet_files:
+                - python/example_code/bedrock-runtime/cross-model-scenarios/tool_use_demo/weather_tool.py
+    Rust:
+      versions:
+        - sdk_version: 1
+          github: rustv1/examples/bedrock-runtime
+          excerpts:
+            - description: "The primary scenario and logic for the demo. This orchestrates the conversation between the user, the &BR; Converse API, and a weather tool."
+              snippet_tags:
+                - rust.bedrock-runtime.Converse_AnthropicClaude.tool-use
+            - description: "The weather tool used by the demo. This script defines the tool specification and implements the logic to retrieve weather data using from the Open-Meteo API."
+              snippet_tags:
+                - rust.bedrock-runtime.Converse_AnthropicClaude.tool-use.weather-tool
+            - description: "Utilities to print the Message Content Blocks."
+              snippet_tags:
+                - rust.bedrock-runtime.Converse_AnthropicClaude.tool-use.user-interface
+            - description: "Use statements, Error utility, and constants."
+              snippet_tags:
+                - rust.bedrock-runtime.Converse_AnthropicClaude.tool-use.supporting
   services:
     bedrock-runtime: {Converse}
 
@@ -301,6 +425,55 @@ bedrock-runtime_Converse_Mistral:
     bedrock-runtime: {Converse}
 
 # Converse Stream
+bedrock-runtime_ConverseStream_AmazonNovaText:
+  title: Invoke Amazon Nova on &BR; using Bedrock's Converse API with a response stream
+  title_abbrev: "ConverseStream"
+  synopsis: send a text message to Amazon Nova, using Bedrock's Converse API and process the response stream in real-time.
+  category: Amazon Nova
+  languages:
+    Java:
+      versions:
+        - sdk_version: 2
+          github: javav2/example_code/bedrock-runtime
+          excerpts:
+            - description: Send a text message to Amazon Nova using Bedrock's Converse API and process the response stream in real-time.
+              snippet_tags:
+                - bedrock-runtime.java2.ConverseStream_AmazonNovaText
+    JavaScript:
+      versions:
+        - sdk_version: 3
+          github: javascriptv3/example_code/bedrock-runtime
+          excerpts:
+            - description: Send a text message to Amazon Nova using Bedrock's Converse API and process the response stream in real-time.
+              snippet_tags:
+                - javascript.v3.bedrock-runtime.ConverseStream_AmazonNovaText
+    Kotlin:
+      versions:
+        - sdk_version: 1
+          github: kotlin/services/bedrock-runtime
+          excerpts:
+            - description: Send a text message to Amazon Nova using Bedrock's Converse API and process the response stream in real-time.
+              snippet_tags:
+                - bedrock-runtime.kotlin.ConverseStream_AmazonNovaText
+    .NET:
+      versions:
+        - sdk_version: 3
+          github: dotnetv3/Bedrock-runtime
+          excerpts:
+            - description: Send a text message to Amazon Nova, using Bedrock's Converse API and process the response stream in real-time.
+              snippet_tags:
+                - BedrockRuntime.dotnetv3.ConverseStream_AmazonNovaText
+    Python:
+      versions:
+        - sdk_version: 3
+          github: python/example_code/bedrock-runtime
+          excerpts:
+            - description: Send a text message to Amazon Nova, using Bedrock's Converse API and process the response stream in real-time.
+              snippet_tags:
+                - python.example_code.bedrock-runtime.ConverseStream_AmazonNovaText
+  services:
+    bedrock-runtime: {ConverseStream}
+
 bedrock-runtime_ConverseStream_AmazonTitanText:
   title: Invoke Amazon Titan Text on &BR; using Bedrock's Converse API with a response stream
   title_abbrev: "ConverseStream"
@@ -555,6 +728,7 @@ bedrock-runtime_InvokeModel_Ai21LabsJurassic2:
           excerpts:
             - description: Use the Invoke Model API to send a text message.
               snippet_tags:
+                - gov2.bedrock-runtime.InvokeModelWrapper.struct
                 - gov2.bedrock-runtime.InvokeJurassic2
     JavaScript:
       versions:
@@ -589,6 +763,14 @@ bedrock-runtime_InvokeModel_TitanText:
             - description: Use the Invoke Model API to send a text message.
               snippet_tags:
                 - bedrock-runtime.java2.InvokeModel_AmazonTitanText
+    Kotlin:
+      versions:
+        - sdk_version: 1
+          github: kotlin/services/bedrock-runtime
+          excerpts:
+            - description: Use the Invoke Model API to generate a short story.
+              snippet_tags:
+                - bedrock-runtime.kotlin.InvokeModel_AmazonTitanText
     .NET:
       versions:
         - sdk_version: 3
@@ -620,6 +802,7 @@ bedrock-runtime_InvokeModel_TitanText:
           excerpts:
             - description: Use the Invoke Model API to send a text message.
               snippet_tags:
+                - gov2.bedrock-runtime.InvokeModelWrapper.struct
                 - gov2.bedrock-runtime.InvokeTitanText
   services:
     bedrock-runtime: {InvokeModel}
@@ -669,6 +852,7 @@ bedrock-runtime_InvokeModel_AnthropicClaude:
           excerpts:
             - description: Invoke the Anthropic Claude 2 foundation model to generate text.
               snippet_tags:
+                - gov2.bedrock-runtime.InvokeModelWrapper.struct
                 - gov2.bedrock-runtime.InvokeClaude
     PHP:
       versions:
@@ -759,63 +943,6 @@ bedrock-runtime_InvokeModel_CohereCommandR:
             - description: Use the Invoke Model API to send a text message.
               snippet_tags:
                 - python.example_code.bedrock-runtime.InvokeModel_CohereCommandR
-  services:
-    bedrock-runtime: {InvokeModel}
-
-bedrock-runtime_InvokeModel_MetaLlama2:
-  title: Invoke Meta Llama 2 on &BR; using the Invoke Model API
-  title_abbrev: "InvokeModel: Llama 2"
-  synopsis: send a text message to Meta Llama 2, using the Invoke Model API.
-  category: Meta Llama
-  languages:
-    Java:
-      versions:
-        - sdk_version: 2
-          github: javav2/example_code/bedrock-runtime
-          excerpts:
-            - description: Use the Invoke Model API to send a text message.
-              snippet_tags:
-                - bedrock-runtime.java2.InvokeModel_MetaLlama2
-    .NET:
-      versions:
-        - sdk_version: 3
-          github: dotnetv3/Bedrock-runtime
-          excerpts:
-            - description: Use the Invoke Model API to send a text message.
-              snippet_tags:
-                - BedrockRuntime.dotnetv3.InvokeModel_MetaLlama2
-    Python:
-      versions:
-        - sdk_version: 3
-          github: python/example_code/bedrock-runtime
-          excerpts:
-            - description: Use the Invoke Model API to send a text message.
-              snippet_tags:
-                - python.example_code.bedrock-runtime.InvokeModel_MetaLlama2
-    Go:
-      versions:
-        - sdk_version: 2
-          github: gov2/bedrock-runtime
-          excerpts:
-            - description: Use the Invoke Model API to send a text message.
-              snippet_tags:
-                - gov2.bedrock-runtime.InvokeLlama2
-    JavaScript:
-      versions:
-        - sdk_version: 3
-          github: javascriptv3/example_code/bedrock-runtime
-          excerpts:
-            - description: Use the Invoke Model API to send a text message.
-              snippet_tags:
-                - javascript.v3.bedrock-runtime.InvokeModel_Llama2_Quickstart
-    PHP:
-      versions:
-        - sdk_version: 3
-          github: php/example_code/bedrock-runtime
-          excerpts:
-            - description: Use the Invoke Model API to send a text message.
-              snippet_tags:
-                - php.example_code.bedrock-runtime.service.invokeLlama2
   services:
     bedrock-runtime: {InvokeModel}
 
@@ -972,6 +1099,7 @@ bedrock-runtime_InvokeModelWithResponseStream_AnthropicClaude:
           excerpts:
             - description: Use the Invoke Model API to send a text message and process the response stream in real-time.
               snippet_tags:
+                - gov2.bedrock-runtime.InvokeModelWithResponseStreamWrapper.struct
                 - gov2.bedrock-runtime.InvokeModelWithResponseStream
     JavaScript:
       versions:
@@ -1050,47 +1178,6 @@ bedrock-runtime_InvokeModelWithResponseStream_CohereCommandR:
   services:
     bedrock-runtime: {InvokeModel}
 
-bedrock-runtime_InvokeModelWithResponseStream_MetaLlama2:
-  title: Invoke Meta Llama 2 on &BR; using the Invoke Model API with a response stream
-  title_abbrev: "InvokeModelWithResponseStream: Llama 2"
-  synopsis: send a text message to Meta Llama 2, using the Invoke Model API, and print the response stream.
-  category: Meta Llama
-  languages:
-    Java:
-      versions:
-        - sdk_version: 2
-          github: javav2/example_code/bedrock-runtime
-          excerpts:
-            - description: Use the Invoke Model API to send a text message and process the response stream in real-time.
-              snippet_tags:
-                - bedrock-runtime.java2.InvokeModelWithResponseStream_MetaLlama2
-    .NET:
-      versions:
-        - sdk_version: 3
-          github: dotnetv3/Bedrock-runtime
-          excerpts:
-            - description: Use the Invoke Model API to send a text message and process the response stream in real-time.
-              snippet_tags:
-                - BedrockRuntime.dotnetv3.InvokeModelWithResponseStream_MetaLlama2
-    Python:
-      versions:
-        - sdk_version: 3
-          github: python/example_code/bedrock-runtime
-          excerpts:
-            - description: Use the Invoke Model API to send a text message and process the response stream in real-time.
-              snippet_tags:
-                - python.example_code.bedrock-runtime.InvokeModelWithResponseStream_MetaLlama2
-    JavaScript:
-      versions:
-        - sdk_version: 3
-          github: javascriptv3/example_code/bedrock-runtime
-          excerpts:
-            - description: Use the Invoke Model API to send a text message and process the response stream in real-time.
-              snippet_tags:
-                - javascript.v3.bedrock-runtime.InvokeModelWithResponseStream_Llama2_Quickstart
-  services:
-    bedrock-runtime: {InvokeModelWithResponseStream}
-
 bedrock-runtime_InvokeModelWithResponseStream_MetaLlama3:
   title: Invoke Meta Llama 3 on &BR; using the Invoke Model API with a response stream
   title_abbrev: "InvokeModelWithResponseStream: Llama 3"
@@ -1165,7 +1252,86 @@ bedrock-runtime_InvokeModelWithResponseStream_MistralAi:
   services:
     bedrock-runtime: {InvokeModelWithResponseStream}
 
+# Reasoning
+bedrock-runtime_Converse_AnthropicClaudeReasoning:
+  title: Use Anthropic Claude 3.7 Sonnet's reasoning capability on &BR;
+  title_abbrev: Reasoning
+  synopsis: use Anthropic Claude 3.7 Sonnet's reasoning capability on &BR;
+  category: Anthropic Claude
+  languages:
+    Java:
+      versions:
+        - sdk_version: 2
+          github: javav2/example_code/bedrock-runtime
+          excerpts:
+            - description: Use Anthropic Claude 3.7 Sonnet's reasoning capability with the asynchronous Bedrock runtime client.
+              snippet_tags:
+                - bedrock-runtime.java2.ConverseAsync_AnthropicClaudeReasoning
+            - description: Use Anthropic Claude 3.7 Sonnet's reasoning capability with the synchronous Bedrock runtime client.
+              snippet_tags:
+                - bedrock-runtime.java2.Converse_AnthropicClaudeReasoning
+  services:
+    bedrock-runtime: {Converse}
+
+bedrock-runtime_ConverseStream_AnthropicClaudeReasoning:
+  title: Use Anthropic Claude 3.7 Sonnet's reasoning capability on &BR;
+  title_abbrev: Reasoning with a streaming response
+  synopsis: use Anthropic Claude 3.7 Sonnet's reasoning capability on &BR;
+  category: Anthropic Claude
+  languages:
+    Java:
+      versions:
+        - sdk_version: 2
+          github: javav2/example_code/bedrock-runtime
+          excerpts:
+            - description: Use Anthropic Claude 3.7 Sonnet's reasoning capability to generate streaming text responses.
+              snippet_tags:
+                - bedrock-runtime.java2.ConverseStream_AnthropicClaudeReasoning
+  services:
+    bedrock-runtime: {Converse}
+
 # Image Generation Models
+bedrock-runtime_InvokeModel_AmazonNovaImageGeneration:
+  title: Invoke Amazon Nova Canvas on &BR; to generate an image
+  title_abbrev: "InvokeModel"
+  synopsis: invoke Amazon Nova Canvas on &BR; to generate an image.
+  category: Amazon Nova Canvas
+  languages:
+    Java:
+      versions:
+        - sdk_version: 2
+          github: javav2/example_code/bedrock-runtime
+          excerpts:
+            - description: Create an image with Amazon Nova Canvas.
+              snippet_tags:
+                - bedrock-runtime.java2.InvokeModel_AmazonNovaImageGeneration
+    JavaScript:
+      versions:
+        - sdk_version: 3
+          github: javascriptv3/example_code/bedrock-runtime
+          excerpts:
+            - description: Create an image with Amazon Nova Canvas.
+              snippet_tags:
+                - javascript.v3.bedrock-runtime.InvokeModel_AmazonNovaImageGeneration
+    .NET:
+      versions:
+        - sdk_version: 3
+          github: dotnetv3/Bedrock-runtime
+          excerpts:
+            - description: Create an image with Amazon Nova Canvas.
+              snippet_tags:
+                - BedrockRuntime.dotnetv3.InvokeModel_AmazonNovaImageGeneration
+    Python:
+      versions:
+        - sdk_version: 3
+          github: python/example_code/bedrock-runtime
+          excerpts:
+            - description: Create an image with the Amazon Nova Canvas.
+              snippet_tags:
+                - python.example_code.bedrock-runtime.InvokeModel_AmazonNovaImageGeneration
+  services:
+    bedrock-runtime: {InvokeModel}
+
 bedrock-runtime_InvokeModel_TitanImageGenerator:
   title: Invoke Amazon Titan Image on &BR; to generate an image
   title_abbrev: "InvokeModel"
@@ -1195,6 +1361,7 @@ bedrock-runtime_InvokeModel_TitanImageGenerator:
           excerpts:
             - description: Create an image with the Amazon Titan Image Generator.
               snippet_tags:
+                - gov2.bedrock-runtime.InvokeModelWrapper.struct
                 - gov2.bedrock-runtime.InvokeTitanImage
     PHP:
       versions:
@@ -1252,6 +1419,24 @@ bedrock-runtime_InvokeModel_StableDiffusion:
   services:
     bedrock-runtime: {InvokeModel}
 
+# Video Generation Models
+bedrock-runtime_Scenario_AmazonNova_TextToVideo:
+  title: Use Amazon Nova Reel to generate a video from a text prompt
+  title_abbrev: "Text-to-video"
+  synopsis: use Amazon Nova Reel to generate a video from a text prompt.
+  category: Amazon Nova Reel
+  languages:
+    Python:
+      versions:
+        - sdk_version: 3
+          github: python/example_code/bedrock-runtime
+          excerpts:
+            - description: Use Amazon Nova Reel to generate a video from a text prompt.
+              snippet_tags:
+                - python.example_code.bedrock-runtime.Scenario_AmazonNova_TextToVideo
+  services:
+    bedrock-runtime: {GetAsyncInvoke, StartAsyncInvoke}
+
 # Embedding Models
 bedrock-runtime_InvokeModelWithResponseStream_TitanTextEmbeddings:
   title: Invoke Amazon Titan Text Embeddings on &BR;
@@ -1284,6 +1469,32 @@ bedrock-runtime_InvokeModelWithResponseStream_TitanTextEmbeddings:
     bedrock-runtime: {InvokeModel}
 
 # Tool use scenarios
+bedrock-runtime_Scenario_ToolUseDemo_AmazonNova:
+  title: "A tool use demo illustrating how to connect AI models on &BR; with a custom tool or API"
+  title_abbrev: "Scenario: Tool use with the Converse API"
+  synopsis: "build a typical interaction between an application, a generative AI model, and connected tools or APIs to mediate interactions between the AI and the outside world. It uses the example of connecting an external weather API to the AI model so it can provide real-time weather information based on user input."
+  category: Amazon Nova
+  languages:
+    .NET:
+      versions:
+        - sdk_version: 3
+          github: dotnetv3/Bedrock-runtime/Scenarios/ConverseToolScenario
+          excerpts:
+            - description: "The primary execution of the scenario flow. This scenario orchestrates the conversation between the user, the &BR; Converse API, and a weather tool."
+              genai: some
+              snippet_tags:
+                - Bedrock.ConverseTool.dotnetv3.Scenario
+            - description: "The weather tool used by the demo. This file defines the tool specification and implements the logic to retrieve weather data using from the Open-Meteo API."
+              genai: some
+              snippet_tags:
+                - Bedrock.ConverseTool.dotnetv3.WeatherTool
+            - description: "The Converse API action with a tool configuration."
+              genai: some
+              snippet_tags:
+                - Bedrock.ConverseTool.dotnetv3.SendConverseRequest
+  services:
+    bedrock-runtime: {Converse}
+
 bedrock-runtime_Scenario_ToolUseDemo_AnthropicClaude:
   title: "A tool use demo illustrating how to connect AI models on &BR; with a custom tool or API"
   title_abbrev: "Scenario: Tool use with the Converse API"
@@ -1312,13 +1523,12 @@ bedrock-runtime_Scenario_ToolUseDemo_AnthropicClaude:
             - description: "The weather tool used by the demo. This script defines the tool specification and implements the logic to retrieve weather data using from the Open-Meteo API."
               snippet_tags:
                 - rust.bedrock-runtime.Converse_AnthropicClaude.tool-use.weather-tool
-            - description: "Utilities to print the Message Content Blocks"
+            - description: "Utilities to print the Message Content Blocks."
               snippet_tags:
                 - rust.bedrock-runtime.Converse_AnthropicClaude.tool-use.user-interface
             - description: "Use statements, Error utility, and constants."
               snippet_tags:
                 - rust.bedrock-runtime.Converse_AnthropicClaude.tool-use.supporting
-
   services:
     bedrock-runtime: {Converse}
 

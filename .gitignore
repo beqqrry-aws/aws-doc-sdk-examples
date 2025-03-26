@@ -7,8 +7,9 @@
 .idea
 *.iml
 .metadata
-.phpunit.result.cache
 .recommenders
+.phpunit.result.cache
+.phpunit.cache
 .swiftpm
 .venv
 .vs
@@ -35,3 +36,4 @@ kotlin/services/**/build/
 kotlin/services/**/gradle/
 kotlin/services/**/gradlew
 kotlin/services/**/gradlew.bat
+kotlin/services/**/.kotlin/

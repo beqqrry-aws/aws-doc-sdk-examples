@@ -68,7 +68,7 @@ Code excerpts that show you how to call individual service functions.
 - [GetObjectLockConfiguration](scenarios/object-locking/cleanup.py#L17)
 - [HeadBucket](s3_basics/bucket_wrapper.py#L64)
 - [ListBuckets](s3_basics/bucket_wrapper.py#L85)
-- [ListObjectsV2](s3_basics/object_wrapper.py#L21)
+- [ListObjectsV2](s3_basics/object_wrapper.py#L99)
 - [PutBucketAcl](s3_basics/bucket_wrapper.py#L122)
 - [PutBucketCors](s3_basics/bucket_wrapper.py#L171)
 - [PutBucketLifecycleConfiguration](s3_basics/bucket_wrapper.py#L279)
@@ -88,6 +88,8 @@ functions within the same service.
 - [Create an Amazon Textract explorer application](../../cross_service/textract_explorer)
 - [Detect entities in text extracted from an image](../../cross_service/textract_comprehend_notebook)
 - [Detect objects in images](../../cross_service/photo_analyzer)
+- [Detect people and objects in a video](../../example_code/rekognition)
+- [Make conditional requests](scenarios/conditional_requests/scenario.py)
 - [Manage versioned objects in batches with a Lambda function](../../example_code/s3/s3_versioning)
 - [Upload or download large files](file_transfer/file_transfer.py)
 - [Work with versioned objects](s3_versioning/versioning.py)
@@ -189,6 +191,36 @@ This example shows you how to build an app that uses Amazon Rekognition to detec
 
 <!--custom.scenarios.cross_RekognitionPhotoAnalyzer.start-->
 <!--custom.scenarios.cross_RekognitionPhotoAnalyzer.end-->
+
+#### Detect people and objects in a video
+
+This example shows you how to detect people and objects in a video with Amazon Rekognition.
+
+
+<!--custom.scenario_prereqs.cross_RekognitionVideoDetection.start-->
+<!--custom.scenario_prereqs.cross_RekognitionVideoDetection.end-->
+
+
+<!--custom.scenarios.cross_RekognitionVideoDetection.start-->
+<!--custom.scenarios.cross_RekognitionVideoDetection.end-->
+
+#### Make conditional requests
+
+This example shows you how to add preconditions to Amazon S3 requests.
+
+
+<!--custom.scenario_prereqs.s3_Scenario_ConditionalRequests.start-->
+<!--custom.scenario_prereqs.s3_Scenario_ConditionalRequests.end-->
+
+Start the example by running the following at a command prompt:
+
+```
+python scenarios/conditional_requests/scenario.py
+```
+
+
+<!--custom.scenarios.s3_Scenario_ConditionalRequests.start-->
+<!--custom.scenarios.s3_Scenario_ConditionalRequests.end-->
 
 #### Manage versioned objects in batches with a Lambda function
 

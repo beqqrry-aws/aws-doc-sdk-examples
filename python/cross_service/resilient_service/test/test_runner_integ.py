@@ -6,9 +6,8 @@ from unittest.mock import patch
 
 import boto3
 import pytest
-from botocore.exceptions import ClientError
-
 from auto_scaler import AutoScalingWrapper
+from botocore.exceptions import ClientError
 from load_balancer import ElasticLoadBalancerWrapper
 from parameters import ParameterHelper
 from recommendation_service import RecommendationService
@@ -33,7 +32,7 @@ class TestRunnerIntegration(unittest.TestCase):
 
         # Initialize the services and runner
         cls.prefix = "test-doc-example-resilience"
-        cls.resource_path = "../../../workflows/resilient_service/resources"
+        cls.resource_path = "../../../scenarios/features/resilient_service/resources"
         cls.recommendation = RecommendationService(
             "test-recommendation-service", cls.ddb_client
         )

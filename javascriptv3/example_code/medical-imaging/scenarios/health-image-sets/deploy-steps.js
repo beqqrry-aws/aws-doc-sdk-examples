@@ -23,7 +23,7 @@ const stsClient = new STSClient({});
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 const cfnTemplatePath = path.join(
   __dirname,
-  "../../../../../workflows/healthimaging_image_sets/resources/cfn_template.yaml",
+  "../../../../../scenarios/features/healthimaging_image_sets/resources/cfn_template.yaml",
 );
 
 export const deployStack = new ScenarioInput(
@@ -95,7 +95,7 @@ export const waitForStackCreation = new ScenarioAction(
     await retry({ intervalInMs: 10000, maxRetries: 60 }, async () => {
       const response = await cfnClient.send(command);
       const stack = response.Stacks?.find(
-        (s) => s.StackName == state.getStackName,
+        (s) => s.StackName === state.getStackName,
       );
       if (!stack || stack.StackStatus === "CREATE_IN_PROGRESS") {
         throw new Error("Stack creation is still in progress");

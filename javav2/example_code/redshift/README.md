@@ -31,29 +31,28 @@ For prerequisites, see the [README](../../README.md#Prerequisites) in the `javav
 
 ### Get started
 
-- [Hello Amazon Redshift](src/main/java/com/example/redshift/HelloRedshift.java#L6) (`describeClusters`)
+- [Hello Amazon Redshift](src/main/java/com/example/redshift/HelloRedshift.java#L6) (`DescribeClusters`)
 
 
 ### Basics
 
 Code examples that show you how to perform the essential operations within a service.
 
-- [Learn the basics](src/main/java/com/example/scenario/RedshiftScenario.java)
+- [Learn the basics](src/main/java/com/example/redshift/scenario/RedshiftScenario.java)
 
 
 ### Single actions
 
 Code excerpts that show you how to call individual service functions.
 
-- [CreateCluster](src/main/java/com/example/scenario/RedshiftScenario.java#L498)
-- [CreateTable](src/main/java/com/example/scenario/RedshiftScenario.java#L475)
-- [DeleteCluster](src/main/java/com/example/scenario/RedshiftScenario.java#L247)
-- [DescribeClusters](src/main/java/com/example/scenario/RedshiftScenario.java#L430)
-- [DescribeStatement](src/main/java/com/example/scenario/RedshiftScenario.java#L324)
-- [GetStatementResult](src/main/java/com/example/scenario/RedshiftScenario.java#L408)
-- [Insert](src/main/java/com/example/scenario/RedshiftScenario.java#L265)
-- [ModifyCluster](src/main/java/com/example/scenario/RedshiftScenario.java#L356)
-- [Query](src/main/java/com/example/scenario/RedshiftScenario.java#L375)
+- [CreateCluster](src/main/java/com/example/redshift/scenario/RedshiftActions.java#L102)
+- [DeleteCluster](src/main/java/com/example/redshift/scenario/RedshiftActions.java#L481)
+- [DescribeClusters](src/main/java/com/example/redshift/scenario/RedshiftActions.java#L132)
+- [DescribeStatement](src/main/java/com/example/redshift/scenario/RedshiftActions.java#L333)
+- [ExecuteStatement](src/main/java/com/example/redshift/scenario/RedshiftActions.java#L218)
+- [GetStatementResult](src/main/java/com/example/redshift/scenario/RedshiftActions.java#L375)
+- [ListDatabases](src/main/java/com/example/redshift/scenario/RedshiftActions.java#L188)
+- [ModifyCluster](src/main/java/com/example/redshift/scenario/RedshiftActions.java#L452)
 
 
 <!--custom.examples.start-->
@@ -74,8 +73,15 @@ This example shows you how to get started using Amazon Redshift.
 
 #### Learn the basics
 
-This example shows you how to work with Amazon Redshift tables, items, and queries.
+This example shows you how to do the following:
 
+- Create a Redshift cluster.
+- List databases in the cluster.
+- Create a table named Movies.
+- Populate the Movies table.
+- Query the Movies table by year.
+- Modify the Redshift cluster.
+- Delete the Amazon Redshift cluster.
 
 <!--custom.basic_prereqs.redshift_Scenario.start-->
 <!--custom.basic_prereqs.redshift_Scenario.end-->

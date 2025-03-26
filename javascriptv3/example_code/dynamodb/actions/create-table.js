@@ -1,7 +1,7 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import { fileURLToPath } from "url";
+import { fileURLToPath } from "node:url";
 
 // snippet-start:[dynamodb.JavaScript.table.createTableV3]
 import { CreateTableCommand, DynamoDBClient } from "@aws-sdk/client-dynamodb";
@@ -26,10 +26,7 @@ export const main = async () => {
         KeyType: "HASH",
       },
     ],
-    ProvisionedThroughput: {
-      ReadCapacityUnits: 1,
-      WriteCapacityUnits: 1,
-    },
+    BillingMode: "PAY_PER_REQUEST",
   });
 
   const response = await client.send(command);

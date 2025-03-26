@@ -36,7 +36,7 @@ For prerequisites, see the [README](../../README.md#Prerequisites) in the `javas
 
 ### Get started
 
-- [Hello Amazon Bedrock](hello.js) (`InvokeModel`)
+- [Hello Amazon Bedrock Runtime](hello.js) (`InvokeModel`)
 
 ### Scenarios
 
@@ -49,6 +49,15 @@ functions within the same service.
 
 - [Converse](models/ai21LabsJurassic2/converse.js#L4)
 - [InvokeModel](models/ai21LabsJurassic2/invoke_model.js)
+
+### Amazon Nova
+
+- [Converse](models/amazonNovaText/converse.js#L4)
+- [ConverseStream](models/amazonNovaText/converseStream.js#L4)
+
+### Amazon Nova Canvas
+
+- [InvokeModel](models/amazonNovaCanvas/invokeModel.js#L4)
 
 ### Amazon Titan Text
 
@@ -72,9 +81,7 @@ functions within the same service.
 
 - [Converse](models/metaLlama/converse.js#L4)
 - [ConverseStream](models/metaLlama/converseStream.js#L4)
-- [InvokeModel: Llama 2](models/metaLlama/llama2/invoke_model_quickstart.js#L4)
 - [InvokeModel: Llama 3](models/metaLlama/llama3/invoke_model_quickstart.js#L4)
-- [InvokeModelWithResponseStream: Llama 2](models/metaLlama/llama2/invoke_model_with_response_stream_quickstart.js#L4)
 - [InvokeModelWithResponseStream: Llama 3](models/metaLlama/llama3/invoke_model_with_response_stream_quickstart.js#L4)
 
 ### Mistral AI
@@ -120,9 +127,9 @@ for that file.
 <!--custom.instructions.start-->
 <!--custom.instructions.end-->
 
-#### Hello Amazon Bedrock
+#### Hello Amazon Bedrock Runtime
 
-This example shows you how to get started using Amazon Bedrock.
+This example shows you how to get started using Amazon Bedrock Runtime.
 
 ```bash
 node ./hello.js

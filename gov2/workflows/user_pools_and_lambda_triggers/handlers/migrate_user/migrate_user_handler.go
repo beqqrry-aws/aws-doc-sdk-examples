@@ -3,6 +3,8 @@
 
 package main
 
+// snippet-start:[gov2.lambda.MigrateUserHandler]
+
 import (
 	"context"
 	"log"
@@ -16,8 +18,6 @@ import (
 	"github.com/aws/aws-sdk-go-v2/feature/dynamodb/expression"
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb"
 )
-
-// snippet-start:[gov2.lambda.MigrateUserHandler]
 
 const TABLE_NAME = "TABLE_NAME"
 
@@ -84,7 +84,8 @@ func (h *handler) HandleRequest(ctx context.Context, event events.CognitoEventUs
 }
 
 func main() {
-	sdkConfig, err := config.LoadDefaultConfig(context.TODO())
+	ctx := context.Background()
+	sdkConfig, err := config.LoadDefaultConfig(ctx)
 	if err != nil {
 		log.Panicln(err)
 	}

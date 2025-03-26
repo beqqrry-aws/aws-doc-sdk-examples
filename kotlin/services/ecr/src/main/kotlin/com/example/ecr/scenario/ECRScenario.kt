@@ -23,7 +23,7 @@ import java.util.Scanner
  * this program will not successfully run. For more information including how to create the local
  * image, see:
  *
- * /getting_started_scenarios/ecr_scenario/README
+ * /scenarios/basics/ecr/README
  *
  */
 
@@ -40,14 +40,14 @@ suspend fun main(args: Array<String>) {
         
         """.trimIndent()
 
-    // if (args.size != 2) {
-    //     println(usage)
-    //     return
-    // }
+    if (args.size != 2) {
+        println(usage)
+        return
+    }
 
-    var iamRole = "arn:aws:iam::814548047983:role/Admin"
+    var iamRole = args[0]
     var localImageName: String
-    var accountId = "814548047983"
+    var accountId = args[1]
     val ecrActions = ECRActions()
     val scanner = Scanner(System.`in`)
 

@@ -52,18 +52,18 @@ Code excerpts that show you how to call individual service functions.
 
 - [BatchExecuteStatement](partiql/scenario_partiql_batch.py#L44)
 - [BatchGetItem](batching/dynamo_batching.py#L64)
-- [BatchWriteItem](GettingStarted/scenario_getting_started_movies.py#L164)
+- [BatchWriteItem](GettingStarted/scenario_getting_started_movies.py#L161)
 - [CreateTable](GettingStarted/scenario_getting_started_movies.py#L100)
-- [DeleteItem](GettingStarted/scenario_getting_started_movies.py#L342)
-- [DeleteTable](GettingStarted/scenario_getting_started_movies.py#L363)
+- [DeleteItem](GettingStarted/scenario_getting_started_movies.py#L339)
+- [DeleteTable](GettingStarted/scenario_getting_started_movies.py#L360)
 - [DescribeTable](GettingStarted/scenario_getting_started_movies.py#L70)
 - [ExecuteStatement](partiql/scenario_partiql_single.py#L43)
-- [GetItem](GettingStarted/scenario_getting_started_movies.py#L223)
-- [ListTables](GettingStarted/scenario_getting_started_movies.py#L140)
-- [PutItem](GettingStarted/scenario_getting_started_movies.py#L193)
-- [Query](GettingStarted/scenario_getting_started_movies.py#L280)
-- [Scan](GettingStarted/scenario_getting_started_movies.py#L303)
-- [UpdateItem](GettingStarted/scenario_getting_started_movies.py#L248)
+- [GetItem](GettingStarted/scenario_getting_started_movies.py#L220)
+- [ListTables](GettingStarted/scenario_getting_started_movies.py#L137)
+- [PutItem](GettingStarted/scenario_getting_started_movies.py#L190)
+- [Query](GettingStarted/scenario_getting_started_movies.py#L277)
+- [Scan](GettingStarted/scenario_getting_started_movies.py#L300)
+- [UpdateItem](GettingStarted/scenario_getting_started_movies.py#L245)
 
 ### Scenarios
 
@@ -77,6 +77,8 @@ functions within the same service.
 - [Create a websocket chat application](../../cross_service/apigateway_websocket_chat)
 - [Query a table by using batches of PartiQL statements](partiql/scenario_partiql_batch.py)
 - [Query a table using PartiQL](partiql/scenario_partiql_single.py)
+- [Use API Gateway to invoke a Lambda function](../../example_code/lambda)
+- [Use scheduled events to invoke a Lambda function](../../example_code/lambda)
 
 
 <!--custom.examples.start-->
@@ -152,7 +154,7 @@ The tutorial shows you how to set up the following additional resources:
 - A VPC from Amazon Virtual Private Cloud (Amazon VPC)
 - A DAX cluster set up in your VPC 
 - An EC2 instance running in your VPC with the following installed:
-    - Python 3.7 or later
+    - Python 3.9 or later
     - Boto3 1.11.10 or later
     - Amazon DAX Client for Python 1.1.7 or later
 
@@ -258,6 +260,30 @@ python partiql/scenario_partiql_single.py
 
 <!--custom.scenarios.dynamodb_Scenario_PartiQLSingle.start-->
 <!--custom.scenarios.dynamodb_Scenario_PartiQLSingle.end-->
+
+#### Use API Gateway to invoke a Lambda function
+
+This example shows you how to create an AWS Lambda function invoked by Amazon API Gateway.
+
+
+<!--custom.scenario_prereqs.cross_LambdaAPIGateway.start-->
+<!--custom.scenario_prereqs.cross_LambdaAPIGateway.end-->
+
+
+<!--custom.scenarios.cross_LambdaAPIGateway.start-->
+<!--custom.scenarios.cross_LambdaAPIGateway.end-->
+
+#### Use scheduled events to invoke a Lambda function
+
+This example shows you how to create an AWS Lambda function invoked by an Amazon EventBridge scheduled event.
+
+
+<!--custom.scenario_prereqs.cross_LambdaScheduledEvents.start-->
+<!--custom.scenario_prereqs.cross_LambdaScheduledEvents.end-->
+
+
+<!--custom.scenarios.cross_LambdaScheduledEvents.start-->
+<!--custom.scenarios.cross_LambdaScheduledEvents.end-->
 
 ### Tests
 

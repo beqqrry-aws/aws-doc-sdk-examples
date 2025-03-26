@@ -2,8 +2,10 @@ allow_list:
   # Git commits
   - "cd5e746ec203c8c3c61647e0886a8df8c1e78e41"
   - "725feb26d6f73bc1d83dbbe075ae8ea991efb245"
+  - "e9772d140489982e0e3704fea5ee93d536f1e275"
   # Safe look-alikes, mostly tokens and paths that happen to be 40 characters.
   - "/AmazonEventBridgeServiceIntegrationTest"
+  - "erbucketf684533d2680435fa99d24b1bdaf5179"
   - "/ListOrganizationalUnitsForParentExample"
   - "AmazonDataZoneBedrockPermissionsBoundary"
   - "AWSEC2/latest/APIReference/OperationList"
@@ -207,6 +209,10 @@ allow_list:
   - "aws/s3/model/AbortMultipartUploadRequest"
   - "src/main/kotlin/com/example/ecr/HelloECR"
   - "aws/ec2/model/DisassociateAddressRequest"
+  - "src/main/java/com/example/acm/DeleteCert"
+  - "src/main/java/com/example/acm/ImportCert"
+  - "EnablePropagateAdditionalUserContextData"
+  - "StopQueryWorkloadInsightsTopContributors"
 sample_files:
   - "README.md"
   - "chat_sfn_state_machine.json"

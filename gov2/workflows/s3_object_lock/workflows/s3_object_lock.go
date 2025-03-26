@@ -3,6 +3,8 @@
 
 package workflows
 
+// snippet-start:[gov2.workflows.s3.ObjectLock.scenario.complete]
+
 import (
 	"context"
 	"fmt"
@@ -17,8 +19,6 @@ import (
 	"github.com/aws/aws-sdk-go-v2/service/s3/types"
 	"github.com/awsdocs/aws-doc-sdk-examples/gov2/demotools"
 )
-
-// snippet-start:[gov2.workflows.s3.ObjectLock.scenario.complete]
 
 // ObjectLockScenario contains the steps to run the S3 Object Lock workflow.
 type ObjectLockScenario struct {
@@ -61,6 +61,7 @@ func (scenario *ObjectLockScenario) CreateBuckets(ctx context.Context) {
 			"This example creates three buckets. Enter a prefix to name your buckets (remember bucket names must be globally unique):")
 
 		for _, info := range createInfo {
+			log.Println(fmt.Sprintf("%s.%s", prefix, info.name))
 			bucketName, err := scenario.s3Actions.CreateBucketWithLock(ctx, fmt.Sprintf("%s.%s", prefix, info.name), scenario.sdkConfig.Region, info.locked)
 			if err != nil {
 				switch err.(type) {
@@ -346,7 +347,7 @@ func (scenario *ObjectLockScenario) makeObjectChoiceList(bucketObjects []BucketK
 	return choices
 }
 
-// Run runs the S3 Object Lock workflow scenario.
+// Run runs the S3 Object Lock scenario.
 func (scenario *ObjectLockScenario) Run(ctx context.Context) {
 	defer func() {
 		if r := recover(); r != nil {
@@ -360,7 +361,7 @@ func (scenario *ObjectLockScenario) Run(ctx context.Context) {
 	}()
 
 	log.Println(strings.Repeat("-", 88))
-	log.Println("Welcome to the Amazon S3 Object Lock Workflow Scenario.")
+	log.Println("Welcome to the Amazon S3 Object Lock Feature Scenario.")
 	log.Println(strings.Repeat("-", 88))
 
 	scenario.CreateBuckets(ctx)

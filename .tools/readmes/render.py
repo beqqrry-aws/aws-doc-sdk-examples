@@ -1,23 +1,24 @@
 # Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 # SPDX-License-Identifier: Apache-2.0
 
-from collections import defaultdict
 import datetime
 import logging
 import os
 import re
+from collections import defaultdict
 from dataclasses import asdict
 from enum import Enum
-from jinja2 import Environment, FileSystemLoader, select_autoescape
 from operator import itemgetter
 from pathlib import Path
 from typing import Dict, List, Tuple
 
+import config
+from aws_doc_sdk_examples_tools.categories import Category
+from aws_doc_sdk_examples_tools.entities import expand_all_entities
 from aws_doc_sdk_examples_tools.metadata import Example
 from aws_doc_sdk_examples_tools.sdks import Sdk
 from aws_doc_sdk_examples_tools.services import Service
-
-import config
+from jinja2 import Environment, FileSystemLoader, select_autoescape
 from scanner import Scanner
 
 logger = logging.getLogger(__name__)
@@ -128,6 +129,7 @@ class Renderer:
                 "api": api,
                 "category": pre.category,
             }
+            self._apply_defaults_and_overrides(action)
             post_examples.append(action)
         return sorted(post_examples, key=itemgetter(sort_key))
 
@@ -153,6 +155,31 @@ class Renderer:
 
         return file, run_file
 
+    def _make_plain_text(self, s: str, example: Dict[str, str]) -> [str, None]:
+        """Work around strings being Go templates and including XML tags by brute forcing them away."""
+        if s is None:
+            return s
+        return s.replace("<code>", "")\
+            .replace("</code>", "")\
+            .replace("{{.Action}}", example["api"])\
+            .replace("{{.ServiceEntity.Short}}", self.scanner.doc_gen.services[self.scanner.svc_name].short)
+
+    def _apply_defaults_and_overrides(self, example: Dict[str, str]):
+        ex_cat = "Actions" if example["category"] == "Api" else example["category"]
+        cat = self.scanner.doc_gen.categories.get(ex_cat, None)
+        if cat is not None:
+            if cat.overrides:
+                example["title"] = self._make_plain_text(cat.overrides.title, example)
+                example["title_abbrev"] = self._make_plain_text(cat.overrides.title_abbrev, example)
+                example["synopsis"] = self._make_plain_text(cat.overrides.synopsis, example)
+            elif cat.defaults:
+                if not example.get("title"):
+                    example["title"] = self._make_plain_text(cat.defaults.title, example)
+                if not example.get("title_abbrev"):
+                    example["title_abbrev"] = self._make_plain_text(cat.defaults.title_abbrev, example)
+                if not example.get("synopsis"):
+                    example["synopsis"] = self._make_plain_text(cat.defaults.synopsis, example)
+
     def _transform_hellos(self) -> List[Dict[str, str]]:
         examples = self._transform_examples(self.scanner.hellos)
         return examples
@@ -160,15 +187,12 @@ class Renderer:
     def _transform_actions(self) -> List[Dict[str, str]]:
         examples = self._transform_examples(self.scanner.actions, sort_key="api")
         for example in examples:
-            example["title_abbrev"] = example["api"]
             del example["api"]
         return examples
 
     def _transform_basics(self) -> List[Dict[str, str]]:
         examples = self._transform_examples(self.scanner.basics)
         for example in examples:
-            if not example["title_abbrev"]:
-                example["title_abbrev"] = config.basics_title_abbrev
             example["file"] = example["run_file"]
             del example["run_file"]
             del example["api"]
@@ -196,22 +220,13 @@ class Renderer:
             post_cats[example["category"]].append(example)
 
         sorted_cats = {}
-        for key in sorted(post_cats.keys()):
+        for key in sorted(post_cats.keys(),
+                          key=lambda x: self.scanner.doc_gen.categories.get(x, Category(x, x)).display):
             if len(post_cats[key]) == 0:
                 del sorted_cats[key]
             else:
                 sorted_cats[key] = post_cats[key]
         return sorted_cats
-
-    def _expand_entities(self, readme_text: str) -> str:
-        entities = set(re.findall(r"&[\dA-Za-z-_]+;", readme_text))
-        for entity in entities:
-            expanded = self.scanner.expand_entity(entity)
-            if expanded is not None:
-                readme_text = readme_text.replace(entity, expanded)
-            else:
-                logger.warning("Entity found with no expansion defined: %s", entity)
-        return readme_text
 
     def _lang_level_double_dots(self) -> str:
         return "../" * self.lang_config["service_folder"].count("/")
@@ -275,7 +290,12 @@ class Renderer:
         custom_cats = self._transform_custom_categories()
 
         if (
-            len(hello) + len(actions) + len(basics) + len(scenarios) + len(custom_cats) + len(crosses)
+            len(hello)
+            + len(actions)
+            + len(basics)
+            + len(scenarios)
+            + len(custom_cats)
+            + len(crosses)
             == 0
         ):
             return RenderStatus.NO_EXAMPLES
@@ -300,6 +320,7 @@ class Renderer:
             lang_config=self.lang_config,
             sdk=sdk,
             service=svc,
+            categories=self.scanner.doc_gen.categories,
             hello=hello,
             actions=actions,
             basics=basics,
@@ -309,7 +330,11 @@ class Renderer:
             customs=customs,
             unsupported=unsupported,
         )
-        self.readme_text = self._expand_entities(self.readme_text)
+        self.readme_text += "\n" # Jinja is the worst and strips trailing new lines
+        [text, errors] = expand_all_entities(self.readme_text, self.scanner.doc_gen.entities)
+        if errors:
+            raise errors
+        self.readme_text = text
 
         # Check if the rendered text is different from the existing file
         if self.read_current() == self.readme_text:
@@ -334,7 +359,11 @@ class Renderer:
     def read_current(self):
         try:
             with self.readme_filename.open("r", encoding="utf-8") as f:
-                return f.read()
+                current = f.read()
+                if current[-1] != "\n":
+                    # Ensure there's always an ending newline
+                    current += "\n"
+                return current
         except FileNotFoundError:
             return ""
 

@@ -17,6 +17,7 @@ _Amazon Bedrock Runtime is a fully managed service that makes it easy to use fou
 * This code is not tested in every AWS Region. For more information, see [AWS Regional Services](https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services).
 
 <!--custom.important.start-->
+**Note: This project uses JDK 21**
 <!--custom.important.end-->
 
 ## Code examples
@@ -37,6 +38,15 @@ For prerequisites, see the [README](../../README.md#Prerequisites) in the `javav
 
 - [Converse](src/main/java/com/example/bedrockruntime/models/ai21LabsJurassic2/Converse.java#L6)
 - [InvokeModel](src/main/java/com/example/bedrockruntime/models/ai21LabsJurassic2/InvokeModel.java#L6)
+
+### Amazon Nova
+
+- [Converse](src/main/java/com/example/bedrockruntime/models/amazon/nova/text/ConverseAsync.java#L6)
+- [ConverseStream](src/main/java/com/example/bedrockruntime/models/amazon/nova/text/ConverseStream.java#L6)
+
+### Amazon Nova Canvas
+
+- [InvokeModel](src/main/java/com/example/bedrockruntime/models/amazon/nova/canvas/InvokeModel.java#L6)
 
 ### Amazon Titan Image Generator
 
@@ -59,6 +69,8 @@ For prerequisites, see the [README](../../README.md#Prerequisites) in the `javav
 - [ConverseStream](src/main/java/com/example/bedrockruntime/models/anthropicClaude/ConverseStream.java#L6)
 - [InvokeModel](src/main/java/com/example/bedrockruntime/models/anthropicClaude/InvokeModel.java#L6)
 - [InvokeModelWithResponseStream](src/main/java/com/example/bedrockruntime/models/anthropicClaude/InvokeModelWithResponseStream.java#L6)
+- [Reasoning](src/main/java/com/example/bedrockruntime/models/anthropicClaude/ReasoningAsync.java#L6)
+- [Reasoning with a streaming response](src/main/java/com/example/bedrockruntime/models/anthropicClaude/ReasoningStream.java#L6)
 
 ### Cohere Command
 
@@ -73,9 +85,7 @@ For prerequisites, see the [README](../../README.md#Prerequisites) in the `javav
 
 - [Converse](src/main/java/com/example/bedrockruntime/models/metaLlama/Converse.java#L6)
 - [ConverseStream](src/main/java/com/example/bedrockruntime/models/metaLlama/ConverseStream.java#L6)
-- [InvokeModel: Llama 2](src/main/java/com/example/bedrockruntime/models/metaLlama/Llama2_InvokeModel.java#L6)
 - [InvokeModel: Llama 3](src/main/java/com/example/bedrockruntime/models/metaLlama/Llama3_InvokeModel.java#L6)
-- [InvokeModelWithResponseStream: Llama 2](src/main/java/com/example/bedrockruntime/models/metaLlama/Llama2_InvokeModelWithResponseStream.java#L6)
 - [InvokeModelWithResponseStream: Llama 3](src/main/java/com/example/bedrockruntime/models/metaLlama/Llama3_InvokeModelWithResponseStream.java#L6)
 
 ### Mistral AI

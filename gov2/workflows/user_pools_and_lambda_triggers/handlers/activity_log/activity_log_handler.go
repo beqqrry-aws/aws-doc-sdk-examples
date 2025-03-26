@@ -3,6 +3,8 @@
 
 package main
 
+// snippet-start:[gov2.lambda.ActivityLogHandler]
+
 import (
 	"context"
 	"fmt"
@@ -18,8 +20,6 @@ import (
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb"
 	dynamodbtypes "github.com/aws/aws-sdk-go-v2/service/dynamodb/types"
 )
-
-// snippet-start:[gov2.lambda.ActivityLogHandler]
 
 const TABLE_NAME = "TABLE_NAME"
 
@@ -89,7 +89,8 @@ func (h *handler) HandleRequest(ctx context.Context, event events.CognitoEventUs
 }
 
 func main() {
-	sdkConfig, err := config.LoadDefaultConfig(context.TODO())
+	ctx := context.Background()
+	sdkConfig, err := config.LoadDefaultConfig(ctx)
 	if err != nil {
 		log.Panicln(err)
 	}

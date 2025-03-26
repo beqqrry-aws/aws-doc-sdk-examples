@@ -1,7 +1,7 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import { fileURLToPath } from "url";
+import { fileURLToPath } from "node:url";
 
 // snippet-start:[javascript.v3.iam.actions.PutRolePolicy]
 import { PutRolePolicyCommand, IAMClient } from "@aws-sdk/client-iam";
@@ -18,7 +18,7 @@ const examplePolicyDocument = JSON.stringify({
         "s3:ListBucket",
         "s3:ListMultipartUploadParts",
       ],
-      Resource: "arn:aws:s3:::some-test-bucket",
+      Resource: "arn:aws:s3:::amzn-s3-demo-bucket",
     },
     {
       Sid: "VisualEditor1",

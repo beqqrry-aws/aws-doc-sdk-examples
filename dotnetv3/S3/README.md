@@ -40,7 +40,6 @@ Code examples that show you how to perform the essential operations within a ser
 
 Code excerpts that show you how to call individual service functions.
 
-- [AbortMultipartUploads](AbortMPUExample/AbortMPU.cs#L6)
 - [CopyObject](CopyObjectExample/CopyObject.cs#L11)
 - [CreateBucket](S3_Basics/S3Bucket.cs#L12)
 - [DeleteBucket](S3_Basics/S3Bucket.cs#L266)
@@ -84,12 +83,12 @@ functions within the same service.
 - [Detect objects in images](../cross-service/PhotoAnalyzerApp)
 - [Get started with encryption](SSEClientEncryptionExample/SSEClientEncryption.cs)
 - [Get started with tags](ObjectTagExample/ObjectTag.cs)
-- [Get the legal hold configuration of an object](scenarios/S3ObjectLockScenario/S3ObjectLockWorkflow/S3ActionsWrapper.cs)
 - [Lock Amazon S3 objects](scenarios/S3ObjectLockScenario/S3ObjectLockWorkflow/S3ObjectLockWorkflow.cs)
+- [Make conditional requests](scenarios/S3ConditionalRequestsScenario/S3ConditionalRequests/S3ConditionalRequestsScenario.cs)
 - [Manage access control lists (ACLs)](ManageACLsExample/ManageACLs.cs)
 - [Perform a multipart copy](MPUapiCopyObjExample/MPUapiCopyObj.cs)
 - [Transform data with S3 Object Lambda](../cross-service/S3ObjectLambdaFunction)
-- [Upload or download large files](scenarios/TransferUtilityBasics/TransferUtilityBasics/TransferBasics.cs)
+- [Upload or download large files](scenarios/TransferUtilityBasics/TransferUtilityBasics/GlobalUsings.cs)
 
 
 <!--custom.examples.start-->
@@ -199,18 +198,6 @@ This example shows you how to get started with tags for Amazon S3 objects.
 <!--custom.scenarios.s3_Scenario_Tagging.start-->
 <!--custom.scenarios.s3_Scenario_Tagging.end-->
 
-#### Get the legal hold configuration of an object
-
-This example shows you how to get the legal hold configuration of an S3 bucket.
-
-
-<!--custom.scenario_prereqs.s3_GetObjectLegalHoldConfiguration.start-->
-<!--custom.scenario_prereqs.s3_GetObjectLegalHoldConfiguration.end-->
-
-
-<!--custom.scenarios.s3_GetObjectLegalHoldConfiguration.start-->
-<!--custom.scenarios.s3_GetObjectLegalHoldConfiguration.end-->
-
 #### Lock Amazon S3 objects
 
 This example shows you how to work with S3 object lock features.
@@ -222,6 +209,18 @@ This example shows you how to work with S3 object lock features.
 
 <!--custom.scenarios.s3_Scenario_ObjectLock.start-->
 <!--custom.scenarios.s3_Scenario_ObjectLock.end-->
+
+#### Make conditional requests
+
+This example shows you how to add preconditions to Amazon S3 requests.
+
+
+<!--custom.scenario_prereqs.s3_Scenario_ConditionalRequests.start-->
+<!--custom.scenario_prereqs.s3_Scenario_ConditionalRequests.end-->
+
+
+<!--custom.scenarios.s3_Scenario_ConditionalRequests.start-->
+<!--custom.scenarios.s3_Scenario_ConditionalRequests.end-->
 
 #### Manage access control lists (ACLs)
 

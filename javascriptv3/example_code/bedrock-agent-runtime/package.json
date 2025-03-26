@@ -5,13 +5,12 @@
   "license": "Apache-2.0",
   "type": "module",
   "scripts": {
-    "test": "vitest run **/*.unit.test.js"
+    "integration-test": "vitest run integration --reporter=junit --outputFile=test_results/bedrock-agent-runtime-test-results.junit.xml"
   },
   "dependencies": {
-    "@aws-sdk/client-bedrock-agent-runtime": "^3.501.0"
+    "@aws-sdk/client-bedrock-agent-runtime": "^3.675.0"
   },
   "devDependencies": {
-    "vitest": "^1.6.0",
-    "zod": "^3.22.4"
+    "vitest": "^1.6.0"
   }
 }

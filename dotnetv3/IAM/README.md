@@ -34,43 +34,44 @@ For prerequisites, see the [README](../README.md#Prerequisites) in the `dotnetv3
 - [Hello IAM](Actions/HelloIAM.cs#L4) (`ListPolicies`)
 
 
+### Basics
+
+Code examples that show you how to perform the essential operations within a service.
+
+- [Learn the basics](Scenarios/IAMBasics/IAMBasics.cs)
+
+
 ### Single actions
 
 Code excerpts that show you how to call individual service functions.
 
-- [AddUserToGroup](Actions/IAMWrapper.cs#L22)
-- [AttachRolePolicy](Actions/IAMWrapper.cs#L42)
-- [CreateAccessKey](Actions/IAMWrapper.cs#L62)
-- [CreateGroup](Actions/IAMWrapper.cs#L82)
-- [CreateInstanceProfile](../cross-service/ResilientService/AutoScalerActions/AutoScalerWrapper.cs#L83)
-- [CreatePolicy](Actions/IAMWrapper.cs#L96)
-- [CreateRole](Actions/IAMWrapper.cs#L116)
-- [CreateServiceLinkedRole](Actions/IAMWrapper.cs#L138)
-- [CreateUser](Actions/IAMWrapper.cs#L159)
-- [DeleteAccessKey](Actions/IAMWrapper.cs#L173)
-- [DeleteGroup](Actions/IAMWrapper.cs#L194)
-- [DeleteGroupPolicy](Actions/IAMWrapper.cs#L208)
-- [DeleteInstanceProfile](../cross-service/ResilientService/AutoScalerActions/AutoScalerWrapper.cs#L425)
-- [DeletePolicy](Actions/IAMWrapper.cs#L230)
-- [DeleteRole](Actions/IAMWrapper.cs#L245)
-- [DeleteRolePolicy](Actions/IAMWrapper.cs#L259)
-- [DeleteUser](Actions/IAMWrapper.cs#L279)
-- [DeleteUserPolicy](Actions/IAMWrapper.cs#L294)
-- [DetachRolePolicy](Actions/IAMWrapper.cs#L310)
-- [GetAccountPasswordPolicy](Actions/IAMWrapper.cs#L330)
-- [GetPolicy](Actions/IAMWrapper.cs#L343)
-- [GetRole](Actions/IAMWrapper.cs#L358)
-- [GetUser](Actions/IAMWrapper.cs#L377)
-- [ListAttachedRolePolicies](Actions/IAMWrapper.cs#L391)
-- [ListGroups](Actions/IAMWrapper.cs#L412)
-- [ListPolicies](Actions/IAMWrapper.cs#L432)
-- [ListRolePolicies](Actions/IAMWrapper.cs#L452)
-- [ListRoles](Actions/IAMWrapper.cs#L473)
-- [ListSAMLProviders](Actions/IAMWrapper.cs#L493)
-- [ListUsers](Actions/IAMWrapper.cs#L506)
-- [PutGroupPolicy](Actions/IAMWrapper.cs#L548)
-- [PutRolePolicy](Actions/IAMWrapper.cs#L571)
-- [RemoveUserFromGroup](Actions/IAMWrapper.cs#L526)
+- [AttachRolePolicy](Actions/IAMWrapper.cs#L22)
+- [CreateAccessKey](Actions/IAMWrapper.cs#L42)
+- [CreateInstanceProfile](../cross-service/ResilientService/AutoScalerActions/AutoScalerWrapper.cs#L86)
+- [CreatePolicy](Actions/IAMWrapper.cs#L62)
+- [CreateRole](Actions/IAMWrapper.cs#L82)
+- [CreateServiceLinkedRole](Actions/IAMWrapper.cs#L104)
+- [CreateUser](Actions/IAMWrapper.cs#L125)
+- [DeleteAccessKey](Actions/IAMWrapper.cs#L139)
+- [DeleteInstanceProfile](../cross-service/ResilientService/AutoScalerActions/AutoScalerWrapper.cs#L504)
+- [DeletePolicy](Actions/IAMWrapper.cs#L160)
+- [DeleteRole](Actions/IAMWrapper.cs#L175)
+- [DeleteRolePolicy](Actions/IAMWrapper.cs#L189)
+- [DeleteUser](Actions/IAMWrapper.cs#L209)
+- [DeleteUserPolicy](Actions/IAMWrapper.cs#L224)
+- [DetachRolePolicy](Actions/IAMWrapper.cs#L240)
+- [GetAccountPasswordPolicy](Actions/IAMWrapper.cs#L260)
+- [GetPolicy](Actions/IAMWrapper.cs#L273)
+- [GetRole](Actions/IAMWrapper.cs#L288)
+- [GetUser](Actions/IAMWrapper.cs#L307)
+- [ListAttachedRolePolicies](Actions/IAMWrapper.cs#L321)
+- [ListGroups](Actions/IAMWrapper.cs#L342)
+- [ListPolicies](Actions/IAMWrapper.cs#L362)
+- [ListRolePolicies](Actions/IAMWrapper.cs#L382)
+- [ListRoles](Actions/IAMWrapper.cs#L403)
+- [ListSAMLProviders](Actions/IAMWrapper.cs#L423)
+- [ListUsers](Actions/IAMWrapper.cs#L436)
+- [PutRolePolicy](Actions/IAMWrapper.cs#L456)
 
 ### Scenarios
 
@@ -78,8 +79,6 @@ Code examples that show you how to accomplish a specific task by calling multipl
 functions within the same service.
 
 - [Build and manage a resilient service](../cross-service/ResilientService/ResilientServiceWorkflow/ResilientServiceWorkflow.cs)
-- [Create a group and add a user](Scenarios/IamScenariosCommon/UIWrapper.cs)
-- [Create a user and assume a role](Scenarios/IamScenariosCommon/UIWrapper.cs)
 
 
 <!--custom.examples.start-->
@@ -116,6 +115,22 @@ To run the examples, see the [README](../README.md#building-and-running-the-code
 This example shows you how to get started using IAM.
 
 
+#### Learn the basics
+
+This example shows you how to create a user and assume a role. 
+
+- Create a user with no permissions.
+- Create a role that grants permission to list Amazon S3 buckets for the account.
+- Add a policy to let the user assume the role.
+- Assume the role and list S3 buckets using temporary credentials, then clean up resources.
+
+<!--custom.basic_prereqs.iam_Scenario_CreateUserAssumeRole.start-->
+<!--custom.basic_prereqs.iam_Scenario_CreateUserAssumeRole.end-->
+
+
+<!--custom.basics.iam_Scenario_CreateUserAssumeRole.start-->
+<!--custom.basics.iam_Scenario_CreateUserAssumeRole.end-->
+
 
 #### Build and manage a resilient service
 
@@ -134,37 +149,6 @@ This example shows you how to create a load-balanced web service that returns bo
 
 <!--custom.scenarios.cross_ResilientService.start-->
 <!--custom.scenarios.cross_ResilientService.end-->
-
-#### Create a group and add a user
-
-This example shows you how to do the following:
-
-- Create a group and grant full Amazon S3 access permissions to it.
-- Create a new user with no permissions to access Amazon S3.
-- Add the user to the group and show that they now have permissions for Amazon S3, then clean up resources.
-
-<!--custom.scenario_prereqs.iam_Scenario_GroupBasics.start-->
-<!--custom.scenario_prereqs.iam_Scenario_GroupBasics.end-->
-
-
-<!--custom.scenarios.iam_Scenario_GroupBasics.start-->
-<!--custom.scenarios.iam_Scenario_GroupBasics.end-->
-
-#### Create a user and assume a role
-
-This example shows you how to create a user and assume a role. 
-
-- Create a user with no permissions.
-- Create a role that grants permission to list Amazon S3 buckets for the account.
-- Add a policy to let the user assume the role.
-- Assume the role and list S3 buckets using temporary credentials, then clean up resources.
-
-<!--custom.scenario_prereqs.iam_Scenario_CreateUserAssumeRole.start-->
-<!--custom.scenario_prereqs.iam_Scenario_CreateUserAssumeRole.end-->
-
-
-<!--custom.scenarios.iam_Scenario_CreateUserAssumeRole.start-->
-<!--custom.scenarios.iam_Scenario_CreateUserAssumeRole.end-->
 
 ### Tests
 

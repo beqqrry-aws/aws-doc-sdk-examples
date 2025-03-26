@@ -7,13 +7,13 @@ public class ActionTest_InvokeModel
 {
     [Theory, Trait("Category", "Integration")]
     [InlineData(typeof(Mistral.InvokeModel))]
-    [InlineData(typeof(MetaLlama2.InvokeModel))]
     [InlineData(typeof(MetaLlama3.InvokeModel))]
     [InlineData(typeof(CohereCommand.InvokeModel))]
     [InlineData(typeof(CohereCommandR.InvokeModel))]
     [InlineData(typeof(AnthropicClaude.InvokeModel))]
     [InlineData(typeof(AmazonTitanText.InvokeModel))]
     [InlineData(typeof(Ai21LabsJurassic2.InvokeModel))]
+    [InlineData(typeof(AmazonNovaCanvas.InvokeModel))]
     public void InvokeModelDoesNotThrow(Type type)
     {
         var entryPoint = type.Assembly.EntryPoint!;

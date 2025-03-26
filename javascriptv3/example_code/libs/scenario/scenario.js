@@ -3,10 +3,9 @@
 
 import { Prompter } from "../prompter.js";
 import { Logger } from "../logger.js";
-import { SlowLogger } from "../slow-logger.js";
 
 /**
- * @typedef {{ confirmAll: boolean, verbose: boolean }} StepHandlerOptions
+ * @typedef {{ confirmAll: boolean, verbose: boolean, noArt: boolean }} StepHandlerOptions
  */
 
 /**
@@ -46,17 +45,17 @@ export class Step {
       console.log(
         `[DEBUG ${new Date().toISOString()}] Handling step: ${
           this.constructor.name
-        }<${this.name}>`
+        }<${this.name}>`,
       );
       console.log(
-        `[DEBUG ${new Date().toISOString()}] State: ${JSON.stringify(state)}`
+        `[DEBUG ${new Date().toISOString()}] State: ${JSON.stringify(state)}`,
       );
     }
   }
 }
 
 /**
- * @typedef {{ slow: boolean, header: boolean, preformatted: boolean }} ScenarioOutputOptions
+ * @typedef {{ header: boolean, preformatted: boolean }} ScenarioOutputOptions
  */
 
 /**
@@ -68,10 +67,9 @@ export class ScenarioOutput extends Step {
    * @param {string | (state: Record<string, any>) => string | false} value
    * @param {Step<ScenarioOutputOptions>['stepOptions']} [scenarioOutputOptions]
    */
-  constructor(name, value, scenarioOutputOptions = { slow: true }) {
+  constructor(name, value, scenarioOutputOptions = {}) {
     super(name, scenarioOutputOptions);
     this.value = value;
-    this.slowLogger = new SlowLogger(20);
     this.logger = new Logger();
   }
 
@@ -95,14 +93,15 @@ export class ScenarioOutput extends Step {
     }
     const paddingTop = "\n";
     const paddingBottom = "\n";
-    const logger =
-      this.stepOptions?.slow && !stepHandlerOptions?.confirmAll
-        ? this.slowLogger
-        : this.logger;
+    const logger = this.logger;
     const message = paddingTop + output + paddingBottom;
 
     if (this.stepOptions?.header) {
-      await this.logger.log(this.logger.box(message));
+      if (stepHandlerOptions.noArt === true) {
+        await this.logger.log(message);
+      } else {
+        await this.logger.log(this.logger.box(message));
+      }
     } else {
       await logger.log(message, this.stepOptions?.preformatted);
     }
@@ -111,7 +110,7 @@ export class ScenarioOutput extends Step {
 
 /**
  * @typedef {{
- *   type: "confirm" | "input" | "multi-select" | "select",
+ *   type: "confirm" | "input" | "multi-select" | "select" | "password",
  *   choices: (string | { name: string, value: string })[] | () => (string | { name: string, value: string })[],
  *   default: string | string[] | boolean | () => string | string[] | boolean }
  *   } ScenarioInputOptions
@@ -152,17 +151,18 @@ export class ScenarioInput extends Step {
 
     if (
       stepHandlerOptions.confirmAll &&
-      this.stepOptions.default != undefined
+      this.stepOptions.default !== undefined
     ) {
-      state[this.name] = this.stepOptions.default;
+      state[this.name] = this.default;
       return state[this.name];
-    } else if (stepHandlerOptions.confirmAll) {
+    }
+    if (stepHandlerOptions.confirmAll) {
       if (this.stepOptions?.type === "confirm") {
         state[this.name] = true;
         return true;
       }
       throw new Error(
-        `Error handling ScenarioInput. confirmAll was selected for ${this.name} but no default was provided.`
+        `Error handling ScenarioInput. confirmAll was selected for ${this.name} but no default was provided.`,
       );
     }
 
@@ -179,9 +179,12 @@ export class ScenarioInput extends Step {
       case "confirm":
         await this._handleConfirm(state);
         break;
+      case "password":
+        await this._handlePassword(state);
+        break;
       default:
         throw new Error(
-          `Error handling ScenarioInput, ${this.stepOptions?.type} is not supported.`
+          `Error handling ScenarioInput, ${this.stepOptions?.type} is not supported.`,
         );
     }
 
@@ -203,7 +206,7 @@ export class ScenarioInput extends Step {
 
     if (!rawChoices) {
       throw new Error(
-        `Error handling ScenarioInput. Could not get choices for ${this.name}.`
+        `Error handling ScenarioInput. Could not get choices for ${this.name}.`,
       );
     }
 
@@ -223,7 +226,7 @@ export class ScenarioInput extends Step {
       typeof this.prompt === "function" ? this.prompt(state) : this.prompt;
 
     if (!message) {
-      throw new Error(`Error handling ScenarioInput. Missing prompt.`);
+      throw new Error("Error handling ScenarioInput. Missing prompt.");
     }
 
     const result = await this.prompter.checkbox({
@@ -235,7 +238,7 @@ export class ScenarioInput extends Step {
       state[this.name] = this.default;
     } else if (!result.length) {
       throw new Error(
-        `Error handing ScenarioInput. Result of ${this.name} was empty.`
+        `Error handing ScenarioInput. Result of ${this.name} was empty.`,
       );
     } else {
       state[this.name] = result;
@@ -250,7 +253,7 @@ export class ScenarioInput extends Step {
       typeof this.prompt === "function" ? this.prompt(state) : this.prompt;
 
     if (!message) {
-      throw new Error(`Error handling ScenarioInput. Missing prompt.`);
+      throw new Error("Error handling ScenarioInput. Missing prompt.");
     }
 
     if (this.stepOptions?.type === "select") {
@@ -261,9 +264,9 @@ export class ScenarioInput extends Step {
 
       if (!result && this.default) {
         state[this.name] = this.default;
-      } else if (!result) {
+      } else if (result == null) {
         throw new Error(
-          `Error handing ScenarioInput. Result of ${this.name} was empty.`
+          `Error handing ScenarioInput. Result of ${this.name} was empty.`,
         );
       } else {
         state[this.name] = result;
@@ -280,7 +283,7 @@ export class ScenarioInput extends Step {
     const message = this.default ? `${prompt} (${this.default})` : prompt;
 
     if (!message) {
-      throw new Error(`Error handling ScenarioInput. Missing prompt.`);
+      throw new Error("Error handling ScenarioInput. Missing prompt.");
     }
 
     const result = await this.prompter.input({ message });
@@ -289,7 +292,7 @@ export class ScenarioInput extends Step {
       state[this.name] = this.default;
     } else if (result === undefined) {
       throw new Error(
-        `Error handing ScenarioInput. Result of ${this.name} was empty.`
+        `Error handing ScenarioInput. Result of ${this.name} was empty.`,
       );
     } else {
       state[this.name] = result;
@@ -304,10 +307,28 @@ export class ScenarioInput extends Step {
       typeof this.prompt === "function" ? this.prompt(state) : this.prompt;
 
     if (!message) {
-      throw new Error(`Error handling ScenarioInput. Missing prompt.`);
+      throw new Error("Error handling ScenarioInput. Missing prompt.");
     }
 
     const result = await this.prompter.confirm({
+      message,
+    });
+
+    state[this.name] = result;
+  }
+
+  /**
+   * @param {*} state
+   */
+  async _handlePassword(state) {
+    const message =
+      typeof this.prompt === "function" ? this.prompt(state) : this.prompt;
+
+    if (!message) {
+      throw new Error("Error handling ScenarioInput. Missing prompt.");
+    }
+
+    const result = await this.prompter.password({
       message,
     });
 
@@ -362,7 +383,7 @@ export class ScenarioAction extends Step {
         output &&
           (await this.stepOptions.whileConfig.output.handle(
             state,
-            stepHandlerOptions
+            stepHandlerOptions,
           ));
         await input.handle(state, stepHandlerOptions);
         runAction = whileFn(state);
