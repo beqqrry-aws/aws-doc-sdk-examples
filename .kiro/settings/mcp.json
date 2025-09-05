@@ -1,0 +1,38 @@
+{
+  "mcpServers": {
+    "Quality Code Examples Knowledge Base": {
+      "command": "/Users/beqqrry/KiroProjects/aws-doc-sdk-examples/.kiro/venv/bin/python3",
+      "args": [
+        "/Users/beqqrry/KiroProjects/aws-doc-sdk-examples/.kiro/rag_server.py",
+        "--kb-path",
+        "/Users/beqqrry/KiroProjects/aws-doc-sdk-examples/.kiro/knowledge_base",
+        "--persist-dir",
+        "/Users/beqqrry/KiroProjects/aws-doc-sdk-examples/.kiro/.vector_store",
+        "--stdio"
+      ],
+      "env": {
+        "PYTHONPATH": "/Users/beqqrry/KiroProjects/aws-doc-sdk-examples/.kiro",
+        "FASTMCP_LOG_LEVEL": "INFO"
+      },
+      "disabled": false,
+      "autoApprove": [
+        "search",
+        "knowledge_base_info"
+      ]
+    },
+    "AWS Services Knowledge Base": {
+      "command": "/Users/beqqrry/KiroProjects/aws-doc-sdk-examples/.kiro/venv/bin/python3",
+      "args": [
+        "/Users/beqqrry/KiroProjects/aws-doc-sdk-examples/.kiro/tejas_kb_server.py"
+      ],
+      "env": {
+        "PYTHONPATH": "/Users/beqqrry/KiroProjects/aws-doc-sdk-examples/.kiro",
+        "FASTMCP_LOG_LEVEL": "INFO"
+      },
+      "disabled": false,
+      "autoApprove": [
+        "query_tejas_kb"
+      ]
+    }
+  }
+}
