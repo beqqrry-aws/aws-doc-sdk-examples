@@ -2,10 +2,11 @@
 
 ## 🚨 CRITICAL REQUIREMENT 🚨
 **BEFORE CREATING ANY CODE IN ANY LANGUAGE, YOU MUST:**
-1. Search the Quality Code Examples Knowledge Base for "[language] code example standards"
-2. Example: `search("dotnet C# .NET code example standards")` for .NET projects
-3. Example: `search("Java code example standards")` for Java projects
-4. Example: `search("Python code example standards")` for Python projects
+1. You MUST use awslabsbedrock_kb_retrieval_mcp_server___ListKnowledgeBases to list available knowledge bases and select one containing 'coding-standards' in its name for subsequent queries
+2. You MUST use awslabsbedrock_kb_retrieval_mcp_server___QueryKnowledgeBases to query for "[language] code example standards" to understand what coding standards are set for this language
+3. Example: `search("dotnet C# .NET code example standards")` for .NET projects
+4. Example: `search("Java code example standards")` for Java projects
+5. Example: `search("Python code example standards")` for Python projects
 
 **FAILURE TO DO THIS WILL RESULT IN INCORRECT CODE STRUCTURE AND REJECTED WORK**
 
@@ -14,13 +15,13 @@ When developing AWS SDK code examples, agents should leverage the available know
 
 ## Available Knowledge Base Resources
 
-### 1. Tejas Knowledge Base (Primary AWS Service Reference)
+### 1. Tejas Knowledge Base (Primary AWS Service Reference) //will get replaced by AWS-knowledge-MCP server tools
 - **Tool**: `query_tejas_kb`
 - **Purpose**: Comprehensive AWS service documentation, API references, and implementation guidance
 - **Usage**: Query for AWS service-specific information, API details, parameter requirements, and service capabilities
 - **Auto-approved**: Yes - can be used automatically without user confirmation
 
-### 2. Quality Code Examples Knowledge Base (MANDATORY for Language Structure)
+### 2. Quality Code Examples Knowledge Base (MANDATORY for Language Structure) //will get replaced by Bedrock-KB-retrival-MCP server tools
 - **Tool**: `search` (from Quality Code Examples Knowledge Base MCP server)
 - **Purpose**: Search existing code examples, patterns, and implementations within this repository
 - **Usage**: Find similar implementations, established patterns, and proven code structures

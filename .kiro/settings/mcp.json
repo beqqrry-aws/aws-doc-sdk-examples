@@ -1,17 +1,17 @@
 {
   "mcpServers": {
     "Quality Code Examples Knowledge Base": {
-      "command": "/Users/beqqrry/KiroProjects/aws-doc-sdk-examples/.kiro/venv/bin/python3",
+      "command": ".kiro/venv/bin/python3",
       "args": [
-        "/Users/beqqrry/KiroProjects/aws-doc-sdk-examples/.kiro/rag_server.py",
+        ".kiro/rag_server.py",
         "--kb-path",
-        "/Users/beqqrry/KiroProjects/aws-doc-sdk-examples/.kiro/knowledge_base",
+        ".kiro/knowledge_base",
         "--persist-dir",
-        "/Users/beqqrry/KiroProjects/aws-doc-sdk-examples/.kiro/.vector_store",
+        ".kiro/.vector_store",
         "--stdio"
       ],
       "env": {
-        "PYTHONPATH": "/Users/beqqrry/KiroProjects/aws-doc-sdk-examples/.kiro",
+        "PYTHONPATH": ".kiro",
         "FASTMCP_LOG_LEVEL": "INFO"
       },
       "disabled": false,
@@ -20,19 +20,26 @@
         "knowledge_base_info"
       ]
     },
-    "AWS Services Knowledge Base": {
-      "command": "/Users/beqqrry/KiroProjects/aws-doc-sdk-examples/.kiro/venv/bin/python3",
-      "args": [
-        "/Users/beqqrry/KiroProjects/aws-doc-sdk-examples/.kiro/tejas_kb_server.py"
-      ],
+    "awslabs.bedrock-kb-retrieval-mcp-server": {
+      "command": "uvx",
+      "args": ["awslabs.bedrock-kb-retrieval-mcp-server@latest"],
       "env": {
-        "PYTHONPATH": "/Users/beqqrry/KiroProjects/aws-doc-sdk-examples/.kiro",
-        "FASTMCP_LOG_LEVEL": "INFO"
+        "AWS_PROFILE": "cex-ai-kb-access",
+        "AWS_REGION": "us-west-2",
+        "FASTMCP_LOG_LEVEL": "INFO",
+        "BEDROCK_KB_RERANKING_ENABLED": "false"
       },
       "disabled": false,
-      "autoApprove": [
-        "query_tejas_kb"
-      ]
+      "autoApprove": []
+    },
+    "aws-knowledge-mcp-server": {
+      "command": "uvx",
+      "args": [
+          "mcp-proxy",
+          "--transport",
+          "streamablehttp",
+          "https://knowledge-mcp.global.api.aws"
+        ]
     }
   }
 }
